@@ -30,25 +30,25 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg parchment-texture p-6 sm:p-8 rounded-sm border-2 border-[#211F1B] shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-xl bw-paper-texture p-6 sm:p-8 rounded-sm border-2 border-black shadow-[0_25px_50px_rgba(0,0,0,0.9)]">
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 text-[#211F1B] hover:text-[#8C3833] hover:bg-[#211F1B]/10 rounded-sm transition-colors cursor-pointer"
+          className="absolute top-4 right-4 p-1.5 text-black hover:bg-black hover:text-white rounded-xs transition-colors cursor-pointer"
           aria-label="Close Catalogue"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
-        <div className="border-b-2 border-double border-[#211F1B]/30 pb-3 mb-4">
-          <span className="font-mono-tech text-[9px] uppercase tracking-[0.3em] text-[#686158] block">
+        <div className="border-b-2 border-double border-black pb-3 mb-4">
+          <span className="font-mono-tech text-[9px] uppercase tracking-[0.3em] text-neutral-600 block">
             RAPID NAVIGATION
           </span>
           <div className="flex items-center justify-between">
-            <h3 className="font-typewriter text-xl font-bold uppercase tracking-wider text-[#211F1B]">
+            <h3 className="font-typewriter text-xl font-bold uppercase tracking-wider text-black">
               ARCHIVAL DOSSIER INDEX
             </h3>
             <ArchivalStamp text="EXPEDITE" variant="olive" rotation={1} />
@@ -56,7 +56,7 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
         </div>
 
         {/* Chapter List */}
-        <div className="max-h-[60vh] overflow-y-auto space-y-1.5 pr-1">
+        <div className="max-h-[60vh] overflow-y-auto space-y-2 pr-1">
           {chapters.map((ch) => {
             const isCurrent = currentSpread === ch.spread;
             return (
@@ -67,49 +67,43 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                   onSelectSpread(ch.spread);
                   onClose();
                 }}
-                className={`w-full text-left p-2.5 rounded-xs flex items-center justify-between transition-colors border ${
+                className={`w-full text-left p-3 rounded-xs flex items-center justify-between transition-all border cursor-pointer ${
                   isCurrent
-                    ? 'bg-[#8C3833]/15 border-[#8C3833] text-[#8C3833]'
-                    : 'bg-[#211F1B]/3 border-transparent hover:border-[#211F1B]/25 hover:bg-[#211F1B]/8 text-[#211F1B]'
+                    ? 'bg-black text-white border-black font-bold shadow-sm'
+                    : 'bg-black/[0.03] border-black/20 hover:border-black hover:bg-black/10 text-black'
                 }`}
               >
-                <div className="flex items-center gap-2.5 overflow-hidden">
-                  <span className="font-mono-tech text-[10px] font-bold text-[#686158] flex-shrink-0">
+                <div className="flex items-center gap-3 overflow-hidden">
+                  <span className={`font-mono-tech text-[10px] font-bold flex-shrink-0 ${isCurrent ? 'text-neutral-300' : 'text-neutral-600'}`}>
                     PP. {ch.pages}
                   </span>
                   <div className="truncate">
                     <span className="font-serif-vintage text-sm font-bold block truncate">
                       {ch.title}
                     </span>
-                    <span className="font-mono-tech text-[9px] text-[#686158] uppercase">
+                    <span className={`font-mono-tech text-[9px] uppercase ${isCurrent ? 'text-neutral-400' : 'text-neutral-500'}`}>
                       {ch.category}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 flex-shrink-0 ml-2">
+                <div className="flex items-center gap-1.5 flex-shrink-0 ml-2">
                   {isCurrent && (
-                    <span className="font-mono-tech text-[9px] font-bold text-[#8C3833] bg-[#8C3833]/15 px-1 py-0.5">
-                      CURRENT
+                    <span className="font-mono-tech text-[9px] font-bold text-black bg-white px-1.5 py-0.5">
+                      ACTIVE
                     </span>
                   )}
-                  <ChevronRight className="w-4 h-4 opacity-60" />
+                  <ChevronRight className={`w-4 h-4 ${isCurrent ? 'text-white' : 'text-black/60'}`} />
                 </div>
               </button>
             );
           })}
         </div>
 
-        {/* Modal Footer */}
-        <div className="mt-4 pt-3 border-t border-[#211F1B]/20 flex justify-between items-center font-mono-tech text-[10px] text-[#686158]">
-          <span>Select any chapter to immediately turn to that spread.</span>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-[#8C3833] hover:underline font-bold uppercase cursor-pointer"
-          >
-            Dismiss
-          </button>
+        {/* Modal Footer Note */}
+        <div className="mt-4 pt-3 border-t border-black/20 flex items-center justify-between font-mono-tech text-[10px] text-neutral-600">
+          <span>SELECT ANY CHAPTER TO INSTANTLY TURN PAGES</span>
+          <span className="font-bold text-black">[ESC TO CLOSE]</span>
         </div>
       </div>
     </div>

@@ -13,15 +13,15 @@ export const HandwrittenNote: React.FC<HandwrittenNoteProps> = ({
   rotation = -2,
   className = '',
   arrow = 'none',
-  color = '#263238', // Faded blue-black or graphite ink
+  color = '#111111', // Crisp carbon / graphite ink
 }) => {
   return (
     <div
-      className={`font-handwriting text-base sm:text-lg leading-snug select-none inline-flex items-center gap-1.5 transition-transform ${className}`}
+      className={`font-handwriting text-base sm:text-lg leading-snug select-none inline-flex items-center gap-1.5 transition-transform hover:scale-105 ${className}`}
       style={{
         transform: `rotate(${rotation}deg)`,
         color,
-        textShadow: '0 0 1px rgba(0,0,0,0.05)',
+        textShadow: '0 0 1px rgba(0,0,0,0.1)',
       }}
     >
       {arrow === 'left' && (
@@ -48,4 +48,3 @@ export const HandwrittenNote: React.FC<HandwrittenNoteProps> = ({
     </div>
   );
 };
-

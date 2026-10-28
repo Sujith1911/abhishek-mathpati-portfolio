@@ -2,13 +2,13 @@
 
 @layer base {
   :root {
-    --aged-ivory: #F1E8D5;
-    --antique-parchment: #E6D7B8;
-    --dark-ink: #211F1B;
-    --faded-graphite: #686158;
-    --oxidized-olive: #77745A;
-    --muted-burgundy: #8C3833;
-    --faded-sepia: #A18B6A;
+    --paper-white: #ffffff;
+    --paper-offwhite: #f7f7f7;
+    --ink-black: #0c0c0c;
+    --ink-charcoal: #242424;
+    --graphite: #555555;
+    --light-border: #dedede;
+    --dark-border: #1a1a1a;
   }
 }
 
@@ -37,127 +37,94 @@
   font-family: 'Cinzel', serif;
 }
 
-/* Vintage Paper & Archival Textures */
-.parchment-texture {
-  background-color: #F3EBD8;
+/* Pure Black & White Archival Paper Texture */
+.bw-paper-texture {
+  background-color: #fafafa;
   background-image: 
-    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.35) 0%, rgba(220, 203, 175, 0.45) 85%, rgba(185, 160, 125, 0.7) 100%),
-    radial-gradient(circle at 10% 20%, rgba(140, 56, 51, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(119, 116, 90, 0.04) 0%, transparent 40%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.045'/%3E%3C/svg%3E");
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.9) 80%, rgba(230, 230, 230, 0.8) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
 }
 
-.cover-leather-texture {
-  background-color: #2b1f1a;
+/* Stark Black Leather / Buckram Book Cover */
+.bw-cover-texture {
+  background-color: #0d0d0d;
   background-image:
-    radial-gradient(circle at 50% 30%, rgba(85, 50, 35, 0.45) 0%, rgba(20, 14, 11, 0.85) 100%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.12'/%3E%3C/svg%3E");
+    radial-gradient(circle at 50% 30%, rgba(40, 40, 40, 0.45) 0%, rgba(5, 5, 5, 0.95) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.09'/%3E%3C/svg%3E");
 }
 
-.dark-wood-desk {
-  background-color: #14110e;
+/* Pitch Black Minimalist Desk Environment */
+.bw-desk-bg {
+  background-color: #080808;
   background-image:
-    radial-gradient(ellipse at 50% 40%, rgba(55, 42, 33, 0.5) 0%, rgba(12, 10, 8, 0.95) 100%),
-    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.06) 40px, rgba(0,0,0,0.06) 80px);
+    radial-gradient(ellipse at 50% 40%, rgba(30, 30, 30, 0.5) 0%, rgba(5, 5, 5, 0.98) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 80px);
 }
 
-/* Authentic Torn & Deckled Paper Edges */
-.deckled-edge-left {
-  clip-path: polygon(
-    0% 0.5%, 100% 0%, 100% 100%, 0% 99.5%,
-    0.3% 92%, 0% 85%, 0.4% 78%, 0.1% 70%, 0.5% 62%,
-    0% 55%, 0.4% 48%, 0.1% 40%, 0.5% 32%, 0% 25%,
-    0.4% 18%, 0.1% 10%
-  );
-}
-
-.deckled-edge-right {
-  clip-path: polygon(
-    0% 0%, 100% 0.5%, 99.6% 10%, 99.9% 18%, 99.5% 25%,
-    100% 32%, 99.5% 40%, 99.8% 48%, 99.6% 55%, 100% 62%,
-    99.5% 70%, 99.9% 78%, 99.6% 85%, 100% 92%, 100% 99.5%,
-    0% 100%
-  );
-}
-
-/* Crease / Spine Shadows */
+/* Crease / Spine Shadows (Monochrome) */
 .spine-shadow-left {
-  box-shadow: inset -18px 0 24px -10px rgba(33, 31, 27, 0.28), inset -3px 0 6px rgba(33, 31, 27, 0.15);
+  box-shadow: inset -22px 0 28px -12px rgba(0, 0, 0, 0.35), inset -3px 0 6px rgba(0, 0, 0, 0.2);
 }
 
 .spine-shadow-right {
-  box-shadow: inset 18px 0 24px -10px rgba(33, 31, 27, 0.28), inset 3px 0 6px rgba(33, 31, 27, 0.15);
+  box-shadow: inset 22px 0 28px -12px rgba(0, 0, 0, 0.35), inset 3px 0 6px rgba(0, 0, 0, 0.2);
 }
 
-.book-stacked-shadow {
+.bw-book-shadow {
   box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.7),
-    0 10px 20px -5px rgba(0, 0, 0, 0.5),
-    -10px 10px 30px rgba(0, 0, 0, 0.4),
-    10px 10px 30px rgba(0, 0, 0, 0.4);
+    0 35px 70px -15px rgba(0, 0, 0, 0.95),
+    0 15px 30px -5px rgba(0, 0, 0, 0.8),
+    -10px 10px 40px rgba(0, 0, 0, 0.6),
+    10px 10px 40px rgba(0, 0, 0, 0.6);
 }
 
-/* Archival Rubber Stamps */
-.stamp-box {
+/* Stark Black & White Rubber Stamps */
+.bw-stamp {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 3px 8px;
   text-transform: uppercase;
   font-family: 'Special Elite', monospace;
   font-weight: 700;
   letter-spacing: 0.15em;
-  border: 2.5px solid currentColor;
-  border-radius: 3px;
-  position: relative;
-  mask-image: radial-gradient(circle at 50% 50%, black 75%, transparent 100%);
+  border: 2px solid #0c0c0c;
+  color: #0c0c0c;
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
-.stamp-red {
-  color: #8C3833;
-  border-color: #8C3833;
+.bw-stamp-inverted {
+  display: inline-block;
+  padding: 3px 8px;
+  text-transform: uppercase;
+  font-family: 'Special Elite', monospace;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  border: 2px solid #0c0c0c;
+  color: #ffffff;
+  background-color: #0c0c0c;
 }
 
-.stamp-olive {
-  color: #55573e;
-  border-color: #55573e;
+/* Double-Line Borders */
+.bw-double-border {
+  border-top: 3px solid #0c0c0c;
+  border-bottom: 1px solid #0c0c0c;
+  padding: 2px 0;
 }
 
-.stamp-dark {
-  color: #2b2722;
-  border-color: #2b2722;
-}
-
-/* Vintage Double-Line Borders */
-.vintage-double-border {
-  border: 1px solid rgba(33, 31, 27, 0.5);
-  position: relative;
-}
-
-.vintage-double-border::before {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  right: 3px;
-  bottom: 3px;
-  border: 0.5px solid rgba(33, 31, 27, 0.25);
-  pointer-events: none;
-}
-
-/* Custom Scrollbar for inner content if needed */
+/* Custom Scrollbar in Monochrome */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(220, 203, 175, 0.4);
+  background: rgba(230, 230, 230, 0.6);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(104, 97, 88, 0.5);
-  border-radius: 3px;
+  background: #333333;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(140, 56, 51, 0.7);
+  background: #000000;
 }
