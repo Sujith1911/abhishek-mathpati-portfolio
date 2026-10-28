@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --aged-ivory: #F1E8D5;
+    --antique-parchment: #E6D7B8;
+    --dark-ink: #211F1B;
+    --faded-graphite: #686158;
+    --oxidized-olive: #77745A;
+    --muted-burgundy: #8C3833;
+    --faded-sepia: #A18B6A;
+  }
+}
+
+/* Custom Font Utilities */
+.font-typewriter {
+  font-family: 'Special Elite', Courier, monospace;
+}
+
+.font-serif-vintage {
+  font-family: 'IM Fell English', Georgia, serif;
+}
+
+.font-serif-sc {
+  font-family: 'IM Fell English SC', Georgia, serif;
+}
+
+.font-mono-tech {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+.font-handwriting {
+  font-family: 'Caveat', cursive;
+}
+
+.font-display {
+  font-family: 'Cinzel', serif;
+}
+
+/* Vintage Paper & Archival Textures */
+.parchment-texture {
+  background-color: #F3EBD8;
+  background-image: 
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.35) 0%, rgba(220, 203, 175, 0.45) 85%, rgba(185, 160, 125, 0.7) 100%),
+    radial-gradient(circle at 10% 20%, rgba(140, 56, 51, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(119, 116, 90, 0.04) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.045'/%3E%3C/svg%3E");
+}
+
+.cover-leather-texture {
+  background-color: #2b1f1a;
+  background-image:
+    radial-gradient(circle at 50% 30%, rgba(85, 50, 35, 0.45) 0%, rgba(20, 14, 11, 0.85) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.12'/%3E%3C/svg%3E");
+}
+
+.dark-wood-desk {
+  background-color: #14110e;
+  background-image:
+    radial-gradient(ellipse at 50% 40%, rgba(55, 42, 33, 0.5) 0%, rgba(12, 10, 8, 0.95) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.06) 40px, rgba(0,0,0,0.06) 80px);
+}
+
+/* Authentic Torn & Deckled Paper Edges */
+.deckled-edge-left {
+  clip-path: polygon(
+    0% 0.5%, 100% 0%, 100% 100%, 0% 99.5%,
+    0.3% 92%, 0% 85%, 0.4% 78%, 0.1% 70%, 0.5% 62%,
+    0% 55%, 0.4% 48%, 0.1% 40%, 0.5% 32%, 0% 25%,
+    0.4% 18%, 0.1% 10%
+  );
+}
+
+.deckled-edge-right {
+  clip-path: polygon(
+    0% 0%, 100% 0.5%, 99.6% 10%, 99.9% 18%, 99.5% 25%,
+    100% 32%, 99.5% 40%, 99.8% 48%, 99.6% 55%, 100% 62%,
+    99.5% 70%, 99.9% 78%, 99.6% 85%, 100% 92%, 100% 99.5%,
+    0% 100%
+  );
+}
+
+/* Crease / Spine Shadows */
+.spine-shadow-left {
+  box-shadow: inset -18px 0 24px -10px rgba(33, 31, 27, 0.28), inset -3px 0 6px rgba(33, 31, 27, 0.15);
+}
+
+.spine-shadow-right {
+  box-shadow: inset 18px 0 24px -10px rgba(33, 31, 27, 0.28), inset 3px 0 6px rgba(33, 31, 27, 0.15);
+}
+
+.book-stacked-shadow {
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    0 10px 20px -5px rgba(0, 0, 0, 0.5),
+    -10px 10px 30px rgba(0, 0, 0, 0.4),
+    10px 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Archival Rubber Stamps */
+.stamp-box {
+  display: inline-block;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  font-family: 'Special Elite', monospace;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  border: 2.5px solid currentColor;
+  border-radius: 3px;
+  position: relative;
+  mask-image: radial-gradient(circle at 50% 50%, black 75%, transparent 100%);
+}
+
+.stamp-red {
+  color: #8C3833;
+  border-color: #8C3833;
+}
+
+.stamp-olive {
+  color: #55573e;
+  border-color: #55573e;
+}
+
+.stamp-dark {
+  color: #2b2722;
+  border-color: #2b2722;
+}
+
+/* Vintage Double-Line Borders */
+.vintage-double-border {
+  border: 1px solid rgba(33, 31, 27, 0.5);
+  position: relative;
+}
+
+.vintage-double-border::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 0.5px solid rgba(33, 31, 27, 0.25);
+  pointer-events: none;
+}
+
+/* Custom Scrollbar for inner content if needed */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(220, 203, 175, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(104, 97, 88, 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 56, 51, 0.7);
+}
