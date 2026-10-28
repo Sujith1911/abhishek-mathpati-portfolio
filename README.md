@@ -1,14 +1,14 @@
-# Abhishek Mathpati — The Archive of a Cybersecurity Researcher
+# Mythreie Dumpati — The Archive of a Cybersecurity Researcher
 ### *Field Notes of an Aspiring Researcher*
 
-An interactive, production-grade vintage academic journal and portfolio website designed for **Abhishek Mathpati** (B.E. Computer Science & Engineering, 2026), built directly from his authorized resume and research credentials.
+An interactive, production-grade vintage academic journal and portfolio website designed for **Mythreie Dumpati** (B.E. Computer Science & Engineering, 2026), built directly from her authorized resume (`MYTHREIE_DUMPATI.pdf`).
 
 ---
 
 ## 🌟 Visual & Editorial Concept
 
 The site is designed to feel like discovering a rare, classified academic monograph in a 1930s–1950s university library archive:
-- **Vintage Leather Book Cover:** Features an embossed gold title, volume number, brass corner plates, archival wax seal monogram (`AM`), and hanging bookmark ribbon.
+- **Vintage Leather Book Cover:** Features an embossed gold title, volume number, brass corner plates, archival wax seal monogram (`MD`), and hanging crimson bookmark ribbon.
 - **Physical 3D Page Turn Interaction:** Click anywhere on the left or right pages, use brass arrows, touch swipe on mobile, or use keyboard arrow keys (`←` / `→`) to turn pages with authentic Web Audio synthesized paper rustling.
 - **Tactile Paper Texture & Deckled Edges:** Hand-cut irregular page edges, center spine crease shadows, subtle ink bleeding, and library stamps (`ARCHIVE COPY`, `IEEE ACCEPTED`, `VERIFIED FIELDWORK`).
 - **Curated Typography Hierarchy:**
@@ -16,6 +16,7 @@ The site is designed to feel like discovering a rare, classified academic monogr
   - *IM Fell English* — Scholarly letterpress serif.
   - *IBM Plex Mono* — Technical and cryptographic registers.
   - *Caveat* — Natural researcher annotations, marginalia, and sketched arrows.
+  - *Cinzel* — Classic engraved display lettering on the cover.
 - **Hand-Sketched Technical Diagrams:**
   - IPFS DAG & Blockchain Transaction Anchoring (FIG. 1.2).
   - LLM Adversarial Benchmark Pareto Frontier Curve (FIG. 2.1).
@@ -28,16 +29,16 @@ The site is designed to feel like discovering a rare, classified academic monogr
 
 | Spread | Pages | Section | Contents |
 | :---: | :---: | :--- | :--- |
-| **Cover** | — | **Monograph Cover** | Leather tome, gilded title plate, wax seal, interactive open trigger |
-| **01** | 01–02 | **Frontispiece & Master Index** | Library accession card, researcher plate, and master catalogue with dotted leader lines |
-| **02** | 03–04 | **Profile & Academic Ledger** | Research pillars, spoken languages, and B.E. CSE (8.41 CGPA) / 12th / 10th timeline |
-| **03** | 05–06 | **Field Experience Dossier** | Women Safety Wing (Telangana Police) & Teleparadigm Networks |
-| **04** | 07–08 | **Scholarly Publications** | IEEE ISDDC (LLM benchmark), IEEE IC(SEC)² (Decentralized storage), IJRDET (Instagram forensics) |
-| **05** | 09–10 | **Engineering Specimens I** | SecureShare (Blockchain + IPFS) & QPAT (Bloom's Taxonomy NLP question generator) |
-| **06** | 11–12 | **Engineering Specimens II** | SMIA (Police forensic app), TECHTONIC '24 Hackathon 1st Place, ParkHub |
-| **07** | 13–14 | **Specimens & Certifications** | Classified technical skills inventory & Certifications (NLU Odisha 90%, NPTEL 71%, etc.) |
-| **08** | 15–16 | **Honours & Societies** | 1st Place Aurora National Coding Contest (95% accuracy), CSI KMEC Head, NCC, NSS |
-| **09** | 17–18 | **Dispatch & Colophon** | Interactive telegram dispatch, direct contact coordinates, and verified resume PDF download |
+| **Cover** | — | **Monograph Cover** | Leather tome, gilded title plate, `MD` wax seal, interactive open trigger |
+| **01** | 01–02 | **Frontispiece & Master Index** | Library accession card (`MS-2026-MD`), researcher plate, and master catalogue with dotted leader lines |
+| **02** | 03–04 | **Profile & Academic Ledger** | Research pillars, spoken languages, and B.E. CSE (**8.36 CGPA**), Automobile Engg. Diploma (**8.8 CGPA**), and ICSE (**81.4%**) |
+| **03** | 05–06 | **Field Experience Dossier** | Women Safety Wing, Telangana Police (Bharosa Module, T-Safe reaching 500,000+ citizens, 26 crisis centres, Operation Smile 11) & Teleparadigm Networks |
+| **04** | 07–08 | **Scholarly Publications** | IEEE ISDDC 2026 (LLM benchmark), IEEE IC(SEC)² 2026 (Decentralized storage), IJRDET 2025 (Instagram forensics) |
+| **05** | 09–10 | **Engineering Specimens I** | SecureShare (Blockchain + IPFS, anti-screenshot) & QPAT (Bloom's Taxonomy NLP question generator) |
+| **06** | 11–12 | **Engineering Specimens II** | SMIA (Police forensic app) & Alcohol Detector with Vehicle Controlling System (Arduino UNO + MQ-3 sensor, real-time ignition interlock) |
+| **07** | 13–14 | **Specimens & Certifications** | Classified technical skills inventory & Certifications (**NLU Odisha 87%**, XploitForge, CSI, IIT Hyderabad) |
+| **08** | 15–16 | **Leadership & Cultural Cadre** | Student Body President at KMEC, CSI KMEC Social Media Team, Event Organizer, Carnatic Classical Music Vocalist/Instrumentalist |
+| **09** | 17–18 | **Dispatch & Colophon** | Interactive telegram dispatch, direct contact coordinates, and verified resume PDF download (`MYTHREIE_DUMPATI.pdf`) |
 
 ---
 
@@ -52,7 +53,7 @@ The site is designed to feel like discovering a rare, classified academic monogr
   - `Enter` / `Space`: Open the closed journal
 - **Audio Feedback:** Synthesizes realistic paper rustles via the Web Audio API on page turns; includes a mute/unmute toggle in the top control bar.
 - **Rapid Navigation Modal:** Click the red bookmark ribbon or "Index" button anytime to jump immediately to any chapter.
-- **Direct PDF Download:** Direct 1-click access to download `ABHISHEK_MATHPATI.pdf`.
+- **Direct PDF Download:** Direct 1-click access to download `MYTHREIE_DUMPATI.pdf`.
 
 ---
 

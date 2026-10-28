@@ -131,36 +131,36 @@ export const SpreadSkillsCerts: React.FC = () => {
                 CERTIFICATIONS
               </h2>
             </div>
-            <ArchivalStamp text="90% NLU ODISHA" variant="red" rotation={3} />
+            <ArchivalStamp text="87% NLU ODISHA" variant="red" rotation={3} />
           </div>
 
           {/* Certifications Roster */}
-          <div className="mt-3 space-y-2">
+          <div className="mt-4 space-y-2.5">
             {certifications.map((cert, idx) => (
               <div
                 key={idx}
-                className="p-2 bg-[#e8deca]/40 border border-[#211F1B]/20 rounded-xs flex items-start justify-between gap-2"
+                className="p-3 bg-[#e8deca]/50 border border-[#211F1B]/25 rounded-xs flex items-start justify-between gap-2"
               >
-                <div className="flex items-start gap-2">
-                  <span className="font-mono-tech text-[10px] text-[#8C3833] font-bold mt-0.5">
+                <div className="flex items-start gap-2.5">
+                  <span className="font-mono-tech text-xs text-[#8C3833] font-bold mt-0.5">
                     [{String(idx + 1).padStart(2, '0')}]
                   </span>
                   <div>
-                    <h4 className="font-serif-vintage text-xs font-bold text-[#211F1B] leading-tight">
+                    <h4 className="font-serif-vintage text-sm font-bold text-[#211F1B] leading-tight">
                       {cert.title}
                     </h4>
-                    <span className="font-mono-tech text-[9.5px] text-[#5b583f] block mt-0.5">
+                    <span className="font-mono-tech text-[10px] text-[#5b583f] block mt-0.5 font-medium">
                       {cert.issuer}
                     </span>
                   </div>
                 </div>
 
                 <div className="text-right flex-shrink-0">
-                  <span className="font-mono-tech text-[9px] text-[#686158] block">
+                  <span className="font-mono-tech text-[10px] text-[#686158] block">
                     {cert.date}
                   </span>
                   {cert.score && (
-                    <span className="font-mono-tech text-[9px] font-bold text-[#8C3833] bg-[#8C3833]/10 px-1 py-0.2 border border-[#8C3833]/30 inline-block mt-0.5">
+                    <span className="font-mono-tech text-[9.5px] font-bold text-[#8C3833] bg-[#8C3833]/10 px-1.5 py-0.5 border border-[#8C3833]/30 inline-block mt-0.5">
                       {cert.score}
                     </span>
                   )}
@@ -170,10 +170,10 @@ export const SpreadSkillsCerts: React.FC = () => {
           </div>
 
           {/* Seal Notice */}
-          <div className="mt-3 p-2 border border-dashed border-[#211F1B]/25 bg-[#211F1B]/2 flex items-center gap-2">
-            <Award className="w-5 h-5 text-[#8C3833] flex-shrink-0" />
-            <span className="font-mono-tech text-[9px] text-[#403c35]">
-              Includes rigorous cyber forensics distinction from National Law University Odisha (90%) and Elite NPTEL Ethical Hacking certification (71%).
+          <div className="mt-5 p-3 border border-dashed border-[#211F1B]/25 bg-[#211F1B]/2 flex items-center gap-3">
+            <Award className="w-7 h-7 text-[#8C3833] flex-shrink-0" />
+            <span className="font-mono-tech text-[10px] text-[#403c35]">
+              Includes rigorous cyber forensics distinction from National Law University Odisha (87%) and specialized machine learning & ethical hacking credentials from IIT Hyderabad & Computer Society of India.
             </span>
           </div>
         </div>
@@ -182,7 +182,7 @@ export const SpreadSkillsCerts: React.FC = () => {
         <div className="pt-2">
           <div className="mb-2">
             <HandwrittenNote rotation={1} arrow="left" color="#8C3833">
-              NLU Odisha 90% score in Cybercrime & Digital Forensics!
+              National Law University Odisha 87% distinction score!
             </HandwrittenNote>
           </div>
           <div className="pt-2 border-t border-[#211F1B]/15 flex justify-between items-center text-[10px] font-mono-tech text-[#686158]">

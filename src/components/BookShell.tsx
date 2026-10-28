@@ -131,10 +131,8 @@ export const BookShell: React.FC = () => {
 
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
-        // Swiped left -> next page
         turnNext();
       } else {
-        // Swiped right -> prev page
         turnPrev();
       }
     }
@@ -202,9 +200,9 @@ export const BookShell: React.FC = () => {
           </button>
 
           <div className="hidden md:flex items-center gap-1.5 font-mono-tech text-[10px] text-[#a18b6a]">
-            <span>ARCHIVE MS-2026-AM</span>
+            <span>ARCHIVE MS-2026-MD</span>
             <span>•</span>
-            <span className="text-[#d2b77a]">ABHISHEK MATHPATI</span>
+            <span className="text-[#d2b77a]">MYTHREIE DUMPATI</span>
           </div>
         </div>
 
@@ -246,7 +244,7 @@ export const BookShell: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsTocOpen(true)}
-              className="flex items-center gap-1 px-2 py-1 bg-[#2e231c] hover:bg-[#403026] border border-[#523e32] rounded-xs text-[#e6d7b8] font-mono-tech text-xs transition-colors cursor-pointer"
+              className="flex items-center gap-1 px-2.5 py-1 bg-[#2e231c] hover:bg-[#403026] border border-[#523e32] rounded-xs text-[#e6d7b8] font-mono-tech text-xs transition-colors cursor-pointer"
               title="Table of Contents"
             >
               <Bookmark className="w-3.5 h-3.5 text-[#8C3833]" />
@@ -271,8 +269,8 @@ export const BookShell: React.FC = () => {
 
           {/* Resume PDF Download */}
           <a
-            href="/ABHISHEK_MATHPATI.pdf"
-            download="ABHISHEK_MATHPATI_RESUME.pdf"
+            href="/MYTHREIE_DUMPATI.pdf"
+            download="MYTHREIE_DUMPATI_RESUME.pdf"
             onClick={() => soundManager.playStampSound()}
             className="flex items-center gap-1 px-2.5 py-1 bg-[#8C3833] hover:bg-[#a6423c] text-[#f1e8d5] rounded-xs font-mono-tech text-xs uppercase tracking-wider transition-colors shadow-sm"
             title="Download Original Resume PDF"
@@ -378,7 +376,7 @@ export const BookShell: React.FC = () => {
 
         <div className="flex items-center gap-3">
           <span>CONFIDENTIAL DOSSIER • HYDERABAD</span>
-          <span>© 2026 ABHISHEK MATHPATI</span>
+          <span>© 2026 MYTHREIE DUMPATI</span>
         </div>
       </footer>
 

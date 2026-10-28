@@ -12,16 +12,16 @@ interface SpreadIndexProps {
 export const SpreadIndex: React.FC<SpreadIndexProps> = ({ onNavigateToSpread }) => {
   const indexEntries = [
     { num: '§ I', title: 'Researcher Profile & Research Focus', page: 3, spread: 2, note: 'Bio, Pillars & Languages' },
-    { num: '§ II', title: 'Academic Record & Scholarly Timeline', page: 4, spread: 2, note: 'KMEC, Narayana, High School' },
-    { num: '§ III', title: 'Field Experience: Telangana Police Cyber Wing', page: 5, spread: 3, note: 'Digital Forensics & OSINT' },
-    { num: '§ IV', title: 'Field Experience: Teleparadigm Networks', page: 6, spread: 3, note: 'Decentralized P2P & RBAC' },
+    { num: '§ II', title: 'Academic Record & Scholarly Timeline', page: 4, spread: 2, note: 'KMEC, Diploma, ICSE' },
+    { num: '§ III', title: 'Field Experience: Bharosa Module, Police', page: 5, spread: 3, note: 'T-Safe & Operational Analytics' },
+    { num: '§ IV', title: 'Field Experience: Teleparadigm & Mithra', page: 6, spread: 3, note: 'P2P Protocols & Diagnostics' },
     { num: '§ V', title: 'Research Publications: IEEE Conferences', page: 7, spread: 4, note: 'LLM Security & IPFS Arch' },
     { num: '§ VI', title: 'Research Publications: IJRDET Forensic Tool', page: 8, spread: 4, note: 'Court-admissible Evidence' },
     { num: '§ VII', title: 'Project Dossier: SecureShare & QPAT', page: 9, spread: 5, note: 'Blockchain, IPFS & NLP' },
-    { num: '§ VIII', title: 'Project Dossier: SMIA & Hackathon Winner', page: 11, spread: 6, note: '1st Place Techtonic & ParkHub' },
+    { num: '§ VIII', title: 'Project Dossier: SMIA & Alcohol Interlock', page: 11, spread: 6, note: 'Forensic Tool & Vehicle Safety' },
     { num: '§ IX', title: 'Technical Specimen Index & Tool Arsenal', page: 13, spread: 7, note: 'Vulnerability, Languages, OS' },
-    { num: '§ X', title: 'Archival Accreditations & Certifications', page: 14, spread: 7, note: 'NLU Odisha 90%, NPTEL, IIT' },
-    { num: '§ XI', title: 'Competitive Honours & Leadership Cadre', page: 15, spread: 8, note: 'Aurora 95% Accuracy, CSI, NCC' },
+    { num: '§ X', title: 'Archival Accreditations & Certifications', page: 14, spread: 7, note: 'NLU Odisha 87%, CSI, IIT' },
+    { num: '§ XI', title: 'Student Body President & Arts Cadre', page: 15, spread: 8, note: 'President, CSI, Carnatic Music' },
     { num: '§ XII', title: 'Dispatch, Correspondence & Colophon', page: 17, spread: 9, note: 'Contact & Resume Download' },
   ];
 
@@ -36,7 +36,7 @@ export const SpreadIndex: React.FC<SpreadIndexProps> = ({ onNavigateToSpread }) 
               LIBRARY ACCESSION NO.
             </span>
             <span className="font-typewriter text-xs font-bold tracking-wider text-[#211F1B]">
-              MS-2026-AM / CYBER-FORENSICS
+              MS-2026-MD / CYBER-FORENSICS
             </span>
           </div>
           <ArchivalStamp text="ARCHIVE COPY" variant="red" rotation={-3} date="OCT 2026" />
@@ -71,7 +71,7 @@ export const SpreadIndex: React.FC<SpreadIndexProps> = ({ onNavigateToSpread }) 
               {/* Hand-written caption */}
               <div className="mt-3 pt-2 border-t border-[#211F1B]/20 w-full text-center">
                 <span className="font-handwriting text-sm text-[#3b3832]">
-                  "Active researcher in digital forensics & applied AI."
+                  "Active researcher in digital forensics, decentralized systems & applied AI."
                 </span>
               </div>
             </div>

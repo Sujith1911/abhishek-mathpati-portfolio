@@ -26,10 +26,10 @@ export const SpreadProfileAcademic: React.FC = () => {
           {/* Core Biography / Executive Summary */}
           <div className="mt-4 font-serif-vintage text-xs sm:text-sm leading-relaxed text-[#211F1B]/90 space-y-2">
             <p className="first-letter:font-typewriter first-letter:text-3xl first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:text-[#8C3833]">
-              Abhishek Mathpati is a Computer Science and Engineering researcher and software engineer graduating in 2026 from Keshav Memorial Engineering College. His work operates at the rigorous intersection of digital forensics, decentralized systems, and adversarial artificial intelligence.
+              Mythreie Dumpati is a Computer Science and Engineering researcher and software engineer graduating in 2026 from Keshav Memorial Engineering College. Holding a dual foundation across computational systems and automobile engineering, her work spans digital forensics, decentralized architectures, and adversarial machine learning.
             </p>
             <p>
-              Having collaborated directly with law enforcement agencies and software engineering enterprises, his methodology emphasizes tamper-evident evidentiary integrity, cryptographic security, and empirical benchmarking of defensive architectures.
+              Having served as Student Body President and contributed directly to government public safety operations and decentralized protocol engineering, her methodology pairs empirical mathematical rigor with tamper-evident evidentiary integrity.
             </p>
           </div>
 
@@ -43,17 +43,17 @@ export const SpreadProfileAcademic: React.FC = () => {
             <div className="p-2 border border-[#211F1B]/20 bg-[#211F1B]/3 rounded-xs space-y-1">
               <div className="flex items-center gap-1.5 font-typewriter text-xs font-bold text-[#211F1B]">
                 <Shield className="w-3 h-3 text-[#8C3833]" />
-                <span>1. Digital Forensics & OSINT</span>
+                <span>1. Digital Forensics & Operational Analytics</span>
               </div>
               <p className="font-mono-tech text-[10px] text-[#403c35] leading-normal pl-4.5">
-                Specialized in active cybercrime investigation, SHA-256 evidence hashing, timestamp validation, and court-admissible forensic documentation.
+                Public safety workflows, crisis intervention analytics across 26 centres, SHA-256 evidence hashing, and court-admissible forensic case management.
               </p>
             </div>
 
             <div className="p-2 border border-[#211F1B]/20 bg-[#211F1B]/3 rounded-xs space-y-1">
-              <div className="flex items-center gap-1.5 font-typewriter text-xs font-bold text-[#211F1B]">
+              <div className="flex items-center gap-1.5 font-typewriter text-xs font-bold text-[#5b583f]">
                 <Network className="w-3 h-3 text-[#5b583f]" />
-                <span>2. Decentralized Protocols & Privacy</span>
+                <span>2. Decentralized Protocols & Privacy Control</span>
               </div>
               <p className="font-mono-tech text-[10px] text-[#403c35] leading-normal pl-4.5">
                 Designing zero-single-point-of-failure architectures utilizing IPFS content addressing, blockchain transaction anchoring, and Shamir's Secret Sharing.
@@ -61,7 +61,7 @@ export const SpreadProfileAcademic: React.FC = () => {
             </div>
 
             <div className="p-2 border border-[#211F1B]/20 bg-[#211F1B]/3 rounded-xs space-y-1">
-              <div className="flex items-center gap-1.5 font-typewriter text-xs font-bold text-[#211F1B]">
+              <div className="flex items-center gap-1.5 font-typewriter text-xs font-bold text-[#8C3833]">
                 <Cpu className="w-3 h-3 text-[#8C3833]" />
                 <span>3. Applied AI & Adversarial Benchmarking</span>
               </div>
@@ -81,7 +81,7 @@ export const SpreadProfileAcademic: React.FC = () => {
             <div className="flex flex-wrap gap-1.5 font-mono-tech text-[10px]">
               {RESUME_DATA.personal.languagesSpoken.map((lang, idx) => (
                 <span key={idx} className="px-1.5 py-0.5 border border-[#211F1B]/20 bg-[#f1e8d5] text-[#211F1B]">
-                  {lang.name} {lang.name === 'German' ? '(A1)' : ''}
+                  {lang.name} {lang.name === 'German' ? '(Beginner)' : ''}
                 </span>
               ))}
             </div>
@@ -89,7 +89,7 @@ export const SpreadProfileAcademic: React.FC = () => {
 
           <div className="mt-2 text-right">
             <HandwrittenNote rotation={-2} arrow="none" color="#5b583f">
-              Focused on privacy-preserving architectures.
+              Focused on privacy-preserving architectures & public safety.
             </HandwrittenNote>
           </div>
 
@@ -162,8 +162,8 @@ export const SpreadProfileAcademic: React.FC = () => {
           <div className="mt-5 p-3 border border-dashed border-[#211F1B]/25 bg-[#211F1B]/2 flex items-center gap-3">
             <GraduationCap className="w-8 h-8 text-[#5b583f] flex-shrink-0" />
             <div className="font-mono-tech text-[10px] text-[#403c35]">
-              <span className="font-bold block text-[#211F1B]">DEGREE VERIFICATION NOTICE:</span>
-              Curriculum covers Data Structures, Computer Networks, Operating Systems, Cryptography, and Machine Learning with active distinction.
+              <span className="font-bold block text-[#211F1B]">DEGREE & DIPLOMA VERIFICATION NOTICE:</span>
+              Demonstrated academic distinction in Computer Science & Engineering (8.36 CGPA) alongside Automobile Engineering & Embedded Control Systems (8.8 CGPA).
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@ export const SpreadProfileAcademic: React.FC = () => {
         <div className="pt-2">
           <div className="mb-2">
             <HandwrittenNote rotation={1} arrow="left" color="#8C3833">
-              Perfect 10/10 GPA in 10th SSC; 96.9% in 12th TSBIE
+              Automobile Engineering Diploma (8.8/10) with automated vehicle interlock!
             </HandwrittenNote>
           </div>
           <div className="pt-2 border-t border-[#211F1B]/15 flex justify-between items-center text-[10px] font-mono-tech text-[#686158]">

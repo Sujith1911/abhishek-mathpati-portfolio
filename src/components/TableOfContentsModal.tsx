@@ -20,12 +20,12 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
   const chapters = [
     { spread: 1, title: 'Frontispiece & Master Catalogue', pages: '01–02', category: 'INDEX' },
     { spread: 2, title: 'Researcher Profile & Academic Record', pages: '03–04', category: 'BIOGRAPHY' },
-    { spread: 3, title: 'Field Experience: Police & Teleparadigm', pages: '05–06', category: 'EXPERIENCE' },
+    { spread: 3, title: 'Field Experience: Police Bharosa & Teleparadigm', pages: '05–06', category: 'EXPERIENCE' },
     { spread: 4, title: 'Published Research: IEEE & IJRDET Papers', pages: '07–08', category: 'PUBLICATIONS' },
     { spread: 5, title: 'Projects: SecureShare & QPAT System', pages: '09–10', category: 'ENGINEERING' },
-    { spread: 6, title: 'Projects: SMIA Forensic, Techtonic & ParkHub', pages: '11–12', category: 'FORENSICS' },
-    { spread: 7, title: 'Technical Specimen Index & Certifications', pages: '13–14', category: 'SKILLS' },
-    { spread: 8, title: 'Competitive Honours & Leadership Cadre', pages: '15–16', category: 'HONOURS' },
+    { spread: 6, title: 'Projects: SMIA Forensic & Alcohol Interlock', pages: '11–12', category: 'FORENSICS & HARDWARE' },
+    { spread: 7, title: 'Technical Specimen Index & Certifications', pages: '13–14', category: 'SKILLS & DIPLOMAS' },
+    { spread: 8, title: 'Student Body President & Arts Cadre', pages: '15–16', category: 'LEADERSHIP' },
     { spread: 9, title: 'Dispatch, Correspondence & Archival Colophon', pages: '17–18', category: 'CORRESPONDENCE' },
   ];
 

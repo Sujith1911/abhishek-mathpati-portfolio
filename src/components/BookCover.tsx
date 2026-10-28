@@ -97,7 +97,7 @@ export const BookCover: React.FC<BookCoverProps> = ({ onOpen }) => {
           {/* Archival Monogram Wax Seal Emblem */}
           <div className="w-16 h-16 rounded-full border-2 border-[#c4a96b]/60 bg-[#8C3833] shadow-[inset_0_2px_4px_rgba(0,0,0,0.4),0_4px_8px_rgba(0,0,0,0.6)] flex items-center justify-center text-[#f3ebd8] font-serif-vintage text-xl font-bold mb-4 transform -rotate-6">
             <div className="w-13 h-13 rounded-full border border-dashed border-[#f3ebd8]/50 flex items-center justify-center">
-              AM
+              MD
             </div>
           </div>
 

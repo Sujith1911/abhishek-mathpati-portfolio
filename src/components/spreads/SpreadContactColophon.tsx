@@ -198,12 +198,12 @@ export const SpreadContactColophon: React.FC = () => {
               Curriculum Vitae (PDF)
             </h3>
             <p className="font-serif-vintage text-xs text-[#5b583f] mb-3">
-              Verified original copy: ABHISHEK_MATHPATI.pdf (Oct 2026)
+              Verified original copy: MYTHREIE_DUMPATI.pdf (Oct 2026)
             </p>
             <div className="flex flex-col sm:flex-row gap-2 justify-center">
               <a
-                href="/ABHISHEK_MATHPATI.pdf"
-                download="ABHISHEK_MATHPATI_RESUME.pdf"
+                href="/MYTHREIE_DUMPATI.pdf"
+                download="MYTHREIE_DUMPATI_RESUME.pdf"
                 onClick={() => soundManager.playStampSound()}
                 className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#8C3833] hover:bg-[#6b2622] text-[#f1e8d5] font-mono-tech text-xs uppercase tracking-wider shadow-md transition-colors"
               >
@@ -211,7 +211,7 @@ export const SpreadContactColophon: React.FC = () => {
                 <span>Download PDF Resume</span>
               </a>
               <a
-                href="/ABHISHEK_MATHPATI.pdf"
+                href="/MYTHREIE_DUMPATI.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-[#211F1B]/30 hover:bg-[#211F1B]/10 font-mono-tech text-xs uppercase tracking-wider text-[#211F1B] transition-colors"
@@ -231,7 +231,7 @@ export const SpreadContactColophon: React.FC = () => {
               This digital monograph was typeset in <em>Special Elite</em> (vintage typewriter), <em>IM Fell English</em> (scholarly letterpress), <em>IBM Plex Mono</em> (cryptographic registers), and <em>Caveat</em> (researcher annotations).
             </p>
             <p className="text-[11px] text-[#686158]">
-              All achievements, citations, and credentials represent factual extracts from the authorized curriculum vitae of Abhishek Mathpati.
+              All achievements, citations, and credentials represent factual extracts from the authorized curriculum vitae of Mythreie Dumpati.
             </p>
           </div>
 
@@ -240,7 +240,7 @@ export const SpreadContactColophon: React.FC = () => {
             <div>
               <span className="font-mono-tech text-[9px] text-[#686158] block">INSPECTED & COMPILED BY:</span>
               <span className="font-handwriting text-2xl text-[#211F1B] font-bold block">
-                Abhishek Mathpati
+                Mythreie Dumpati
               </span>
               <span className="font-mono-tech text-[9px] text-[#5b583f]">HYDERABAD, INDIA</span>
             </div>
