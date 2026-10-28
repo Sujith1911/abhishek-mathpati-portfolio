@@ -490,3 +490,4 @@ export const RESUME_DATA = {
     },
   ],
 };
+

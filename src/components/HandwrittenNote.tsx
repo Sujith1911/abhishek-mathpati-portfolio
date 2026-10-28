@@ -48,3 +48,4 @@ export const HandwrittenNote: React.FC<HandwrittenNoteProps> = ({
     </div>
   );
 };
+
