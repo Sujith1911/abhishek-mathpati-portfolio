@@ -2,13 +2,11 @@
 
 @layer base {
   :root {
-    --aged-ivory: #F1E8D5;
-    --antique-parchment: #E6D7B8;
-    --dark-ink: #211F1B;
-    --faded-graphite: #686158;
-    --oxidized-olive: #77745A;
-    --muted-burgundy: #8C3833;
-    --faded-sepia: #A18B6A;
+    --newsprint-bg: #f4edd9;
+    --newsprint-ink: #1f1d19;
+    --newsprint-faded: #5a544b;
+    --newsprint-stamp: #8C3833;
+    --newsprint-rule: rgba(31, 29, 25, 0.4);
   }
 }
 
@@ -37,113 +35,112 @@
   font-family: 'Cinzel', serif;
 }
 
-/* Vintage Paper & Archival Textures */
-.parchment-texture {
-  background-color: #F3EBD8;
+/* Authentic Vintage Newsprint Paper Texture */
+.newsprint-paper {
+  background-color: #F4EEDD;
   background-image: 
-    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.35) 0%, rgba(220, 203, 175, 0.45) 85%, rgba(185, 160, 125, 0.7) 100%),
-    radial-gradient(circle at 10% 20%, rgba(140, 56, 51, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(119, 116, 90, 0.04) 0%, transparent 40%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.045'/%3E%3C/svg%3E");
+    /* Subtle central vertical newspaper fold crease */
+    linear-gradient(90deg, 
+      transparent 0%, 
+      transparent 49.5%, 
+      rgba(0,0,0,0.06) 50%, 
+      rgba(255,255,255,0.15) 50.5%, 
+      transparent 51%, 
+      transparent 100%
+    ),
+    /* Subtle horizontal broadsheet fold crease */
+    linear-gradient(180deg, 
+      transparent 0%, 
+      transparent 45.8%, 
+      rgba(0,0,0,0.05) 46%, 
+      rgba(255,255,255,0.12) 46.4%, 
+      transparent 47%, 
+      transparent 100%
+    ),
+    /* Aged edge vignette & paper yellowing */
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.4) 0%, rgba(230, 218, 195, 0.5) 80%, rgba(195, 175, 145, 0.75) 100%),
+    /* Paper fiber noise */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.055'/%3E%3C/svg%3E");
 }
 
-.cover-leather-texture {
-  background-color: #2b1f1a;
+/* Dark Vintage Oak Table Background */
+.newsroom-desk {
+  background-color: #120e0b;
   background-image:
-    radial-gradient(circle at 50% 30%, rgba(85, 50, 35, 0.45) 0%, rgba(20, 14, 11, 0.85) 100%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.12'/%3E%3C/svg%3E");
+    radial-gradient(ellipse at 50% 30%, rgba(65, 48, 35, 0.45) 0%, rgba(10, 8, 6, 0.96) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0,0,0,0.08) 50px, rgba(0,0,0,0.08) 100px);
 }
 
-.dark-wood-desk {
-  background-color: #14110e;
-  background-image:
-    radial-gradient(ellipse at 50% 40%, rgba(55, 42, 33, 0.5) 0%, rgba(12, 10, 8, 0.95) 100%),
-    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.06) 40px, rgba(0,0,0,0.06) 80px);
+/* Newspaper Double Rules (Matching the Reference Image) */
+.newspaper-double-rule {
+  border-top: 4px solid #1f1d19;
+  border-bottom: 1.5px solid #1f1d19;
+  padding: 3px 0;
 }
 
-/* Authentic Torn & Deckled Paper Edges */
-.deckled-edge-left {
-  clip-path: polygon(
-    0% 0.5%, 100% 0%, 100% 100%, 0% 99.5%,
-    0.3% 92%, 0% 85%, 0.4% 78%, 0.1% 70%, 0.5% 62%,
-    0% 55%, 0.4% 48%, 0.1% 40%, 0.5% 32%, 0% 25%,
-    0.4% 18%, 0.1% 10%
-  );
+.newspaper-double-rule-thick {
+  border-top: 5px solid #1f1d19;
+  border-bottom: 2px solid #1f1d19;
+  padding: 4px 0;
 }
 
-.deckled-edge-right {
-  clip-path: polygon(
-    0% 0%, 100% 0.5%, 99.6% 10%, 99.9% 18%, 99.5% 25%,
-    100% 32%, 99.5% 40%, 99.8% 48%, 99.6% 55%, 100% 62%,
-    99.5% 70%, 99.9% 78%, 99.6% 85%, 100% 92%, 100% 99.5%,
-    0% 100%
-  );
-}
-
-/* Crease / Spine Shadows */
-.spine-shadow-left {
-  box-shadow: inset -18px 0 24px -10px rgba(33, 31, 27, 0.28), inset -3px 0 6px rgba(33, 31, 27, 0.15);
-}
-
-.spine-shadow-right {
-  box-shadow: inset 18px 0 24px -10px rgba(33, 31, 27, 0.28), inset 3px 0 6px rgba(33, 31, 27, 0.15);
-}
-
-.book-stacked-shadow {
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.7),
-    0 10px 20px -5px rgba(0, 0, 0, 0.5),
-    -10px 10px 30px rgba(0, 0, 0, 0.4),
-    10px 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* Archival Rubber Stamps */
-.stamp-box {
-  display: inline-block;
-  padding: 4px 10px;
+/* Distressed Woodblock "EXTRA!! EXTRA!!" Header */
+.woodblock-headline {
+  font-family: 'Cinzel', 'Special Elite', Georgia, serif;
+  font-weight: 900;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: #1a1815;
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.4), -1px -1px 0px rgba(0,0,0,0.15);
+}
+
+/* Stacked Broadsheet Paper Layers Shadow */
+.newspaper-shadow {
+  box-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.8),
+    0 10px 25px rgba(0, 0, 0, 0.5),
+    -4px 4px 15px rgba(0,0,0,0.3),
+    4px 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Realistic 3D Page Turn Transition */
+.page-turn-perspective {
+  perspective: 2200px;
+  perspective-origin: 50% 50%;
+}
+
+.page-turn-surface {
+  transform-style: preserve-3d;
+  transition: transform 600ms cubic-bezier(0.25, 1, 0.5, 1), opacity 400ms ease;
+}
+
+.page-turn-flip-left {
+  transform: rotateY(-18deg) scale(0.985);
+  transform-origin: left center;
+}
+
+.page-turn-flip-right {
+  transform: rotateY(18deg) scale(0.985);
+  transform-origin: right center;
+}
+
+/* Column Separator Vertical Rules */
+.news-col-rule {
+  border-right: 1px solid rgba(31, 29, 25, 0.25);
+}
+
+/* Rubber Stamp Styling */
+.newspaper-stamp {
   font-family: 'Special Elite', monospace;
   font-weight: 700;
+  border: 2px dashed currentColor;
+  text-transform: uppercase;
   letter-spacing: 0.15em;
-  border: 2.5px solid currentColor;
-  border-radius: 3px;
-  position: relative;
-  mask-image: radial-gradient(circle at 50% 50%, black 75%, transparent 100%);
+  display: inline-block;
+  padding: 2px 8px;
 }
 
-.stamp-red {
-  color: #8C3833;
-  border-color: #8C3833;
-}
-
-.stamp-olive {
-  color: #55573e;
-  border-color: #55573e;
-}
-
-.stamp-dark {
-  color: #2b2722;
-  border-color: #2b2722;
-}
-
-/* Vintage Double-Line Borders */
-.vintage-double-border {
-  border: 1px solid rgba(33, 31, 27, 0.5);
-  position: relative;
-}
-
-.vintage-double-border::before {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  right: 3px;
-  bottom: 3px;
-  border: 0.5px solid rgba(33, 31, 27, 0.25);
-  pointer-events: none;
-}
-
-/* Custom Scrollbar for inner content if needed */
+/* Custom Scrollbar for news articles if needed */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

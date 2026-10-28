@@ -1,7 +1,7 @@
-import { BookShell } from './components/BookShell';
+import { NewspaperShell } from './components/newspaper/NewspaperShell';
 
 export function App() {
-  return <BookShell />;
+  return <NewspaperShell />;
 }
 
 export default App;
