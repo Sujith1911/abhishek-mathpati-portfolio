@@ -55,6 +55,18 @@ export const Page01Cover: React.FC<{ onOpenNewspaper?: () => void }> = ({ onOpen
 };
 
 // =========================================================================
+// UNIVERSAL PAGE TOP HEADER (Name on top of every page)
+// =========================================================================
+export const NewspaperPageHeader: React.FC = () => {
+  return (
+    <div className="flex items-center justify-between font-serif text-xs sm:text-[13px] md:text-[14px] tracking-[0.2em] sm:tracking-[0.25em] text-[#111111] uppercase pb-2 mb-5 sm:mb-7 border-b-[2px] border-[#111111] select-none">
+      <span>MYTHREIE DUMPATI</span>
+      <span>PORTFOLIO . 2026</span>
+    </div>
+  );
+};
+
+// =========================================================================
 // PAGE 02: CONTENTS (Exact reproduction of uploaded reference image)
 // =========================================================================
 export const Page02Contents: React.FC<{ onNavigateToSpread?: (spread: number) => void }> = ({
@@ -108,14 +120,11 @@ export const Page02Contents: React.FC<{ onNavigateToSpread?: (spread: number) =>
   return (
     <div className="editorial-scroll scroll-smooth p-6 sm:p-9 md:p-12 lg:p-14 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210] select-none">
       <div>
-        {/* Top Header Bar */}
-        <div className="flex items-center justify-between font-serif text-xs sm:text-[13px] md:text-[14px] tracking-[0.2em] sm:tracking-[0.25em] text-[#111111] uppercase pb-2 border-b-[2.5px] border-[#111111]">
-          <span>MYTHREIE DUMPATI</span>
-          <span>PORTFOLIO . 2026</span>
-        </div>
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
 
         {/* Title and Subtitle */}
-        <div className="mt-7 sm:mt-9 mb-5 sm:mb-6">
+        <div className="mt-4 sm:mt-6 mb-5 sm:mb-6">
           <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-[44px] uppercase tracking-[0.02em] text-[#111111] leading-none">
             CONTENTS
           </h2>
@@ -173,82 +182,91 @@ export const Page02Contents: React.FC<{ onNavigateToSpread?: (spread: number) =>
 };
 
 // =========================================================================
-// PAGE 03: 01. EDUCATION (The Academic Ledger)
+// PAGE 03: 01. EDUCATION (Exact reproduction of uploaded reference image)
 // =========================================================================
 export const Page03Education: React.FC = () => {
+  const milestones = [
+    {
+      year: '2026',
+      title: 'Bachelor of Engineering in Computer Science and Engineering',
+      institution: 'Keshav Memorial Engineering College',
+      score: '8.36/10',
+      image: '/education_kmec.jpg',
+      alt: 'Keshav Memorial Engineering College Campus',
+    },
+    {
+      year: '2023',
+      title: 'Diploma in Automobile Engineering',
+      institution: 'Masab Tank Government Polytechnic College',
+      score: '8.8/10',
+      image: '/education_masab_tank.jpg',
+      alt: 'Masab Tank Government Polytechnic College Building',
+    },
+    {
+      year: '2020',
+      title: 'ICSE — Secondary Education',
+      institution: 'Living Vikasa Vidya Vanam',
+      score: '81.4%',
+      image: '/education_school.jpg',
+      alt: 'Living Vikasa Vidya Vanam Campus',
+    },
+  ];
+
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
-      <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
-          <div>
-            <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              SECTION 01 // ACADEMIC RECORD
-            </span>
-            <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              EDUCATION &amp; QUALIFICATIONS
-            </h3>
-          </div>
-          <NewspaperStamp text="ACCREDITED" variant="crimson" rotation={2} />
-        </div>
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-9 md:p-12 lg:p-14 flex flex-col justify-start h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210] select-none">
+      {/* Universal Top Header Bar (Name on top of page) */}
+      <NewspaperPageHeader />
 
-        {/* Academic Timeline Entries */}
-        <div className="space-y-3.5">
-          {RESUME_DATA.academicRecord.map((record, index) => (
-            <div
-              key={index}
-              className="relative pl-5 border-l-2 border-[#141210] pb-2 last:pb-0 p-1.5 rounded-xs"
-            >
-              <div className="absolute -left-[6px] top-2 w-2.5 h-2.5 rounded-full border-2 border-[#141210] bg-[#f4f3ef]"></div>
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                <h4 className="font-serif-vintage text-base font-bold text-[#141210]">
-                  {record.degree}
-                </h4>
-                <span className="font-mono-tech text-xs font-bold text-[#8C3833] bg-[#8C3833]/10 px-2 py-0.5 border border-[#8C3833]/30 self-start">
-                  {record.grade}
-                </span>
-              </div>
-              <div className="font-typewriter text-xs text-[#4b4e39] font-bold mt-0.5">
-                {record.institution}
-              </div>
-              <div className="font-mono-tech text-[9.5px] text-[#5a554e] flex items-center gap-2 mt-0.5">
-                <span>PERIOD: {record.period}</span>
-                {record.specialization && (
-                  <>
-                    <span>•</span>
-                    <span>{record.specialization}</span>
-                  </>
-                )}
-              </div>
-              <p className="font-serif-vintage text-[11.5px] text-[#2a2521] mt-1 italic leading-snug">
-                &quot;{record.notes}&quot;
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Institutional Portrait & Summary */}
-        <div className="mt-4 p-3 bg-[#eae8e2]/70 border border-[#141210] flex items-center gap-3">
-          <div className="w-14 h-16 bg-gradient-to-b from-[#ebe9e3] to-[#dedbd2] border border-[#141210]/40 flex-shrink-0 overflow-hidden">
-            <img
-              src="/front_cover_portrait.jpg"
-              alt="Mythreie Dumpati"
-              className="w-full h-full object-cover grayscale contrast-110"
-            />
-          </div>
-          <div>
-            <div className="font-mono-tech text-[9.5px] uppercase font-bold text-[#141210]">
-              CHIEF INVESTIGATOR CREDENTIALS
-            </div>
-            <div className="font-serif-vintage text-xs text-[#2a2521] mt-0.5">
-              B.E. CSE Scholar (8.36 CGPA) with foundational Automobile Diploma (8.8 CGPA) and NLU Odisha Cyber Forensics Distinction (87%).
-            </div>
-          </div>
-        </div>
+      {/* Heading matching reference image */}
+      <div className="mb-5 sm:mb-7">
+        <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-[42px] text-[#111111] tracking-[0.01em] leading-tight">
+          01. Education
+        </h2>
+        <div className="w-full border-b border-[#111111] mt-3 sm:mt-4" />
       </div>
 
-      <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // 01. EDUCATION</span>
-        <span className="font-typewriter font-bold text-[#141210]">PAGE 03</span>
+      {/* 3-Row Education Timeline Grid */}
+      <div className="space-y-6 sm:space-y-8 relative">
+        {milestones.map((item, index) => (
+          <div
+            key={index}
+            className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1.15fr] gap-4 sm:gap-6 items-center relative"
+          >
+            {/* Left Column: Campus Photograph */}
+            <div className="w-full aspect-[298/200] max-h-[175px] bg-[#ebe7dc] border border-[#141210]/60 overflow-hidden shadow-xs">
+              <img
+                src={item.image}
+                alt={item.alt}
+                className="w-full h-full object-cover grayscale contrast-110 block"
+                loading="eager"
+              />
+            </div>
+
+            {/* Center Timeline Node Dot & Spine Segment */}
+            <div className="hidden sm:flex flex-col items-center self-stretch relative w-5">
+              {/* Vertical timeline line */}
+              <div className="w-[2.5px] bg-[#111111] h-full absolute top-0 bottom-0 left-1/2 -translate-x-1/2" />
+              {/* Timeline Solid Node Dot */}
+              <div className="w-3.5 h-3.5 rounded-full bg-[#111111] ring-4 ring-[#faf9f6] relative z-10 my-auto" />
+            </div>
+
+            {/* Right Column: Educational Ledger */}
+            <div className="flex flex-col justify-center">
+              <span className="font-serif text-sm sm:text-base text-[#111111] mb-1 font-normal block">
+                {item.year}
+              </span>
+              <h3 className="font-serif font-bold text-sm sm:text-base md:text-[17px] text-[#111111] leading-snug">
+                {item.title}
+              </h3>
+              <p className="font-serif text-xs sm:text-sm md:text-[15px] text-[#2c2825] mt-1 leading-snug">
+                {item.institution}
+              </p>
+              <span className="font-serif font-bold text-sm sm:text-base text-[#111111] mt-2 block">
+                {item.score}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -263,9 +281,12 @@ export const Page04Experience: React.FC = () => {
   const mithraExp = RESUME_DATA.experience.find((e) => e.id === 'mithra-agencies')!;
 
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210]">
       <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
+
+        <div className="border-b-2 border-[#141210] pb-2 mb-4 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
               SECTION 02 // FIELD OPERATIONS
@@ -278,7 +299,7 @@ export const Page04Experience: React.FC = () => {
         </div>
 
         {/* Feature 1: Telangana Police */}
-        <div className="p-3 bg-[#eae8e2]/70 border-2 border-[#141210] mb-3">
+        <div className="p-3.5 bg-[#eae8e2]/70 border-2 border-[#141210] mb-3">
           <div className="flex items-center justify-between border-b border-[#141210] pb-1 mb-2">
             <div>
               <span className="font-mono-tech text-[9px] text-[#8C3833] uppercase font-bold tracking-widest block">
@@ -350,7 +371,7 @@ export const Page04Experience: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // 02. PROFESSIONAL EXPERIENCE</span>
+        <span>MYTHREIE DUMPATI // 02. PROFESSIONAL EXPERIENCE</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 04</span>
       </div>
     </div>
@@ -367,9 +388,12 @@ export const Page05Projects: React.FC = () => {
   const alcohol = RESUME_DATA.projects.find((p) => p.id === 'alcohol-detector')!;
 
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210]">
       <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
+
+        <div className="border-b-2 border-[#141210] pb-2 mb-4 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
               SECTION 03 // TECHNICAL SOLUTIONS
@@ -435,7 +459,7 @@ export const Page05Projects: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // 03. PROJECTS</span>
+        <span>MYTHREIE DUMPATI // 03. PROJECTS</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 05</span>
       </div>
     </div>
@@ -447,9 +471,12 @@ export const Page05Projects: React.FC = () => {
 // =========================================================================
 export const Page06Publications: React.FC = () => {
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210]">
       <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
+
+        <div className="border-b-2 border-[#141210] pb-2 mb-4 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
               SECTION 04 // SCHOLARLY CONTRIBUTIONS
@@ -463,7 +490,7 @@ export const Page06Publications: React.FC = () => {
 
         <div className="space-y-3">
           {RESUME_DATA.publications.map((paper, idx) => (
-            <div key={idx} className="p-3 bg-[#eae8e2]/70 border border-[#141210]">
+            <div key={idx} className="p-3.5 bg-[#eae8e2]/70 border border-[#141210]">
               <div className="flex items-baseline justify-between gap-2 border-b border-[#141210]/20 pb-1 mb-1">
                 <span className="font-mono-tech text-[8.5px] uppercase font-bold text-[#8C3833]">
                   {paper.venue} • {paper.date}
@@ -492,7 +519,7 @@ export const Page06Publications: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // 04. PUBLICATIONS</span>
+        <span>MYTHREIE DUMPATI // 04. PUBLICATIONS</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 06</span>
       </div>
     </div>
@@ -513,9 +540,12 @@ export const Page07Skills: React.FC = () => {
   ];
 
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210]">
       <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
+
+        <div className="border-b-2 border-[#141210] pb-2 mb-4 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
               SECTION 05 // TECHNICAL COMPETENCIES
@@ -550,7 +580,7 @@ export const Page07Skills: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // 05. SKILLS</span>
+        <span>MYTHREIE DUMPATI // 05. SKILLS</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 07</span>
       </div>
     </div>
@@ -562,9 +592,12 @@ export const Page07Skills: React.FC = () => {
 // =========================================================================
 export const Page08Certifications: React.FC = () => {
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210]">
       <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
+
+        <div className="border-b-2 border-[#141210] pb-2 mb-4 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
               SECTION 06 // PROFESSIONAL CREDENTIALS
@@ -612,7 +645,7 @@ export const Page08Certifications: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // 06. CERTIFICATIONS</span>
+        <span>MYTHREIE DUMPATI // 06. CERTIFICATIONS</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 08</span>
       </div>
     </div>
@@ -624,9 +657,12 @@ export const Page08Certifications: React.FC = () => {
 // =========================================================================
 export const Page09Activities: React.FC = () => {
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210]">
       <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
+
+        <div className="border-b-2 border-[#141210] pb-2 mb-4 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
               SECTION 07 // CAMPUS &amp; COMMUNITY
@@ -639,7 +675,7 @@ export const Page09Activities: React.FC = () => {
         </div>
 
         {/* Presidency Highlight */}
-        <div className="p-3 bg-[#eae8e2]/80 border-2 border-[#141210] mb-3">
+        <div className="p-3.5 bg-[#eae8e2]/80 border-2 border-[#141210] mb-3">
           <div className="flex items-center justify-between border-b border-[#141210] pb-1 mb-2">
             <div>
               <span className="font-mono-tech text-[8.5px] text-[#8C3833] uppercase font-bold tracking-widest block">
@@ -678,7 +714,7 @@ export const Page09Activities: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // 07. ACTIVITIES AND SOCIETIES</span>
+        <span>MYTHREIE DUMPATI // 07. ACTIVITIES AND SOCIETIES</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 09</span>
       </div>
     </div>
@@ -725,9 +761,12 @@ export const Page10Dispatch: React.FC = () => {
   };
 
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210]">
       <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
+
+        <div className="border-b-2 border-[#141210] pb-2 mb-4 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
               COMMUNICATION TERMINAL // SECTION 08
@@ -740,7 +779,7 @@ export const Page10Dispatch: React.FC = () => {
         </div>
 
         {/* Form */}
-        <div className="p-3 bg-[#eae8e2]/80 border-2 border-[#141210] mb-3">
+        <div className="p-3.5 bg-[#eae8e2]/80 border-2 border-[#141210] mb-3">
           <div className="flex items-center gap-2 border-b border-[#141210] pb-1 mb-2 font-mono-tech text-[10px] uppercase font-bold text-[#141210]">
             <Send className="w-3.5 h-3.5 text-[#8C3833]" />
             <span>TRANSMIT DISPATCH MESSAGE (RESEND VERIFIED)</span>
@@ -822,7 +861,7 @@ export const Page10Dispatch: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // DISPATCH TERMINAL</span>
+        <span>MYTHREIE DUMPATI // DISPATCH TERMINAL</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 10</span>
       </div>
     </div>
@@ -834,9 +873,12 @@ export const Page10Dispatch: React.FC = () => {
 // =========================================================================
 export const Page11Colophon: React.FC = () => {
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210]">
       <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
+
+        <div className="border-b-2 border-[#141210] pb-2 mb-4 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
               OFFICIAL ARCHIVE // COLOPHON
@@ -908,7 +950,7 @@ export const Page11Colophon: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // EDITORIAL COLOPHON</span>
+        <span>MYTHREIE DUMPATI // EDITORIAL COLOPHON</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 11</span>
       </div>
     </div>
@@ -932,9 +974,12 @@ export const Page12ClosingBroadside: React.FC<{ onNavigateToSpread?: (spread: nu
   ];
 
   return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210]">
       <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+        {/* Universal Top Header Bar */}
+        <NewspaperPageHeader />
+
+        <div className="border-b-2 border-[#141210] pb-2 mb-4 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
               FINAL REGISTER // VOLUME 01
@@ -985,7 +1030,7 @@ export const Page12ClosingBroadside: React.FC<{ onNavigateToSpread?: (spread: nu
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // CLOSING BROADSIDE</span>
+        <span>MYTHREIE DUMPATI // CLOSING BROADSIDE</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 12</span>
       </div>
     </div>
