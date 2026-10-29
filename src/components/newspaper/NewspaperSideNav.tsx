@@ -52,11 +52,12 @@ export const NewspaperSideNav: React.FC<NewspaperSideNavProps> = ({
   };
 
   const sectionPills = [
-    { spread: 1, title: 'Front Page & Bio', pages: '01–02', subtitle: 'Lead Headline & Photo' },
-    { spread: 2, title: 'Academic & Police', pages: '03–04', subtitle: 'KMEC & Bharosa Module' },
-    { spread: 3, title: 'Research & Systems', pages: '05–06', subtitle: '3 IEEE Papers & SecureShare' },
-    { spread: 4, title: 'Forensics & Arsenal', pages: '07–08', subtitle: 'SMIA, Interlock & Skills' },
-    { spread: 5, title: 'Presidency & Colophon', pages: '09–10', subtitle: 'Student Body & Telegram' },
+    { spread: 1, title: 'Front Cover', pages: '01', subtitle: 'EXTRA!! Lead Dossier & Photos' },
+    { spread: 2, title: 'Editorial & Bio', pages: '02–03', subtitle: 'Biographical Chronicle' },
+    { spread: 3, title: 'Academic & Police', pages: '04–05', subtitle: 'KMEC & Bharosa Module' },
+    { spread: 4, title: 'Research & Systems', pages: '06–07', subtitle: '3 IEEE Papers & SecureShare' },
+    { spread: 5, title: 'Forensics & Arsenal', pages: '08–09', subtitle: 'SMIA, Interlock & Skills' },
+    { spread: 6, title: 'Governance & Colophon', pages: '10–11', subtitle: 'Presidency & Telegram' },
   ];
 
   return (
@@ -250,3 +251,4 @@ export const NewspaperSideNav: React.FC<NewspaperSideNavProps> = ({
     </aside>
   );
 };
+

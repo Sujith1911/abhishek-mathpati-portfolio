@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { NewspaperCoverPage } from './spreads/NewspaperCoverPage';
 import { Spread1FrontPage } from './spreads/Spread1FrontPage';
 import { Spread2AcademicExp } from './spreads/Spread2AcademicExp';
 import { Spread3ResearchProjects } from './spreads/Spread3ResearchProjects';
@@ -10,7 +11,7 @@ import { NewspaperSideNav } from './NewspaperSideNav';
 import { soundManager } from '../../utils/sound';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export const TOTAL_SPREADS = 5;
+export const TOTAL_SPREADS = 6;
 
 export const NewspaperShell: React.FC = () => {
   const [currentSpread, setCurrentSpread] = useState(1);
@@ -109,17 +110,19 @@ export const NewspaperShell: React.FC = () => {
   const renderSpreadContent = () => {
     switch (currentSpread) {
       case 1:
-        return <Spread1FrontPage onNavigateToSpread={navigateToSpread} />;
+        return <NewspaperCoverPage onOpenNewspaper={turnNext} />;
       case 2:
-        return <Spread2AcademicExp />;
+        return <Spread1FrontPage onNavigateToSpread={navigateToSpread} />;
       case 3:
-        return <Spread3ResearchProjects />;
+        return <Spread2AcademicExp />;
       case 4:
-        return <Spread4ForensicArsenal />;
+        return <Spread3ResearchProjects />;
       case 5:
+        return <Spread4ForensicArsenal />;
+      case 6:
         return <Spread5LeadershipColophon />;
       default:
-        return <Spread1FrontPage onNavigateToSpread={navigateToSpread} />;
+        return <NewspaperCoverPage onOpenNewspaper={turnNext} />;
     }
   };
 
@@ -167,9 +170,13 @@ export const NewspaperShell: React.FC = () => {
               targetSpread={targetSpread}
             />
 
-            {/* Central Broadsheet Vertical Fold Crease Shadow */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-12 -ml-6 bg-gradient-to-r from-transparent via-[#141210]/25 to-transparent pointer-events-none z-20"></div>
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1.5px] bg-[#141210]/35 pointer-events-none z-20"></div>
+            {/* Central Broadsheet Vertical Fold Crease Shadow (Shown on interior spreads) */}
+            {currentSpread > 1 && (
+              <>
+                <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-12 -ml-6 bg-gradient-to-r from-transparent via-[#141210]/25 to-transparent pointer-events-none z-20"></div>
+                <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1.5px] bg-[#141210]/35 pointer-events-none z-20"></div>
+              </>
+            )}
 
             {/* Deckled Broadsheet Outer Edge Vignette */}
             <div className="absolute left-0 top-0 bottom-0 w-2.5 pointer-events-none z-20 opacity-40 bg-gradient-to-r from-[#141210]/25 to-transparent"></div>
