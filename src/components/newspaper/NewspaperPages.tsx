@@ -226,7 +226,7 @@ export const Page03Education: React.FC = () => {
       </div>
 
       {/* 3-Row Education Timeline Grid with a single unbroken continuous spine */}
-      <div className="grid grid-cols-[1fr_28px_1.15fr] sm:grid-cols-[1fr_36px_1.15fr] gap-x-3 sm:gap-x-6 gap-y-6 sm:gap-y-8 relative">
+      <div className="grid grid-cols-[1fr_28px_1.15fr] sm:grid-cols-[1fr_36px_1.15fr] grid-rows-3 gap-x-3 sm:gap-x-6 gap-y-6 sm:gap-y-8 relative">
         {/* Single Unbroken Continuous Vertical Timeline Spine spanning all 3 rows without any gaps */}
         <div
           className="col-start-2 row-start-1 row-end-4 relative flex justify-center pointer-events-none z-0"
@@ -240,8 +240,10 @@ export const Page03Education: React.FC = () => {
 
           return (
             <React.Fragment key={index}>
-              {/* Left Column: Campus Photograph (Clean without borders or stray lines) */}
-              <div className={`col-start-1 ${rowClass} w-full aspect-[262/185] bg-[#ebe7dc] overflow-hidden shadow-xs`}>
+              {/* Left Column: Campus Photograph (Strictly aligned to dot top, uniform aspect ratio & equal spatial gaps) */}
+              <div
+                className={`col-start-1 ${rowClass} self-start w-full aspect-[4/3] bg-[#ebe7dc] overflow-hidden shadow-xs mt-[2px]`}
+              >
                 <img
                   src={item.image}
                   alt={item.alt}
@@ -250,14 +252,14 @@ export const Page03Education: React.FC = () => {
                 />
               </div>
 
-              {/* Center Timeline Node Dot aligned with the Year */}
-              <div className={`col-start-2 ${rowClass} flex justify-center items-start z-10 pointer-events-none`}>
+              {/* Center Timeline Node Dot (Aligned exactly to Image Top and Year) */}
+              <div className={`col-start-2 ${rowClass} self-start flex justify-center items-start z-10 pointer-events-none`}>
                 <div className="w-3.5 h-3.5 rounded-full bg-[#111111] mt-[2px] shrink-0" />
               </div>
 
               {/* Right Column: Educational Ledger */}
-              <div className={`col-start-3 ${rowClass} flex flex-col justify-start`}>
-                <span className="font-serif text-sm sm:text-base text-[#111111] font-normal leading-none mb-1.5 block">
+              <div className={`col-start-3 ${rowClass} self-start flex flex-col justify-start`}>
+                <span className="font-serif text-sm sm:text-base text-[#111111] font-normal leading-none mt-[2px] mb-1.5 block">
                   {item.year}
                 </span>
                 <h3 className="font-serif font-bold text-sm sm:text-base md:text-[17px] text-[#111111] leading-snug">
