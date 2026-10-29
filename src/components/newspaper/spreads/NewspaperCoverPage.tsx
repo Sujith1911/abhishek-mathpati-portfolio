@@ -18,9 +18,13 @@ import { GithubIcon, LinkedinIcon } from '../../SocialIcons';
 
 interface NewspaperCoverPageProps {
   onOpenNewspaper: () => void;
+  isDisappearing?: boolean;
 }
 
-export const NewspaperCoverPage: React.FC<NewspaperCoverPageProps> = ({ onOpenNewspaper }) => {
+export const NewspaperCoverPage: React.FC<NewspaperCoverPageProps> = ({
+  onOpenNewspaper,
+  isDisappearing = false,
+}) => {
   return (
     <div className="w-full h-full overflow-y-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-between relative select-none">
       <div>
@@ -337,10 +341,15 @@ export const NewspaperCoverPage: React.FC<NewspaperCoverPageProps> = ({ onOpenNe
           <button
             type="button"
             onClick={onOpenNewspaper}
-            className="flex items-center gap-2 px-6 py-2.5 bg-[#141210] hover:bg-[#8C3833] text-[#f5f0e1] font-mono-tech text-xs uppercase font-bold tracking-[0.2em] transition-all shadow-md hover:shadow-lg hover:scale-105 cursor-pointer flex-shrink-0"
+            disabled={isDisappearing}
+            className={`flex items-center gap-2 px-6 py-2.5 font-mono-tech text-xs uppercase font-bold tracking-[0.2em] transition-all shadow-md hover:shadow-lg hover:scale-105 cursor-pointer flex-shrink-0 ${
+              isDisappearing
+                ? 'bg-[#8C3833] text-white opacity-85 cursor-wait'
+                : 'bg-[#141210] hover:bg-[#8C3833] text-[#f5f0e1]'
+            }`}
           >
-            <span>OPEN NEWSPAPER / TURN PAGE</span>
-            <ArrowRight className="w-4 h-4 text-[#d9c49f]" />
+            <span>{isDisappearing ? 'OPENING ARCHIVE...' : 'OPEN NEWSPAPER / TURN PAGE'}</span>
+            <ArrowRight className={`w-4 h-4 text-[#d9c49f] ${isDisappearing ? 'animate-ping' : ''}`} />
           </button>
         </div>
 
