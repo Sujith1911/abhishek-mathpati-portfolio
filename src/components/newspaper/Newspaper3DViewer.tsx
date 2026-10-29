@@ -113,7 +113,7 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
         turningFrontPage = currentPages.left;
         turningBackPage = 1;
         baseLeftPage = 0;
-        baseRightPage = 0;
+        baseRightPage = currentPages.right;
       } else {
         // Backward turn between interior spreads (e.g. Spread 3 -> 2)
         turningFrontPage = currentPages.left;

@@ -1,17 +1,13 @@
 import React from 'react';
 import {
   ExternalLink,
-  Mail,
-  Fingerprint,
   CheckCircle,
   Download,
   Send,
 } from 'lucide-react';
 import { RESUME_DATA } from '../../data/resumeData';
-import { NewspaperMasthead } from './NewspaperMasthead';
 import { NewspaperStamp } from './elements/NewspaperStamp';
 import { GithubIcon, LinkedinIcon } from '../SocialIcons';
-import { HandwrittenNote } from '../HandwrittenNote';
 
 // =========================================================================
 // PAGE 01: THE OFFICIAL FRONT COVER (Exact reference from user upload)
@@ -59,265 +55,103 @@ export const Page01Cover: React.FC<{ onOpenNewspaper?: () => void }> = ({ onOpen
 };
 
 // =========================================================================
-// PAGE 02: LEAD DISPATCH & EXECUTIVE OVERVIEW
+// PAGE 02: CONTENTS (Exact reproduction of uploaded reference image)
 // =========================================================================
-export const Page02Overview: React.FC<{ onNavigateToSpread?: (spread: number) => void }> = ({
+export const Page02Contents: React.FC<{ onNavigateToSpread?: (spread: number) => void }> = ({
   onNavigateToSpread,
 }) => {
-  return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
-      <div>
-        {/* Masthead */}
-        <NewspaperMasthead
-          edition="LATE CITY SPECIAL EDITION"
-          volume="VOL. XXIV ... NO. 102"
-          date="OCTOBER 2026"
-          showFullBanner={true}
-        />
+  const contentsList = [
+    {
+      num: '01',
+      title: 'Education',
+      desc: 'My academic journey and qualifications',
+      spread: 2, // on the right page of current spread (Page 03)
+    },
+    {
+      num: '02',
+      title: 'Professional Experience',
+      desc: 'Practical experience across industry and public service',
+      spread: 3, // Page 04
+    },
+    {
+      num: '03',
+      title: 'Projects',
+      desc: 'Technical solutions built through research and development',
+      spread: 3, // Page 05
+    },
+    {
+      num: '04',
+      title: 'Publications',
+      desc: 'Research contributions in cybersecurity and related fields',
+      spread: 4, // Page 06
+    },
+    {
+      num: '05',
+      title: 'Skills',
+      desc: 'Technical competencies and tools',
+      spread: 4, // Page 07
+    },
+    {
+      num: '06',
+      title: 'Certifications',
+      desc: 'Professional training and recognized credentials',
+      spread: 5, // Page 08
+    },
+    {
+      num: '07',
+      title: 'Activities and Societies',
+      desc: 'Leadership, campus involvement, and extracurricular pursuits',
+      spread: 5, // Page 09
+    },
+  ];
 
-        {/* Banner Headline */}
-        <div className="text-center my-2 pb-2 border-b-2 border-[#141210] cursor-default">
-          <h2 className="font-display text-lg sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-[#141210] leading-tight">
-            CYBERSECURITY RESEARCHER DEPLOYS DECENTRALIZED PROTOCOLS &amp; FORENSIC SAFEGUARDS
+  return (
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-9 md:p-12 lg:p-14 flex flex-col justify-start h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210] select-none">
+      <div>
+        {/* Top Header Bar */}
+        <div className="flex items-center justify-between font-serif text-xs sm:text-[13px] md:text-[14px] tracking-[0.2em] sm:tracking-[0.25em] text-[#111111] uppercase pb-2 border-b-[2.5px] border-[#111111]">
+          <span>MYTHREIE DUMPATI</span>
+          <span>PORTFOLIO . 2026</span>
+        </div>
+
+        {/* Title and Subtitle */}
+        <div className="mt-7 sm:mt-9 mb-5 sm:mb-6">
+          <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-[44px] uppercase tracking-[0.02em] text-[#111111] leading-none">
+            CONTENTS
           </h2>
-          <p className="font-serif-vintage text-xs sm:text-sm text-[#4a453e] mt-1 font-semibold italic">
-            Mythreie Dumpati pairs empirical computer science with court-admissible forensic architectures and applied AI benchmarking.
+          <p className="font-serif italic text-sm sm:text-base md:text-[17px] text-[#222222] mt-2.5 sm:mt-3 leading-snug">
+            A record of academic work, research, and experience.
           </p>
+          <div className="w-full border-b-[1.5px] border-[#111111] mt-3.5 sm:mt-4" />
         </div>
 
-        {/* Multi-Column Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 mt-1.5">
-          {/* Left Column: Portrait & Meta */}
-          <div className="sm:col-span-5 flex flex-col justify-between border-b sm:border-b-0 sm:border-r border-[#141210]/20 pr-0 sm:pr-3">
-            <div className="relative p-2 bg-[#eae8e2] border border-[#141210] shadow-xs text-center">
-              <div className="aspect-[4/5] bg-gradient-to-b from-[#ebe9e3] to-[#dedbd2] border border-[#141210]/40 flex flex-col items-center justify-center p-2 text-center overflow-hidden">
-                <img
-                  src="/front_cover_portrait.jpg"
-                  alt="Mythreie Dumpati Portrait"
-                  className="w-full h-full object-cover grayscale contrast-110"
-                />
+        {/* The 7 Numbered Sections */}
+        <div className="space-y-4 sm:space-y-5 md:space-y-6 mt-6 sm:mt-7">
+          {contentsList.map((item) => (
+            <div
+              key={item.num}
+              onClick={() => onNavigateToSpread?.(item.spread)}
+              className="group cursor-pointer transition-transform duration-150 p-1 -mx-1 rounded-xs hover:translate-x-1"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onNavigateToSpread?.(item.spread);
+                }
+              }}
+            >
+              <div>
+                <h3 className="font-serif font-bold text-base sm:text-lg md:text-[19px] text-[#111111] group-hover:text-[#8C3833] transition-colors leading-tight">
+                  <span className="inline-block w-8 sm:w-9">{item.num}.</span>
+                  <span>{item.title}</span>
+                </h3>
               </div>
-              <div className="text-[9px] font-newsreader italic text-[#5a554e] mt-1">
-                Fig. 1 — Chief Investigator Mythreie Dumpati (B.E. 2026).
-              </div>
+              <p className="font-serif text-xs sm:text-sm md:text-[15px] text-[#2c2825] pl-8 sm:pl-9 mt-1 leading-snug">
+                {item.desc}
+              </p>
             </div>
-
-            <div className="mt-2 pt-2 border-t border-[#141210]/20 font-mono-tech text-[9.5px] space-y-1">
-              <div className="flex justify-between">
-                <span className="text-[#5a554e]">STATION:</span>
-                <span className="font-bold">Hyderabad, India</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[#5a554e]">STATUS:</span>
-                <span className="font-bold text-[#8C3833]">OFFICIAL DOSSIER</span>
-              </div>
-            </div>
-
-            <div className="mt-2 pt-2 border-t border-[#141210]/20 flex flex-wrap gap-1 font-mono-tech text-[9px]">
-              <a
-                href={`mailto:${RESUME_DATA.personal.email}`}
-                className="px-2 py-0.5 border border-[#141210] hover:bg-[#8C3833] hover:text-white hover:border-[#8C3833] transition-all font-bold inline-flex items-center gap-1 shadow-2xs"
-              >
-                <Mail className="w-2.5 h-2.5 text-[#8C3833]" />
-                <span>Telegraph</span>
-              </a>
-              <a
-                href={RESUME_DATA.personal.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2 py-0.5 border border-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] transition-all font-bold inline-flex items-center gap-1 shadow-2xs"
-              >
-                <GithubIcon className="w-2.5 h-2.5" />
-                <span>GitHub</span>
-                <ExternalLink className="w-2 h-2 opacity-60" />
-              </a>
-              <a
-                href={RESUME_DATA.personal.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2 py-0.5 border border-[#141210] hover:bg-[#141210] hover:text-white transition-all font-bold inline-flex items-center gap-1 shadow-2xs"
-              >
-                <LinkedinIcon className="w-2.5 h-2.5" />
-                <span>LinkedIn</span>
-                <ExternalLink className="w-2 h-2 opacity-60" />
-              </a>
-            </div>
-          </div>
-
-          {/* Right Column: Lead Narrative & Index */}
-          <div className="sm:col-span-7 flex flex-col justify-between pl-0 sm:pl-1">
-            <div>
-              <div className="flex items-center justify-between border-b border-[#141210]/20 pb-1 mb-1.5">
-                <span className="font-mono-tech text-[9px] uppercase tracking-wider text-[#8C3833] font-bold">
-                  SPECIAL DISPATCH REPORT
-                </span>
-                <NewspaperStamp text="ARCHIVE" variant="crimson" rotation={1} />
-              </div>
-
-              <div className="font-serif-vintage text-xs sm:text-[12.5px] leading-relaxed text-[#141210] space-y-2 text-justify">
-                <p>
-                  HYDERABAD — In an era marked by sophisticated cyber intrusions and evolving adversarial exploits, computer science researcher Mythreie Dumpati has emerged with a multidisciplinary approach bridging digital forensics, decentralized architectures, and applied machine learning security.
-                </p>
-                <p>
-                  Graduating in 2026 from Keshav Memorial Engineering College with an 8.36 CGPA and possessing an earlier foundation in Automobile Engineering (8.8 CGPA from Masab Tank Government Polytechnic College), Dumpati’s recent research spans direct investigative contributions to public safety initiatives across 26 statewide crisis centres, peer-reviewed publications accepted into IEEE conferences, and the development of court-admissible evidence preservation software.
-                </p>
-              </div>
-            </div>
-
-            {/* Quick Index */}
-            <div className="mt-2.5 p-2.5 bg-[#eae8e2]/70 border-2 border-[#141210]">
-              <div className="flex items-center justify-between border-b border-[#141210] pb-1 mb-1.5 font-mono-tech text-[9px] uppercase tracking-widest font-bold text-[#141210]">
-                <span>IN THIS SPECIAL EDITION</span>
-                <span className="text-[#8C3833]">[RAPID JUMP]</span>
-              </div>
-              <div className="grid grid-cols-2 gap-x-2 gap-y-1 font-newsreader text-[11px] leading-tight">
-                <button
-                  type="button"
-                  onClick={() => onNavigateToSpread?.(3)}
-                  className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
-                >
-                  <span>§ Academic Timeline</span>
-                  <span className="font-mono-tech font-bold text-[9px]">p. 04</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onNavigateToSpread?.(3)}
-                  className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
-                >
-                  <span>§ Police Bharosa Lab</span>
-                  <span className="font-mono-tech font-bold text-[9px]">p. 05</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onNavigateToSpread?.(4)}
-                  className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
-                >
-                  <span>§ 3 IEEE Publications</span>
-                  <span className="font-mono-tech font-bold text-[9px]">p. 06</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onNavigateToSpread?.(4)}
-                  className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
-                >
-                  <span>§ SecureShare P2P</span>
-                  <span className="font-mono-tech font-bold text-[9px]">p. 07</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onNavigateToSpread?.(5)}
-                  className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
-                >
-                  <span>§ Forensic SMIA &amp; MQ-3</span>
-                  <span className="font-mono-tech font-bold text-[9px]">p. 08</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onNavigateToSpread?.(6)}
-                  className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
-                >
-                  <span>§ Student Presidency</span>
-                  <span className="font-mono-tech font-bold text-[9px]">p. 10</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // LEAD DISPATCH</span>
-        <span className="font-typewriter font-bold text-[#141210]">PAGE 02</span>
-      </div>
-    </div>
-  );
-};
-
-// =========================================================================
-// PAGE 03: THE BIOGRAPHICAL CHRONICLE & CORE PILLARS
-// =========================================================================
-export const Page03Bio: React.FC = () => {
-  return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
-      <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
-          <div>
-            <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              BIOGRAPHICAL CHRONICLE // SECTION 02
-            </span>
-            <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              FIELD DOSSIER: RESEARCH IDENTITY
-            </h3>
-          </div>
-          <NewspaperStamp text="CLASSIFIED" variant="crimson" rotation={-2} />
-        </div>
-
-        {/* Identity Dossier */}
-        <div className="p-3 bg-[#eae8e2]/70 border border-[#141210] mb-3">
-          <div className="flex items-center gap-2 border-b border-[#141210]/20 pb-1 mb-1.5 font-mono-tech text-[10px] text-[#141210] font-bold uppercase">
-            <Fingerprint className="w-3.5 h-3.5 text-[#8C3833]" />
-            <span>OPERATIONAL SPECIFICATION &amp; METHODOLOGY</span>
-          </div>
-          <p className="font-serif-vintage text-xs sm:text-[12.5px] leading-relaxed text-[#2a2521] text-justify">
-            Mythreie Dumpati is an aspiring cybersecurity researcher and software engineer operating at the convergence of digital forensics, cryptography, and artificial intelligence safety. With dual formal training across computer science and hardware mechanics, she formulates computational defenses that account for protocol resilience down to physical telemetry.
-          </p>
-        </div>
-
-        {/* Core Pillars */}
-        <div className="space-y-2 mt-2">
-          <div className="border-l-2 border-[#141210] pl-3 py-1">
-            <h4 className="font-display text-xs sm:text-sm font-bold uppercase tracking-wider text-[#141210]">
-              I. Decentralized &amp; Zero-Trust Storage
-            </h4>
-            <p className="font-serif-vintage text-[11.5px] text-[#2a2521] leading-snug">
-              Designing fault-tolerant peer-to-peer repositories leveraging Shamir&apos;s Secret Sharing and IPFS to eradicate single points of compromise without trusted intermediaries.
-            </p>
-          </div>
-
-          <div className="border-l-2 border-[#8C3833] pl-3 py-1">
-            <h4 className="font-display text-xs sm:text-sm font-bold uppercase tracking-wider text-[#8C3833]">
-              II. Court-Admissible Digital Forensics
-            </h4>
-            <p className="font-serif-vintage text-[11.5px] text-[#2a2521] leading-snug">
-              Engineering rigorous cryptographic verification pipelines ensuring electronic evidence extracted from cyber encounters satisfies legal scrutiny and RFC-3161 timestamps.
-            </p>
-          </div>
-
-          <div className="border-l-2 border-[#4b4e39] pl-3 py-1">
-            <h4 className="font-display text-xs sm:text-sm font-bold uppercase tracking-wider text-[#4b4e39]">
-              III. Adversarial LLM Defense &amp; Safety Benchmarking
-            </h4>
-            <p className="font-serif-vintage text-[11.5px] text-[#2a2521] leading-snug">
-              Empirical evaluation of language models under multi-turn jailbreak attempts and prompt injection; mapping Pareto frontier curves across guardrail safety and response latency.
-            </p>
-          </div>
-        </div>
-
-        {/* Linguistic Cadre */}
-        <div className="mt-3 pt-2 border-t border-[#141210]/20 flex items-center justify-between font-mono-tech text-[10px]">
-          <span className="text-[#5a554e] font-bold">LINGUISTIC CADRE:</span>
-          <div className="flex gap-1.5">
-            {RESUME_DATA.personal.languagesSpoken.map((lang, idx) => (
-              <span
-                key={idx}
-                className="px-1.5 py-0.5 border border-[#141210]/40 bg-[#eae8e2] text-[#141210] font-semibold text-[9.5px]"
-              >
-                {lang.name} {lang.name === 'German' ? '(A1)' : ''}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="pt-2">
-        <div className="mb-2">
-          <HandwrittenNote rotation={-1.5} arrow="left" color="#8C3833">
-            &quot;Focusing computational rigor toward public safety and privacy rights.&quot;
-          </HandwrittenNote>
-        </div>
-        <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-          <span>THE DAILY CHRONICLE // BIOGRAPHICAL DISPATCH</span>
-          <span className="font-typewriter font-bold text-[#141210]">PAGE 03</span>
+          ))}
         </div>
       </div>
     </div>
@@ -325,24 +159,25 @@ export const Page03Bio: React.FC = () => {
 };
 
 // =========================================================================
-// PAGE 04: THE ACADEMIC LEDGER
+// PAGE 03: 01. EDUCATION (The Academic Ledger)
 // =========================================================================
-export const Page04Academic: React.FC = () => {
+export const Page03Education: React.FC = () => {
   return (
     <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              SCHOLASTIC REPORT // SECTION 03
+              SECTION 01 // ACADEMIC RECORD
             </span>
             <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              THE ACADEMIC LEDGER
+              EDUCATION &amp; QUALIFICATIONS
             </h3>
           </div>
           <NewspaperStamp text="ACCREDITED" variant="crimson" rotation={2} />
         </div>
 
+        {/* Academic Timeline Entries */}
         <div className="space-y-3.5">
           {RESUME_DATA.academicRecord.map((record, index) => (
             <div
@@ -377,39 +212,41 @@ export const Page04Academic: React.FC = () => {
           ))}
         </div>
 
-        {/* Certifications */}
-        <div className="mt-4 pt-3 border-t-2 border-[#141210]">
-          <span className="font-mono-tech text-[9px] uppercase tracking-widest text-[#141210] font-bold block mb-1.5">
-            INSTITUTIONAL ACCREDITATIONS &amp; DISTINCTIONS:
-          </span>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono-tech text-[10px]">
-            {RESUME_DATA.certifications.slice(0, 4).map((cert, idx) => (
-              <div key={idx} className="p-1.5 bg-[#eae8e2]/70 border border-[#141210]/30 flex items-start gap-1.5">
-                <CheckCircle className="w-3 h-3 text-[#8C3833] flex-shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-bold text-[#141210] leading-tight">{cert.title}</div>
-                  <div className="text-[8.5px] text-[#5a554e]">{cert.issuer} {cert.score ? `• ${cert.score}` : ''}</div>
-                </div>
-              </div>
-            ))}
+        {/* Institutional Portrait & Summary */}
+        <div className="mt-4 p-3 bg-[#eae8e2]/70 border border-[#141210] flex items-center gap-3">
+          <div className="w-14 h-16 bg-gradient-to-b from-[#ebe9e3] to-[#dedbd2] border border-[#141210]/40 flex-shrink-0 overflow-hidden">
+            <img
+              src="/front_cover_portrait.jpg"
+              alt="Mythreie Dumpati"
+              className="w-full h-full object-cover grayscale contrast-110"
+            />
+          </div>
+          <div>
+            <div className="font-mono-tech text-[9.5px] uppercase font-bold text-[#141210]">
+              CHIEF INVESTIGATOR CREDENTIALS
+            </div>
+            <div className="font-serif-vintage text-xs text-[#2a2521] mt-0.5">
+              B.E. CSE Scholar (8.36 CGPA) with foundational Automobile Diploma (8.8 CGPA) and NLU Odisha Cyber Forensics Distinction (87%).
+            </div>
           </div>
         </div>
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // CURRICULUM LEDGER</span>
-        <span className="font-typewriter font-bold text-[#141210]">PAGE 04</span>
+        <span>THE DAILY CHRONICLE // 01. EDUCATION</span>
+        <span className="font-typewriter font-bold text-[#141210]">PAGE 03</span>
       </div>
     </div>
   );
 };
 
 // =========================================================================
-// PAGE 05: FIELD OPERATIONS & TELANGANA POLICE BHAROSA
+// PAGE 04: 02. PROFESSIONAL EXPERIENCE
 // =========================================================================
-export const Page05Police: React.FC = () => {
+export const Page04Experience: React.FC = () => {
   const policeExp = RESUME_DATA.experience.find((e) => e.id === 'telangana-police')!;
   const teleparadigmExp = RESUME_DATA.experience.find((e) => e.id === 'teleparadigm')!;
+  const mithraExp = RESUME_DATA.experience.find((e) => e.id === 'mithra-agencies')!;
 
   return (
     <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
@@ -417,13 +254,13 @@ export const Page05Police: React.FC = () => {
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              FIELD INVESTIGATION // SECTION 04
+              SECTION 02 // FIELD OPERATIONS
             </span>
             <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              STATE POLICE &amp; INDUSTRY OPERATIONS
+              PROFESSIONAL EXPERIENCE
             </h3>
           </div>
-          <NewspaperStamp text="FIELD AGENT" variant="olive" rotation={-1} />
+          <NewspaperStamp text="VERIFIED" variant="olive" rotation={-1} />
         </div>
 
         {/* Feature 1: Telangana Police */}
@@ -461,14 +298,14 @@ export const Page05Police: React.FC = () => {
         </div>
 
         {/* Feature 2: Teleparadigm Systems */}
-        <div className="p-3 bg-[#eae8e2]/50 border border-[#141210]">
+        <div className="p-3 bg-[#eae8e2]/50 border border-[#141210] mb-2">
           <div className="flex items-center justify-between border-b border-[#141210]/20 pb-1 mb-1.5">
             <div>
               <h4 className="font-serif-vintage text-sm font-bold text-[#141210]">
                 {teleparadigmExp.role}
               </h4>
               <div className="font-typewriter text-[11px] text-[#5a554e]">
-                {teleparadigmExp.organization}
+                {teleparadigmExp.organization} • {teleparadigmExp.location}
               </div>
             </div>
             <span className="font-mono-tech text-[9px] text-[#5a554e] font-bold">
@@ -485,37 +322,126 @@ export const Page05Police: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Feature 3: Mithra Agencies */}
+        {mithraExp && (
+          <div className="p-2.5 bg-[#eae8e2]/40 border border-[#141210]/30 font-newsreader text-[10.5px]">
+            <div className="flex justify-between items-baseline font-bold text-[#141210]">
+              <span>{mithraExp.role} — {mithraExp.organization}</span>
+              <span className="font-mono-tech text-[9px] text-[#5a554e]">{mithraExp.dates}</span>
+            </div>
+            <p className="italic text-[#4a453e] mt-0.5">{mithraExp.verifiedOutcomes}</p>
+          </div>
+        )}
       </div>
 
-      <div className="pt-2">
-        <div className="mb-2">
-          <HandwrittenNote rotation={1} arrow="right" color="#4b4e39">
-            &quot;Applied analytics deployed directly into operational crisis centres.&quot;
-          </HandwrittenNote>
-        </div>
-        <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-          <span>THE DAILY CHRONICLE // POLICE DISPATCH</span>
-          <span className="font-typewriter font-bold text-[#141210]">PAGE 05</span>
-        </div>
+      <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
+        <span>THE DAILY CHRONICLE // 02. PROFESSIONAL EXPERIENCE</span>
+        <span className="font-typewriter font-bold text-[#141210]">PAGE 04</span>
       </div>
     </div>
   );
 };
 
 // =========================================================================
-// PAGE 06: SCHOLARLY PRESS & IEEE RESEARCH
+// PAGE 05: 03. PROJECTS
 // =========================================================================
-export const Page06Research: React.FC = () => {
+export const Page05Projects: React.FC = () => {
+  const secureShare = RESUME_DATA.projects.find((p) => p.id === 'secureshare')!;
+  const qpat = RESUME_DATA.projects.find((p) => p.id === 'qpat')!;
+  const smia = RESUME_DATA.projects.find((p) => p.id === 'smia')!;
+  const alcohol = RESUME_DATA.projects.find((p) => p.id === 'alcohol-detector')!;
+
   return (
     <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              SCHOLARLY PRESS // SECTION 05
+              SECTION 03 // TECHNICAL SOLUTIONS
             </span>
             <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              PEER-REVIEWED MONOGRAPHS
+              FLAGSHIP RESEARCH PROJECTS
+            </h3>
+          </div>
+          <NewspaperStamp text="DEPLOYED" variant="crimson" rotation={1} />
+        </div>
+
+        {/* SecureShare */}
+        <div className="p-3 bg-[#eae8e2]/80 border-2 border-[#141210] mb-2.5">
+          <div className="flex items-center justify-between border-b border-[#141210] pb-1 mb-1.5">
+            <h4 className="font-serif-vintage text-sm sm:text-base font-bold text-[#141210]">
+              {secureShare.title}
+            </h4>
+            <span className="font-mono-tech text-[8.5px] bg-[#8C3833] text-white px-2 py-0.5 font-bold">
+              IPFS + SHAMIR SSS
+            </span>
+          </div>
+          <p className="font-newsreader text-[11px] text-[#2a2521] leading-relaxed mb-1.5">
+            {secureShare.subtitle}
+          </p>
+          <div className="space-y-1 font-newsreader text-[10.5px] text-[#141210]">
+            {secureShare.keyImplementations.map((b, i) => (
+              <div key={i} className="flex items-start gap-1.5">
+                <span className="text-[#8C3833] font-bold">▶</span>
+                <span>{b}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* QPAT */}
+        <div className="p-2.5 bg-[#eae8e2]/60 border border-[#141210] mb-2">
+          <div className="flex items-center justify-between border-b border-[#141210]/20 pb-1 mb-1">
+            <h4 className="font-serif-vintage text-xs sm:text-sm font-bold text-[#141210]">
+              {qpat.title}
+            </h4>
+            <span className="font-mono-tech text-[8px] text-[#5a554e] font-bold">
+              NLP &amp; BLOOM&apos;S TAXONOMY
+            </span>
+          </div>
+          <p className="font-newsreader text-[10.5px] text-[#2a2521] leading-snug">
+            {qpat.subtitle} — {qpat.keyImplementations[0]}
+          </p>
+        </div>
+
+        {/* SMIA & Alcohol Detector */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div className="p-2 bg-[#eae8e2]/50 border border-[#141210]/30">
+            <div className="font-serif-vintage text-xs font-bold text-[#141210]">{smia.title}</div>
+            <div className="font-mono-tech text-[8px] text-[#8C3833]">FORENSIC EVIDENCE TOOL</div>
+            <p className="font-newsreader text-[9.5px] text-[#3a352f] mt-0.5">{smia.subtitle}</p>
+          </div>
+          <div className="p-2 bg-[#eae8e2]/50 border border-[#141210]/30">
+            <div className="font-serif-vintage text-xs font-bold text-[#141210]">{alcohol.title}</div>
+            <div className="font-mono-tech text-[8px] text-[#4b4e39]">ARDUINO UNO + MQ-3</div>
+            <p className="font-newsreader text-[9.5px] text-[#3a352f] mt-0.5">{alcohol.subtitle}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
+        <span>THE DAILY CHRONICLE // 03. PROJECTS</span>
+        <span className="font-typewriter font-bold text-[#141210]">PAGE 05</span>
+      </div>
+    </div>
+  );
+};
+
+// =========================================================================
+// PAGE 06: 04. PUBLICATIONS
+// =========================================================================
+export const Page06Publications: React.FC = () => {
+  return (
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+      <div>
+        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+          <div>
+            <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
+              SECTION 04 // SCHOLARLY CONTRIBUTIONS
+            </span>
+            <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
+              PEER-REVIEWED PUBLICATIONS
             </h3>
           </div>
           <NewspaperStamp text="3 PAPERS" variant="crimson" rotation={2} />
@@ -523,7 +449,7 @@ export const Page06Research: React.FC = () => {
 
         <div className="space-y-3">
           {RESUME_DATA.publications.map((paper, idx) => (
-            <div key={idx} className="p-2.5 bg-[#eae8e2]/70 border border-[#141210]">
+            <div key={idx} className="p-3 bg-[#eae8e2]/70 border border-[#141210]">
               <div className="flex items-baseline justify-between gap-2 border-b border-[#141210]/20 pb-1 mb-1">
                 <span className="font-mono-tech text-[8.5px] uppercase font-bold text-[#8C3833]">
                   {paper.venue} • {paper.date}
@@ -538,16 +464,21 @@ export const Page06Research: React.FC = () => {
               <div className="font-typewriter text-[9.5px] text-[#5a554e] mt-0.5">
                 SCOPE: {paper.scope}
               </div>
-              <p className="font-newsreader text-[10.5px] text-[#2a2521] mt-1 italic leading-tight">
+              <p className="font-newsreader text-[11px] text-[#2a2521] mt-1 italic leading-snug">
                 {paper.methodology}
               </p>
+              {paper.metrics && (
+                <div className="mt-1.5 pt-1 border-t border-[#141210]/15 font-mono-tech text-[8.5px] text-[#8C3833] font-bold">
+                  {paper.metrics}
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // SCHOLARLY PRESS</span>
+        <span>THE DAILY CHRONICLE // 04. PUBLICATIONS</span>
         <span className="font-typewriter font-bold text-[#141210]">PAGE 06</span>
       </div>
     </div>
@@ -555,163 +486,9 @@ export const Page06Research: React.FC = () => {
 };
 
 // =========================================================================
-// PAGE 07: FLAGSHIP RESEARCH SYSTEMS (SecureShare & QPAT)
+// PAGE 07: 05. SKILLS
 // =========================================================================
-export const Page07Systems: React.FC = () => {
-  const secureShare = RESUME_DATA.projects.find((p) => p.id === 'secureshare')!;
-  const qpat = RESUME_DATA.projects.find((p) => p.id === 'qpat')!;
-
-  return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
-      <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
-          <div>
-            <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              FLAGSHIP SYSTEMS // SECTION 06
-            </span>
-            <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              DECENTRALIZED ARCHITECTURES &amp; NLP
-            </h3>
-          </div>
-          <NewspaperStamp text="DEPLOYED" variant="olive" rotation={-1} />
-        </div>
-
-        {/* SecureShare */}
-        <div className="p-3 bg-[#eae8e2]/80 border-2 border-[#141210] mb-3">
-          <div className="flex items-center justify-between border-b border-[#141210] pb-1 mb-1.5">
-            <h4 className="font-serif-vintage text-sm sm:text-base font-bold text-[#141210]">
-              {secureShare.title}
-            </h4>
-            <span className="font-mono-tech text-[8.5px] bg-[#8C3833] text-white px-2 py-0.5 font-bold">
-              IPFS + SHAMIR SSS
-            </span>
-          </div>
-          <p className="font-newsreader text-[11px] text-[#2a2521] leading-relaxed mb-2">
-            {secureShare.subtitle}
-          </p>
-          <div className="space-y-1 font-newsreader text-[10.5px] text-[#141210]">
-            {secureShare.keyImplementations.map((b, i) => (
-              <div key={i} className="flex items-start gap-1.5">
-                <span className="text-[#8C3833] font-bold">▶</span>
-                <span>{b}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* QPAT */}
-        <div className="p-3 bg-[#eae8e2]/60 border border-[#141210]">
-          <div className="flex items-center justify-between border-b border-[#141210]/20 pb-1 mb-1.5">
-            <h4 className="font-serif-vintage text-sm font-bold text-[#141210]">
-              {qpat.title}
-            </h4>
-            <span className="font-mono-tech text-[8.5px] text-[#5a554e] font-bold">
-              NLP &amp; TF-IDF CLASSIFIER
-            </span>
-          </div>
-          <p className="font-newsreader text-[11px] text-[#2a2521] leading-relaxed mb-2">
-            {qpat.subtitle}
-          </p>
-          <div className="space-y-1 font-newsreader text-[10.5px] text-[#141210]">
-            {qpat.keyImplementations.slice(0, 3).map((b, i) => (
-              <div key={i} className="flex items-start gap-1.5">
-                <span className="text-[#141210] font-bold">▪</span>
-                <span>{b}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // FLAGSHIP SYSTEMS</span>
-        <span className="font-typewriter font-bold text-[#141210]">PAGE 07</span>
-      </div>
-    </div>
-  );
-};
-
-// =========================================================================
-// PAGE 08: FORENSIC SPECIMENS & VEHICLE INTERLOCK
-// =========================================================================
-export const Page08Forensics: React.FC = () => {
-  const smia = RESUME_DATA.projects.find((p) => p.id === 'smia')!;
-  const alcohol = RESUME_DATA.projects.find((p) => p.id === 'alcohol-detector')!;
-
-  return (
-    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
-      <div>
-        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
-          <div>
-            <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              FORENSIC SPECIMENS // SECTION 07
-            </span>
-            <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              COURT EVIDENCE &amp; HARDWARE INTERLOCK
-            </h3>
-          </div>
-          <NewspaperStamp text="AUDITED" variant="crimson" rotation={1} />
-        </div>
-
-        {/* SMIA Tool */}
-        <div className="p-3 bg-[#eae8e2]/70 border border-[#141210] mb-3">
-          <div className="flex items-center justify-between border-b border-[#141210]/20 pb-1 mb-1.5">
-            <h4 className="font-serif-vintage text-sm sm:text-base font-bold text-[#141210]">
-              {smia.title}
-            </h4>
-            <span className="font-mono-tech text-[8.5px] bg-[#141210] text-[#f5f0e1] px-2 py-0.5 font-bold">
-              COURT-ADMISSIBLE
-            </span>
-          </div>
-          <p className="font-newsreader text-[11px] text-[#2a2521] leading-relaxed mb-2">
-            {smia.subtitle}
-          </p>
-          <div className="space-y-1 font-newsreader text-[10.5px] text-[#141210]">
-            {smia.keyImplementations.map((b, i) => (
-              <div key={i} className="flex items-start gap-1.5">
-                <span className="text-[#8C3833] font-bold">▶</span>
-                <span>{b}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Alcohol Detection */}
-        <div className="p-3 bg-[#eae8e2]/70 border border-[#141210]">
-          <div className="flex items-center justify-between border-b border-[#141210]/20 pb-1 mb-1.5">
-            <h4 className="font-serif-vintage text-sm font-bold text-[#141210]">
-              {alcohol.title}
-            </h4>
-            <span className="font-mono-tech text-[8.5px] text-[#4b4e39] font-bold">
-              ARDUINO UNO + MQ-3
-            </span>
-          </div>
-          <p className="font-newsreader text-[11px] text-[#2a2521] leading-relaxed mb-2">
-            {alcohol.subtitle}
-          </p>
-          <div className="space-y-1 font-newsreader text-[10.5px] text-[#141210]">
-            {alcohol.keyImplementations.map((b, i) => (
-              <div key={i} className="flex items-start gap-1.5">
-                <span className="text-[#4b4e39] font-bold">▪</span>
-                <span>{b}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // FORENSIC SPECIMENS</span>
-        <span className="font-typewriter font-bold text-[#141210]">PAGE 08</span>
-      </div>
-    </div>
-  );
-};
-
-// =========================================================================
-// PAGE 09: TECHNICAL ARSENAL INVENTORY
-// =========================================================================
-export const Page09Arsenal: React.FC = () => {
+export const Page07Skills: React.FC = () => {
   const skillCategories = [
     { title: 'Cybersecurity & Forensics', items: RESUME_DATA.skills.cybersecurityAndForensics },
     { title: 'Security Tools', items: RESUME_DATA.skills.securityTools },
@@ -727,18 +504,18 @@ export const Page09Arsenal: React.FC = () => {
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              ARSENAL INVENTORY // SECTION 08
+              SECTION 05 // TECHNICAL COMPETENCIES
             </span>
             <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              TECHNICAL ARTIFACTS &amp; TOOLING
+              SKILLS &amp; ARTIFACTS
             </h3>
           </div>
-          <NewspaperStamp text="VERIFIED" variant="crimson" rotation={-2} />
+          <NewspaperStamp text="VERIFIED" variant="olive" rotation={-2} />
         </div>
 
         <div className="space-y-2.5">
           {skillCategories.map((category, idx) => (
-            <div key={idx} className="p-2 bg-[#eae8e2]/60 border border-[#141210]">
+            <div key={idx} className="p-2.5 bg-[#eae8e2]/60 border border-[#141210]">
               <div className="font-mono-tech text-[9.5px] font-bold uppercase tracking-wider text-[#141210] border-b border-[#141210]/20 pb-0.5 mb-1 flex items-center justify-between">
                 <span>{category.title}</span>
                 <span className="text-[#8C3833] text-[8px]">[{category.items.length} ITEMS]</span>
@@ -747,7 +524,7 @@ export const Page09Arsenal: React.FC = () => {
                 {category.items.map((skill, sIdx) => (
                   <span
                     key={sIdx}
-                    className="px-1.5 py-0.2 font-mono-tech text-[9.5px] bg-[#f4f3ef] border border-[#141210]/40 text-[#141210] font-semibold"
+                    className="px-1.5 py-0.5 font-mono-tech text-[9.5px] bg-[#f4f3ef] border border-[#141210]/40 text-[#141210] font-semibold"
                   >
                     {skill}
                   </span>
@@ -759,27 +536,89 @@ export const Page09Arsenal: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // ARSENAL INVENTORY</span>
-        <span className="font-typewriter font-bold text-[#141210]">PAGE 09</span>
+        <span>THE DAILY CHRONICLE // 05. SKILLS</span>
+        <span className="font-typewriter font-bold text-[#141210]">PAGE 07</span>
       </div>
     </div>
   );
 };
 
 // =========================================================================
-// PAGE 10: INSTITUTIONAL GOVERNANCE & CULTURAL ARTS
+// PAGE 08: 06. CERTIFICATIONS
 // =========================================================================
-export const Page10Governance: React.FC = () => {
+export const Page08Certifications: React.FC = () => {
   return (
     <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              INSTITUTIONAL GOVERNANCE // SECTION 09
+              SECTION 06 // PROFESSIONAL CREDENTIALS
             </span>
             <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              CAMPUS PRESIDENCY &amp; CLASSICAL DISCIPLINES
+              CERTIFICATIONS &amp; ACCREDITATIONS
+            </h3>
+          </div>
+          <NewspaperStamp text="AUDITED" variant="crimson" rotation={1} />
+        </div>
+
+        <div className="space-y-3">
+          {RESUME_DATA.certifications.map((cert, idx) => (
+            <div key={idx} className="p-3 bg-[#eae8e2]/70 border border-[#141210]">
+              <div className="flex items-start justify-between gap-2 border-b border-[#141210]/20 pb-1.5 mb-1.5">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#8C3833] flex-shrink-0" />
+                  <h4 className="font-serif-vintage text-sm sm:text-base font-bold text-[#141210]">
+                    {cert.title}
+                  </h4>
+                </div>
+                {cert.score && (
+                  <span className="font-mono-tech text-[9px] bg-[#8C3833] text-white px-2 py-0.5 font-bold flex-shrink-0">
+                    {cert.score}
+                  </span>
+                )}
+              </div>
+              <div className="flex justify-between font-mono-tech text-[9.5px] text-[#5a554e]">
+                <span>ISSUER: {cert.issuer}</span>
+                <span>DATE: {cert.date}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* NLU Odisha Special Callout */}
+        <div className="mt-4 p-3 bg-[#eae8e2]/90 border-2 border-[#141210]">
+          <div className="font-mono-tech text-[9.5px] uppercase font-bold text-[#8C3833]">
+            SPECIAL LEGAL &amp; FORENSIC DISTINCTION
+          </div>
+          <div className="font-serif-vintage text-xs text-[#2a2521] mt-1 leading-snug">
+            National Law University Odisha (NLUO) Post Graduate Diploma in Cyber Law and Digital Forensics, completed with an exceptional 87% Distinction grade.
+          </div>
+        </div>
+      </div>
+
+      <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
+        <span>THE DAILY CHRONICLE // 06. CERTIFICATIONS</span>
+        <span className="font-typewriter font-bold text-[#141210]">PAGE 08</span>
+      </div>
+    </div>
+  );
+};
+
+// =========================================================================
+// PAGE 09: 07. ACTIVITIES AND SOCIETIES
+// =========================================================================
+export const Page09Activities: React.FC = () => {
+  return (
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+      <div>
+        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+          <div>
+            <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
+              SECTION 07 // CAMPUS &amp; COMMUNITY
+            </span>
+            <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
+              ACTIVITIES AND SOCIETIES
             </h3>
           </div>
           <NewspaperStamp text="LEADERSHIP" variant="olive" rotation={1} />
@@ -808,16 +647,15 @@ export const Page10Governance: React.FC = () => {
           </p>
         </div>
 
-        {/* Extracurricular and Classical Arts */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+        {/* Activities List */}
+        <div className="space-y-2 mt-2">
           {RESUME_DATA.activitiesAndSocieties.map((activity, idx) => (
             <div key={idx} className="p-2.5 bg-[#eae8e2]/60 border border-[#141210]">
               <div className="flex items-center justify-between border-b border-[#141210]/20 pb-1 mb-1">
-                <span className="font-serif-vintage text-xs font-bold text-[#141210]">{activity.role}</span>
-                <span className="font-mono-tech text-[8.5px] text-[#8C3833] font-bold">DISCIPLINE</span>
+                <span className="font-serif-vintage text-xs sm:text-sm font-bold text-[#141210]">{activity.role}</span>
+                <span className="font-mono-tech text-[8.5px] text-[#8C3833] font-bold">{activity.organization}</span>
               </div>
-              <div className="font-typewriter text-[9.5px] text-[#5a554e]">{activity.organization}</div>
-              <p className="font-newsreader text-[10.5px] text-[#2a2521] mt-1 leading-snug">
+              <p className="font-newsreader text-[11px] text-[#2a2521] mt-0.5 leading-snug">
                 {activity.description}
               </p>
             </div>
@@ -826,17 +664,17 @@ export const Page10Governance: React.FC = () => {
       </div>
 
       <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
-        <span>THE DAILY CHRONICLE // INSTITUTIONAL GOVERNANCE</span>
-        <span className="font-typewriter font-bold text-[#141210]">PAGE 10</span>
+        <span>THE DAILY CHRONICLE // 07. ACTIVITIES AND SOCIETIES</span>
+        <span className="font-typewriter font-bold text-[#141210]">PAGE 09</span>
       </div>
     </div>
   );
 };
 
 // =========================================================================
-// PAGE 11: ARCHIVAL DISPATCH & OFFICIAL RESUME DOWNLOAD
+// PAGE 10: ARCHIVAL TELEGRAPH TRANSMISSION (CONTACT)
 // =========================================================================
-export const Page11Colophon: React.FC = () => {
+export const Page10Dispatch: React.FC = () => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [message, setMessage] = React.useState('');
@@ -859,20 +697,20 @@ export const Page11Colophon: React.FC = () => {
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
             <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
-              DISPATCH TERMINAL // SECTION 10
+              COMMUNICATION TERMINAL // SECTION 08
             </span>
             <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
-              TRANSMISSION &amp; OFFICIAL RECORD
+              ENCRYPTED TELEGRAPH DISPATCH
             </h3>
           </div>
           <NewspaperStamp text="DISPATCH" variant="crimson" rotation={-1} />
         </div>
 
-        {/* Telegram Transmission Form */}
+        {/* Form */}
         <div className="p-3 bg-[#eae8e2]/80 border-2 border-[#141210] mb-3">
           <div className="flex items-center gap-2 border-b border-[#141210] pb-1 mb-2 font-mono-tech text-[10px] uppercase font-bold text-[#141210]">
             <Send className="w-3.5 h-3.5 text-[#8C3833]" />
-            <span>ENCRYPTED TELEGRAPH TRANSMISSION</span>
+            <span>TRANSMIT DISPATCH MESSAGE</span>
           </div>
 
           {status === 'sent' ? (
@@ -929,29 +767,102 @@ export const Page11Colophon: React.FC = () => {
           )}
         </div>
 
-        {/* PDF Download Button */}
-        <div className="p-3 bg-[#141210] text-[#f5f0e1] border-2 border-[#141210] mb-3 flex items-center justify-between">
+        {/* Direct Contacts */}
+        <div className="p-3 bg-[#eae8e2]/60 border border-[#141210] font-mono-tech text-[9.5px] space-y-1">
+          <div className="flex justify-between">
+            <span className="text-[#5a554e]">TELEGRAPH:</span>
+            <a href={`mailto:${RESUME_DATA.personal.email}`} className="font-bold underline">{RESUME_DATA.personal.email}</a>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-[#5a554e]">STATION:</span>
+            <span>{RESUME_DATA.personal.location}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
+        <span>THE DAILY CHRONICLE // DISPATCH TERMINAL</span>
+        <span className="font-typewriter font-bold text-[#141210]">PAGE 10</span>
+      </div>
+    </div>
+  );
+};
+
+// =========================================================================
+// PAGE 11: OFFICIAL RECORD DOWNLOAD & EDITORIAL COLOPHON
+// =========================================================================
+export const Page11Colophon: React.FC = () => {
+  return (
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+      <div>
+        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+          <div>
+            <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
+              OFFICIAL ARCHIVE // COLOPHON
+            </span>
+            <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
+              VERIFIED RECORD &amp; COLOPHON
+            </h3>
+          </div>
+          <NewspaperStamp text="RECORD" variant="olive" rotation={1} />
+        </div>
+
+        {/* PDF Download Box */}
+        <div className="p-3.5 bg-[#141210] text-[#f5f0e1] border-2 border-[#141210] mb-4 flex items-center justify-between">
           <div>
             <div className="font-mono-tech text-[10.5px] uppercase font-bold text-[#d9c49f]">
               OFFICIAL VERIFIED RESUME RECORD
             </div>
-            <div className="font-newsreader text-xs italic text-[#cfc5b0]">
+            <div className="font-newsreader text-xs italic text-[#cfc5b0] mt-0.5">
               Full cryptographic curriculum ledger (MYTHREIE_DUMPATI.pdf)
             </div>
           </div>
           <a
             href="/MYTHREIE_DUMPATI.pdf"
             download="MYTHREIE_DUMPATI_RESUME.pdf"
-            className="px-3.5 py-1.5 bg-[#8C3833] hover:bg-[#a6423c] text-white font-mono-tech text-xs uppercase font-bold tracking-wider inline-flex items-center gap-1.5 shadow-sm transition-all"
+            className="px-3.5 py-2 bg-[#8C3833] hover:bg-[#a6423c] text-white font-mono-tech text-xs uppercase font-bold tracking-wider inline-flex items-center gap-1.5 shadow-sm transition-all"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>DOWNLOAD</span>
+            <span>DOWNLOAD PDF</span>
           </a>
         </div>
 
-        {/* Colophon */}
-        <div className="p-2 border-t border-[#141210]/30 font-newsreader text-[10px] text-[#5a554e] text-center italic">
-          Typeset in Didone, IM Fell English, and IBM Plex Mono. Authored and maintained by Mythreie Dumpati. Hyderabad, Telangana • India.
+        {/* Social Dispatches */}
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          <a
+            href={RESUME_DATA.personal.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2.5 bg-[#eae8e2]/70 border border-[#141210] flex items-center justify-between hover:bg-[#141210] hover:text-[#f5f0e1] transition-all font-mono-tech text-[10px] font-bold"
+          >
+            <div className="flex items-center gap-2">
+              <GithubIcon className="w-4 h-4" />
+              <span>GITHUB</span>
+            </div>
+            <ExternalLink className="w-3 h-3 opacity-60" />
+          </a>
+          <a
+            href={RESUME_DATA.personal.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2.5 bg-[#eae8e2]/70 border border-[#141210] flex items-center justify-between hover:bg-[#141210] hover:text-[#f5f0e1] transition-all font-mono-tech text-[10px] font-bold"
+          >
+            <div className="flex items-center gap-2">
+              <LinkedinIcon className="w-4 h-4" />
+              <span>LINKEDIN</span>
+            </div>
+            <ExternalLink className="w-3 h-3 opacity-60" />
+          </a>
+        </div>
+
+        {/* Editorial Colophon */}
+        <div className="p-3 bg-[#eae8e2]/50 border border-[#141210] font-newsreader text-xs text-[#3a352f] leading-relaxed text-center">
+          <div className="font-display font-bold uppercase tracking-wider text-[#141210] text-xs mb-1">
+            THE CHRONICLE ARCHIVE COLOPHON
+          </div>
+          <p className="italic">
+            Typeset in classic Didone, IM Fell English, and IBM Plex Mono. Authored and maintained by Mythreie Dumpati. Hyderabad, Telangana • India.
+          </p>
         </div>
       </div>
 
@@ -977,23 +888,23 @@ export const renderNewspaperPage = (
     case 1:
       return <Page01Cover onOpenNewspaper={callbacks?.onOpenNewspaper} />;
     case 2:
-      return <Page02Overview onNavigateToSpread={callbacks?.onNavigateToSpread} />;
+      return <Page02Contents onNavigateToSpread={callbacks?.onNavigateToSpread} />;
     case 3:
-      return <Page03Bio />;
+      return <Page03Education />;
     case 4:
-      return <Page04Academic />;
+      return <Page04Experience />;
     case 5:
-      return <Page05Police />;
+      return <Page05Projects />;
     case 6:
-      return <Page06Research />;
+      return <Page06Publications />;
     case 7:
-      return <Page07Systems />;
+      return <Page07Skills />;
     case 8:
-      return <Page08Forensics />;
+      return <Page08Certifications />;
     case 9:
-      return <Page09Arsenal />;
+      return <Page09Activities />;
     case 10:
-      return <Page10Governance />;
+      return <Page10Dispatch />;
     case 11:
       return <Page11Colophon />;
     default:

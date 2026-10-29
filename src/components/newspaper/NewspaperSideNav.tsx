@@ -52,12 +52,12 @@ export const NewspaperSideNav: React.FC<NewspaperSideNavProps> = ({
   };
 
   const sectionPills = [
-    { spread: 1, title: 'Front Cover', pages: '01', subtitle: 'The Daily Chronicle • Notes on a Life' },
-    { spread: 2, title: 'Editorial & Bio', pages: '02–03', subtitle: 'Biographical Chronicle' },
-    { spread: 3, title: 'Academic & Police', pages: '04–05', subtitle: 'KMEC & Bharosa Module' },
-    { spread: 4, title: 'Research & Systems', pages: '06–07', subtitle: '3 IEEE Papers & SecureShare' },
-    { spread: 5, title: 'Forensics & Arsenal', pages: '08–09', subtitle: 'SMIA, Interlock & Skills' },
-    { spread: 6, title: 'Governance & Colophon', pages: '10–11', subtitle: 'Presidency & Telegram' },
+    { spread: 1, title: 'Front Cover', pages: '01', subtitle: 'Notes on a Life' },
+    { spread: 2, title: 'Contents & Education', pages: '02–03', subtitle: 'Contents & 01. Education' },
+    { spread: 3, title: 'Experience & Projects', pages: '04–05', subtitle: '02. Experience & 03. Projects' },
+    { spread: 4, title: 'Publications & Skills', pages: '06–07', subtitle: '04. Publications & 05. Skills' },
+    { spread: 5, title: 'Credentials & Societies', pages: '08–09', subtitle: '06. Certifications & 07. Activities' },
+    { spread: 6, title: 'Dispatch & Colophon', pages: '10–11', subtitle: 'Archival Telegraph & Resume PDF' },
   ];
 
   return (
