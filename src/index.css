@@ -2,17 +2,18 @@
 
 @layer base {
   :root {
-    --paper-white: #ffffff;
-    --paper-offwhite: #f7f7f7;
-    --ink-black: #0c0c0c;
-    --ink-charcoal: #242424;
-    --graphite: #555555;
-    --light-border: #dedede;
-    --dark-border: #1a1a1a;
+    --newsprint-bg: #f5f0e1;
+    --newsprint-aged: #ece3cc;
+    --newsprint-ink: #141210;
+    --newsprint-charcoal: #2a2521;
+    --newsprint-muted: #5a5047;
+    --newsprint-crimson: #8C3833;
+    --newsprint-olive: #4b4e39;
+    --newsprint-border: #221e1a;
   }
 }
 
-/* Custom Font Utilities */
+/* Custom Editorial Typography Utilities */
 .font-typewriter {
   font-family: 'Special Elite', Courier, monospace;
 }
@@ -25,6 +26,10 @@
   font-family: 'IM Fell English SC', Georgia, serif;
 }
 
+.font-newsreader {
+  font-family: 'Newsreader', Georgia, serif;
+}
+
 .font-mono-tech {
   font-family: 'IBM Plex Mono', 'Courier New', monospace;
 }
@@ -34,97 +39,128 @@
 }
 
 .font-display {
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel', 'Times New Roman', serif;
 }
 
-/* Pure Black & White Archival Paper Texture */
-.bw-paper-texture {
-  background-color: #fafafa;
+/* Authentic Vintage Broadsheet Paper Texture */
+.newspaper-paper-texture {
+  background-color: #f5f0e1;
   background-image: 
-    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.9) 80%, rgba(230, 230, 230, 0.8) 100%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+    radial-gradient(ellipse at 50% 50%, rgba(255, 252, 245, 0.95) 0%, rgba(245, 238, 222, 0.9) 75%, rgba(230, 220, 200, 0.85) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
-/* Stark Black Leather / Buckram Book Cover */
-.bw-cover-texture {
-  background-color: #0d0d0d;
+/* Atmospheric Editorial Drafting Desk */
+.newspaper-desk-bg {
+  background-color: #0d0a08;
   background-image:
-    radial-gradient(circle at 50% 30%, rgba(40, 40, 40, 0.45) 0%, rgba(5, 5, 5, 0.95) 100%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.09'/%3E%3C/svg%3E");
+    radial-gradient(ellipse at 50% 35%, rgba(38, 30, 24, 0.6) 0%, rgba(8, 6, 5, 0.98) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.012) 50px, rgba(255,255,255,0.012) 100px);
 }
 
-/* Pitch Black Minimalist Desk Environment */
-.bw-desk-bg {
-  background-color: #080808;
-  background-image:
-    radial-gradient(ellipse at 50% 40%, rgba(30, 30, 30, 0.5) 0%, rgba(5, 5, 5, 0.98) 100%),
-    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 80px);
-}
-
-/* Crease / Spine Shadows (Monochrome) */
-.spine-shadow-left {
-  box-shadow: inset -22px 0 28px -12px rgba(0, 0, 0, 0.35), inset -3px 0 6px rgba(0, 0, 0, 0.2);
-}
-
-.spine-shadow-right {
-  box-shadow: inset 22px 0 28px -12px rgba(0, 0, 0, 0.35), inset 3px 0 6px rgba(0, 0, 0, 0.2);
-}
-
-.bw-book-shadow {
+/* Broadsheet Center Folding Crease Shadow */
+.newspaper-center-crease {
   box-shadow: 
-    0 35px 70px -15px rgba(0, 0, 0, 0.95),
-    0 15px 30px -5px rgba(0, 0, 0, 0.8),
-    -10px 10px 40px rgba(0, 0, 0, 0.6),
-    10px 10px 40px rgba(0, 0, 0, 0.6);
+    inset -18px 0 24px -10px rgba(20, 16, 12, 0.35),
+    inset -2px 0 4px rgba(20, 16, 12, 0.25);
 }
 
-/* Stark Black & White Rubber Stamps */
-.bw-stamp {
-  display: inline-block;
-  padding: 3px 8px;
-  text-transform: uppercase;
-  font-family: 'Special Elite', monospace;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  border: 2px solid #0c0c0c;
-  color: #0c0c0c;
-  background-color: rgba(0, 0, 0, 0.03);
+.newspaper-center-crease-right {
+  box-shadow: 
+    inset 18px 0 24px -10px rgba(20, 16, 12, 0.35),
+    inset 2px 0 4px rgba(20, 16, 12, 0.25);
 }
 
-.bw-stamp-inverted {
-  display: inline-block;
-  padding: 3px 8px;
-  text-transform: uppercase;
-  font-family: 'Special Elite', monospace;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  border: 2px solid #0c0c0c;
-  color: #ffffff;
-  background-color: #0c0c0c;
+/* Broadsheet Stack Elevation Shadow */
+.newspaper-broadsheet-shadow {
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.85),
+    0 10px 25px -5px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(20, 18, 16, 0.3);
 }
 
-/* Double-Line Borders */
-.bw-double-border {
-  border-top: 3px solid #0c0c0c;
-  border-bottom: 1px solid #0c0c0c;
+/* Authentic Newspaper Divider Rules */
+.newspaper-double-rule {
+  border-top: 3px solid #141210;
+  border-bottom: 1px solid #141210;
   padding: 2px 0;
 }
 
-/* Custom Scrollbar in Monochrome */
+.newspaper-triple-rule {
+  border-top: 4px solid #141210;
+  border-bottom: 1px solid #141210;
+  padding: 3px 0;
+}
+
+.newspaper-thin-rule {
+  border-top: 1px solid rgba(20, 18, 16, 0.4);
+}
+
+/* Newspaper Rubber Stamps */
+.newspaper-stamp {
+  display: inline-block;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  font-family: 'Special Elite', monospace;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  border: 2px solid #8C3833;
+  color: #8C3833;
+  background-color: rgba(140, 56, 51, 0.05);
+}
+
+.newspaper-stamp-dark {
+  display: inline-block;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  font-family: 'Special Elite', monospace;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  border: 2px solid #141210;
+  color: #141210;
+  background-color: rgba(20, 18, 16, 0.04);
+}
+
+/* Halftone Simulation for Photographs / Engravings */
+.newsprint-halftone {
+  position: relative;
+}
+.newsprint-halftone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(20, 18, 16, 0.15) 1px, transparent 1px);
+  background-size: 3px 3px;
+  pointer-events: none;
+}
+
+/* Editorial Drop Cap */
+.drop-cap::first-letter {
+  font-family: 'Cinzel', serif;
+  font-size: 3.4em;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.15em;
+  margin-top: 0.08em;
+  color: #141210;
+  font-weight: 800;
+}
+
+/* Custom Scrollbar for inner editorial columns */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(230, 230, 230, 0.6);
+  background: rgba(220, 210, 190, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333333;
+  background: #3a332a;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #000000;
+  background: #1a1714;
 }
