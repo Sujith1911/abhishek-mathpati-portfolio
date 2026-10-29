@@ -225,21 +225,23 @@ export const Page03Education: React.FC = () => {
         <div className="w-full border-b border-[#111111] mt-3 sm:mt-4" />
       </div>
 
-      {/* 3-Row Education Timeline Grid with continuous spine */}
-      <div className="relative">
+      {/* 3-Row Education Timeline Grid with a single unbroken continuous spine */}
+      <div className="grid grid-cols-[1fr_28px_1.15fr] sm:grid-cols-[1fr_36px_1.15fr] gap-x-3 sm:gap-x-6 gap-y-6 sm:gap-y-8 relative">
+        {/* Single Unbroken Continuous Vertical Timeline Spine spanning all 3 rows without any gaps */}
+        <div
+          className="col-start-2 row-start-1 row-end-4 relative flex justify-center pointer-events-none z-0"
+          aria-hidden="true"
+        >
+          <div className="w-[2.5px] bg-[#111111] absolute top-[9px] bottom-[-28px] left-1/2 -translate-x-1/2" />
+        </div>
+
         {milestones.map((item, index) => {
-          const isFirst = index === 0;
-          const isLast = index === milestones.length - 1;
+          const rowClass = index === 0 ? 'row-start-1' : index === 1 ? 'row-start-2' : 'row-start-3';
 
           return (
-            <div
-              key={index}
-              className={`grid grid-cols-[1fr_28px_1.15fr] sm:grid-cols-[1fr_36px_1.15fr] gap-3 sm:gap-6 items-start relative ${
-                isLast ? 'pb-2' : 'pb-6 sm:pb-8'
-              }`}
-            >
+            <React.Fragment key={index}>
               {/* Left Column: Campus Photograph (Clean without borders or stray lines) */}
-              <div className="w-full aspect-[262/185] bg-[#ebe7dc] overflow-hidden shadow-xs">
+              <div className={`col-start-1 ${rowClass} w-full aspect-[262/185] bg-[#ebe7dc] overflow-hidden shadow-xs`}>
                 <img
                   src={item.image}
                   alt={item.alt}
@@ -248,24 +250,13 @@ export const Page03Education: React.FC = () => {
                 />
               </div>
 
-              {/* Center Timeline Spine Segment */}
-              <div className="flex flex-col items-center self-stretch relative h-full">
-                {/* Continuous Vertical Timeline Line (Connecting seamlessly from Circle 1 down past Circle 3) */}
-                <div
-                  className={`w-[2.5px] bg-[#111111] absolute left-1/2 -translate-x-1/2 z-0 ${
-                    isFirst
-                      ? 'top-[9px] bottom-[-4px]'
-                      : isLast
-                      ? 'top-[-4px] bottom-[-32px]'
-                      : 'top-[-4px] bottom-[-4px]'
-                  }`}
-                />
-                {/* Solid Circular Node Dot aligned with the Year */}
-                <div className="w-3.5 h-3.5 rounded-full bg-[#111111] relative z-10 mt-[2px] shrink-0" />
+              {/* Center Timeline Node Dot aligned with the Year */}
+              <div className={`col-start-2 ${rowClass} flex justify-center items-start z-10 pointer-events-none`}>
+                <div className="w-3.5 h-3.5 rounded-full bg-[#111111] mt-[2px] shrink-0" />
               </div>
 
               {/* Right Column: Educational Ledger */}
-              <div className="flex flex-col justify-start">
+              <div className={`col-start-3 ${rowClass} flex flex-col justify-start`}>
                 <span className="font-serif text-sm sm:text-base text-[#111111] font-normal leading-none mb-1.5 block">
                   {item.year}
                 </span>
@@ -279,7 +270,7 @@ export const Page03Education: React.FC = () => {
                   {item.score}
                 </span>
               </div>
-            </div>
+            </React.Fragment>
           );
         })}
       </div>
