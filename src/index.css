@@ -146,21 +146,59 @@
   font-weight: 800;
 }
 
-/* Custom Scrollbar for inner editorial columns */
+/* Global Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth momentum scrolling on all scrollable broadsheet containers */
+.editorial-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Custom Editorial Vintage Scrollbar */
+.editorial-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.editorial-scroll::-webkit-scrollbar-track {
+  background: rgba(20, 18, 16, 0.04);
+  border-radius: 2px;
+}
+
+.editorial-scroll::-webkit-scrollbar-thumb {
+  background: rgba(20, 18, 16, 0.28);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.editorial-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 18, 16, 0.65);
+}
+
+/* Firefox scrollbar styling */
+.editorial-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(20, 18, 16, 0.28) rgba(20, 18, 16, 0.04);
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(220, 210, 190, 0.5);
+  background: rgba(20, 18, 16, 0.04);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3a332a;
-  border-radius: 2px;
+  background: rgba(20, 18, 16, 0.28);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1a1714;
+  background: rgba(20, 18, 16, 0.65);
 }

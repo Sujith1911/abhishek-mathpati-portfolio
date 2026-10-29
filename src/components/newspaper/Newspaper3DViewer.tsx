@@ -80,28 +80,47 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
   const currentPages = getPagesForSpread(currentSpread);
   const targetPages = getPagesForSpread(targetSpread);
 
-  // Determine pages for turning leaf and bases during turn
   const isForward = flipDirection === 'forward';
 
-  // Front and Back of turning leaf
+  // Determine pages for turning leaf and bases during turn
   let turningFrontPage = 1;
   let turningBackPage = 2;
-  let baseLeftPage = 2;
+  let baseLeftPage = 0;
   let baseRightPage = 3;
 
   if (isFlipping) {
     if (isForward) {
-      // Forward Turn (Right page flips over to Left)
-      turningFrontPage = currentPages.right;
-      turningBackPage = targetPages.left;
-      baseLeftPage = currentPages.left || targetPages.left;
-      baseRightPage = targetPages.right;
+      if (currentSpread === 1) {
+        // OPENING FROM SPREAD 1 (COVER) TO SPREAD 2
+        // Front of turning leaf is Front Cover (Page 01)
+        turningFrontPage = 1;
+        // Back of turning leaf is Page 02 (Overview)
+        turningBackPage = 2;
+        // Left base MUST be 0 (EMPTY)! Absolutely NO page visible on left before leaf lands!
+        baseLeftPage = 0;
+        // Right base reveals Page 03 as the cover lifts away
+        baseRightPage = 3;
+      } else {
+        // Forward turn between interior spreads (e.g. Spread 2 -> 3)
+        turningFrontPage = currentPages.right;
+        turningBackPage = targetPages.left;
+        baseLeftPage = currentPages.left;
+        baseRightPage = targetPages.right;
+      }
     } else {
-      // Backward Turn (Left page flips over to Right)
-      turningFrontPage = currentPages.left;
-      turningBackPage = targetPages.right;
-      baseLeftPage = targetPages.left;
-      baseRightPage = currentPages.right || targetPages.right;
+      if (targetSpread === 1) {
+        // CLOSING BACK TO SPREAD 1 (COVER)
+        turningFrontPage = currentPages.left;
+        turningBackPage = 1;
+        baseLeftPage = 0;
+        baseRightPage = 0;
+      } else {
+        // Backward turn between interior spreads (e.g. Spread 3 -> 2)
+        turningFrontPage = currentPages.left;
+        turningBackPage = targetPages.right;
+        baseLeftPage = targetPages.left;
+        baseRightPage = currentPages.right;
+      }
     }
   }
 
@@ -109,6 +128,9 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
   const angle = isForward ? -180 * progress : 180 * progress;
   const curl = Math.sin(progress * Math.PI) * 2.2;
   const shadowOpacity = Math.sin(progress * Math.PI) * 0.38;
+
+  // Is closed single-page state
+  const isClosedSinglePage = currentSpread === 1 && !isFlipping;
 
   return (
     <div
@@ -118,7 +140,7 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
       {/* ========================================================================= */}
       {/* 1. CLOSED NEWSPAPER (SPREAD 1) WHEN NOT FLIPPING */}
       {/* ========================================================================= */}
-      {currentSpread === 1 && !isFlipping && (
+      {isClosedSinglePage && (
         <div className="relative w-full h-full flex items-center justify-center animate-in fade-in duration-300">
           <div className="newspaper-paper-texture newspaper-broadsheet-shadow relative h-full max-h-[calc(100vh-1.25rem)] aspect-[622/877] max-w-full border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between">
             {renderNewspaperPage(1, {
@@ -133,7 +155,7 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
       {/* 2. OPEN 2-PAGE BROADSHEET WHEN NOT FLIPPING (SPREADS 2 TO 6) */}
       {/* ========================================================================= */}
       {currentSpread >= 2 && !isFlipping && (
-        <div className="newspaper-paper-texture newspaper-broadsheet-shadow relative w-full h-full max-h-[calc(100vh-1.25rem)] border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between">
+        <div className="newspaper-paper-texture newspaper-broadsheet-shadow relative w-full h-full max-h-[calc(100vh-1.25rem)] border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between animate-in fade-in duration-200">
           <div className="grid grid-cols-1 md:grid-cols-2 h-full w-full relative">
             {/* Left Page */}
             <div className="h-full w-full overflow-hidden border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
@@ -193,7 +215,12 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
           <div className="grid grid-cols-2 h-full w-full relative">
             {/* Left Base Page */}
             <div className="h-full w-full overflow-hidden border-r border-[#141210]/20 relative bg-[#f4f3ef]">
-              {baseLeftPage > 0 && renderNewspaperPage(baseLeftPage, { onNavigateToSpread })}
+              {baseLeftPage > 0 ? (
+                renderNewspaperPage(baseLeftPage, { onNavigateToSpread })
+              ) : (
+                /* Blank clean paper surface on left during initial open — NO PAGE VISIBLE BEFORE LEAF LANDS! */
+                <div className="w-full h-full bg-[#f4f3ef]" />
+              )}
 
               {/* Dynamic Cast Shadow from Landing Leaf */}
               <div
@@ -206,7 +233,11 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
 
             {/* Right Base Page */}
             <div className="h-full w-full overflow-hidden relative bg-[#f4f3ef]">
-              {baseRightPage > 0 && renderNewspaperPage(baseRightPage, { onNavigateToSpread })}
+              {baseRightPage > 0 ? (
+                renderNewspaperPage(baseRightPage, { onNavigateToSpread })
+              ) : (
+                <div className="w-full h-full bg-[#f4f3ef]" />
+              )}
 
               {/* Dynamic Cast Shadow from Lifting Leaf */}
               <div

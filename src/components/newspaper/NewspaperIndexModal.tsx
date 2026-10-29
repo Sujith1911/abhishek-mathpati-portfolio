@@ -86,7 +86,7 @@ export const NewspaperIndexModal: React.FC<NewspaperIndexModalProps> = ({
         </div>
 
         {/* Sections List */}
-        <div className="max-h-[60vh] overflow-y-auto space-y-2 pr-1">
+        <div className="max-h-[60vh] overflow-y-auto editorial-scroll scroll-smooth space-y-2 pr-1">
           {sections.map((sec) => {
             const isCurrent = currentSpread === sec.spread;
             return (

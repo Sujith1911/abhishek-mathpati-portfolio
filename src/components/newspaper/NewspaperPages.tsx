@@ -65,7 +65,7 @@ export const Page02Overview: React.FC<{ onNavigateToSpread?: (spread: number) =>
   onNavigateToSpread,
 }) => {
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         {/* Masthead */}
         <NewspaperMasthead
@@ -238,7 +238,7 @@ export const Page02Overview: React.FC<{ onNavigateToSpread?: (spread: number) =>
 // =========================================================================
 export const Page03Bio: React.FC = () => {
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
@@ -329,7 +329,7 @@ export const Page03Bio: React.FC = () => {
 // =========================================================================
 export const Page04Academic: React.FC = () => {
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
@@ -412,7 +412,7 @@ export const Page05Police: React.FC = () => {
   const teleparadigmExp = RESUME_DATA.experience.find((e) => e.id === 'teleparadigm')!;
 
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
@@ -507,7 +507,7 @@ export const Page05Police: React.FC = () => {
 // =========================================================================
 export const Page06Research: React.FC = () => {
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
@@ -562,7 +562,7 @@ export const Page07Systems: React.FC = () => {
   const qpat = RESUME_DATA.projects.find((p) => p.id === 'qpat')!;
 
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
@@ -639,7 +639,7 @@ export const Page08Forensics: React.FC = () => {
   const alcohol = RESUME_DATA.projects.find((p) => p.id === 'alcohol-detector')!;
 
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
@@ -722,7 +722,7 @@ export const Page09Arsenal: React.FC = () => {
   ];
 
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
@@ -771,7 +771,7 @@ export const Page09Arsenal: React.FC = () => {
 // =========================================================================
 export const Page10Governance: React.FC = () => {
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
@@ -854,7 +854,7 @@ export const Page11Colophon: React.FC = () => {
   };
 
   return (
-    <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
       <div>
         <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
           <div>
