@@ -52,7 +52,7 @@ export const NewspaperSideNav: React.FC<NewspaperSideNavProps> = ({
   };
 
   const sectionPills = [
-    { spread: 1, title: 'Front Cover', pages: '01', subtitle: 'EXTRA!! Lead Dossier & Photos' },
+    { spread: 1, title: 'Front Cover', pages: '01', subtitle: 'The Daily Chronicle • Notes on a Life' },
     { spread: 2, title: 'Editorial & Bio', pages: '02–03', subtitle: 'Biographical Chronicle' },
     { spread: 3, title: 'Academic & Police', pages: '04–05', subtitle: 'KMEC & Bharosa Module' },
     { spread: 4, title: 'Research & Systems', pages: '06–07', subtitle: '3 IEEE Papers & SecureShare' },

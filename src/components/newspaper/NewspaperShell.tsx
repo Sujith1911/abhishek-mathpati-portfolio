@@ -261,7 +261,7 @@ export const NewspaperShell: React.FC = () => {
 
                   {/* Foreground Layer: Cover Page that disappears */}
                   <div
-                    className={`absolute inset-0 w-full h-full bg-[#f5f0e1] z-10 transition-all duration-700 ease-in-out ${
+                    className={`absolute inset-0 w-full h-full bg-[#f2f1ec] z-10 transition-all duration-700 ease-in-out ${
                       isCoverDisappearing
                         ? 'opacity-0 scale-[1.03] -translate-y-3 filter blur-[1px] pointer-events-none'
                         : 'opacity-100 scale-100 translate-y-0'

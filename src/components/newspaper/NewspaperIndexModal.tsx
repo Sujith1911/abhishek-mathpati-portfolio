@@ -19,10 +19,10 @@ export const NewspaperIndexModal: React.FC<NewspaperIndexModalProps> = ({
   const sections = [
     {
       spread: 1,
-      title: 'The Front Cover: Special Dispatch',
+      title: 'The Daily Chronicle: Notes on a Life',
       pages: '01',
-      tag: 'EXTRA!! EXTRA!!',
-      desc: 'Authentic vintage newspaper cover, photo holders, live telemetry, fingerprint seal & RFC-3161 digest.',
+      tag: 'FRONT COVER',
+      desc: 'The official vintage broadsheet cover: Notes on a Life, portrait photography, and curated field notes.',
     },
     {
       spread: 2,
