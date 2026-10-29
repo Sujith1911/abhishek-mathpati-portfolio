@@ -225,48 +225,63 @@ export const Page03Education: React.FC = () => {
         <div className="w-full border-b border-[#111111] mt-3 sm:mt-4" />
       </div>
 
-      {/* 3-Row Education Timeline Grid */}
-      <div className="space-y-6 sm:space-y-8 relative">
-        {milestones.map((item, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1.15fr] gap-4 sm:gap-6 items-center relative"
-          >
-            {/* Left Column: Campus Photograph */}
-            <div className="w-full aspect-[298/200] max-h-[175px] bg-[#ebe7dc] border border-[#141210]/60 overflow-hidden shadow-xs">
-              <img
-                src={item.image}
-                alt={item.alt}
-                className="w-full h-full object-cover grayscale contrast-110 block"
-                loading="eager"
-              />
-            </div>
+      {/* 3-Row Education Timeline Grid with continuous spine */}
+      <div className="relative">
+        {milestones.map((item, index) => {
+          const isFirst = index === 0;
+          const isLast = index === milestones.length - 1;
 
-            {/* Center Timeline Node Dot & Spine Segment */}
-            <div className="hidden sm:flex flex-col items-center self-stretch relative w-5">
-              {/* Vertical timeline line */}
-              <div className="w-[2.5px] bg-[#111111] h-full absolute top-0 bottom-0 left-1/2 -translate-x-1/2" />
-              {/* Timeline Solid Node Dot */}
-              <div className="w-3.5 h-3.5 rounded-full bg-[#111111] ring-4 ring-[#faf9f6] relative z-10 my-auto" />
-            </div>
+          return (
+            <div
+              key={index}
+              className={`grid grid-cols-[1fr_28px_1.15fr] sm:grid-cols-[1fr_36px_1.15fr] gap-3 sm:gap-6 items-start relative ${
+                isLast ? 'pb-2' : 'pb-6 sm:pb-8'
+              }`}
+            >
+              {/* Left Column: Campus Photograph (Clean without borders or stray lines) */}
+              <div className="w-full aspect-[262/185] bg-[#ebe7dc] overflow-hidden shadow-xs">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  className="w-full h-full object-cover grayscale contrast-110 block"
+                  loading="eager"
+                />
+              </div>
 
-            {/* Right Column: Educational Ledger */}
-            <div className="flex flex-col justify-center">
-              <span className="font-serif text-sm sm:text-base text-[#111111] mb-1 font-normal block">
-                {item.year}
-              </span>
-              <h3 className="font-serif font-bold text-sm sm:text-base md:text-[17px] text-[#111111] leading-snug">
-                {item.title}
-              </h3>
-              <p className="font-serif text-xs sm:text-sm md:text-[15px] text-[#2c2825] mt-1 leading-snug">
-                {item.institution}
-              </p>
-              <span className="font-serif font-bold text-sm sm:text-base text-[#111111] mt-2 block">
-                {item.score}
-              </span>
+              {/* Center Timeline Spine Segment */}
+              <div className="flex flex-col items-center self-stretch relative h-full">
+                {/* Continuous Vertical Timeline Line (Connecting seamlessly from Circle 1 down past Circle 3) */}
+                <div
+                  className={`w-[2.5px] bg-[#111111] absolute left-1/2 -translate-x-1/2 z-0 ${
+                    isFirst
+                      ? 'top-[9px] bottom-[-4px]'
+                      : isLast
+                      ? 'top-[-4px] bottom-[-32px]'
+                      : 'top-[-4px] bottom-[-4px]'
+                  }`}
+                />
+                {/* Solid Circular Node Dot aligned with the Year */}
+                <div className="w-3.5 h-3.5 rounded-full bg-[#111111] relative z-10 mt-[2px] shrink-0" />
+              </div>
+
+              {/* Right Column: Educational Ledger */}
+              <div className="flex flex-col justify-start">
+                <span className="font-serif text-sm sm:text-base text-[#111111] font-normal leading-none mb-1.5 block">
+                  {item.year}
+                </span>
+                <h3 className="font-serif font-bold text-sm sm:text-base md:text-[17px] text-[#111111] leading-snug">
+                  {item.title}
+                </h3>
+                <p className="font-serif text-xs sm:text-sm md:text-[15px] text-[#2c2825] mt-1 leading-snug">
+                  {item.institution}
+                </p>
+                <span className="font-serif font-bold text-sm sm:text-base text-[#111111] mt-2 block">
+                  {item.score}
+                </span>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
