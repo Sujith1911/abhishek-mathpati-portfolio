@@ -4,7 +4,7 @@ import { NewspaperIndexModal } from './NewspaperIndexModal';
 import { NewspaperSideNav } from './NewspaperSideNav';
 import { soundManager } from '../../utils/sound';
 
-export const TOTAL_SPREADS = 6;
+export const TOTAL_SPREADS = 7;
 
 export const NewspaperShell: React.FC = () => {
   const [currentSpread, setCurrentSpread] = useState(1);

@@ -65,48 +65,48 @@ export const Page02Contents: React.FC<{ onNavigateToSpread?: (spread: number) =>
       num: '01',
       title: 'Education',
       desc: 'My academic journey and qualifications',
-      spread: 2, // on the right page of current spread (Page 03)
+      spread: 3, // Spread 3 Left (Page 03)
     },
     {
       num: '02',
       title: 'Professional Experience',
       desc: 'Practical experience across industry and public service',
-      spread: 3, // Page 04
+      spread: 3, // Spread 3 Right (Page 04)
     },
     {
       num: '03',
       title: 'Projects',
       desc: 'Technical solutions built through research and development',
-      spread: 3, // Page 05
+      spread: 4, // Spread 4 Left (Page 05)
     },
     {
       num: '04',
       title: 'Publications',
       desc: 'Research contributions in cybersecurity and related fields',
-      spread: 4, // Page 06
+      spread: 4, // Spread 4 Right (Page 06)
     },
     {
       num: '05',
       title: 'Skills',
       desc: 'Technical competencies and tools',
-      spread: 4, // Page 07
+      spread: 5, // Spread 5 Left (Page 07)
     },
     {
       num: '06',
       title: 'Certifications',
       desc: 'Professional training and recognized credentials',
-      spread: 5, // Page 08
+      spread: 5, // Spread 5 Right (Page 08)
     },
     {
       num: '07',
       title: 'Activities and Societies',
       desc: 'Leadership, campus involvement, and extracurricular pursuits',
-      spread: 5, // Page 09
+      spread: 6, // Spread 6 Left (Page 09)
     },
   ];
 
   return (
-    <div className="editorial-scroll scroll-smooth p-6 sm:p-9 md:p-12 lg:p-14 flex flex-col justify-start h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210] select-none">
+    <div className="editorial-scroll scroll-smooth p-6 sm:p-9 md:p-12 lg:p-14 flex flex-col justify-between h-full overflow-y-auto relative bg-[#faf9f6] text-[#141210] select-none">
       <div>
         {/* Top Header Bar */}
         <div className="flex items-center justify-between font-serif text-xs sm:text-[13px] md:text-[14px] tracking-[0.2em] sm:tracking-[0.25em] text-[#111111] uppercase pb-2 border-b-[2.5px] border-[#111111]">
@@ -153,6 +153,20 @@ export const Page02Contents: React.FC<{ onNavigateToSpread?: (spread: number) =>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Interactive Turn to Broadsheet Trigger */}
+      <div className="mt-6 pt-3 border-t border-[#141210]/20">
+        <button
+          type="button"
+          onClick={() => onNavigateToSpread?.(3)}
+          className="w-full py-2.5 px-4 bg-[#141210] hover:bg-[#8C3833] text-[#f5f0e1] font-mono-tech text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center justify-between shadow-xs group"
+        >
+          <span>OPEN BROADSHEET SPREAD →</span>
+          <span className="text-[10px] text-[#d9c49f] group-hover:text-white transition-colors">
+            01. EDUCATION (PP. 03–04)
+          </span>
+        </button>
       </div>
     </div>
   );
@@ -678,17 +692,36 @@ export const Page10Dispatch: React.FC = () => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [message, setMessage] = React.useState('');
-  const [status, setStatus] = React.useState<'idle' | 'sent'>('idle');
+  const [status, setStatus] = React.useState<'idle' | 'loading' | 'sent' | 'error'>('idle');
+  const [feedbackMsg, setFeedbackMsg] = React.useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('sent');
-    setTimeout(() => {
-      setName('');
-      setEmail('');
-      setMessage('');
-      setStatus('idle');
-    }, 4000);
+    setStatus('loading');
+    setFeedbackMsg('');
+
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to dispatch transmission.');
+      }
+      setStatus('sent');
+      setFeedbackMsg(data.id ? `TRANSMISSION ID: ${data.id}` : 'Logged into chief investigator ledger.');
+      setTimeout(() => {
+        setName('');
+        setEmail('');
+        setMessage('');
+        setStatus('idle');
+      }, 5000);
+    } catch (err: any) {
+      setStatus('error');
+      setFeedbackMsg(err.message || 'Dispatch failed. Direct telegraph: mythreie.dumpati@gmail.com');
+    }
   };
 
   return (
@@ -710,13 +743,14 @@ export const Page10Dispatch: React.FC = () => {
         <div className="p-3 bg-[#eae8e2]/80 border-2 border-[#141210] mb-3">
           <div className="flex items-center gap-2 border-b border-[#141210] pb-1 mb-2 font-mono-tech text-[10px] uppercase font-bold text-[#141210]">
             <Send className="w-3.5 h-3.5 text-[#8C3833]" />
-            <span>TRANSMIT DISPATCH MESSAGE</span>
+            <span>TRANSMIT DISPATCH MESSAGE (RESEND VERIFIED)</span>
           </div>
 
           {status === 'sent' ? (
             <div className="p-4 text-center bg-[#141210] text-[#f5f0e1] font-mono-tech text-xs">
               <span className="text-[#d9c49f] font-bold block mb-1">★ DISPATCH TRANSMITTED ★</span>
-              <span>Your message has been logged into the chief investigator&apos;s terminal.</span>
+              <span>Your message has been received by the investigator.</span>
+              {feedbackMsg && <span className="block mt-1 text-[10px] text-[#cfc5b0]">{feedbackMsg}</span>}
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-2 font-mono-tech text-[10px]">
@@ -757,11 +791,18 @@ export const Page10Dispatch: React.FC = () => {
                 />
               </div>
 
+              {status === 'error' && (
+                <div className="p-1.5 bg-[#8C3833]/10 border border-[#8C3833] text-[#8C3833] text-[9.5px]">
+                  {feedbackMsg}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full py-2 bg-[#141210] hover:bg-[#8C3833] text-[#f5f0e1] font-bold uppercase tracking-widest transition-all cursor-pointer shadow-xs"
+                disabled={status === 'loading'}
+                className="w-full py-2 bg-[#141210] hover:bg-[#8C3833] disabled:opacity-50 text-[#f5f0e1] font-bold uppercase tracking-widest transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5"
               >
-                TRANSMIT DISPATCH →
+                <span>{status === 'loading' ? 'TRANSMITTING VIA RESEND...' : 'TRANSMIT DISPATCH →'}</span>
               </button>
             </form>
           )}
@@ -875,6 +916,83 @@ export const Page11Colophon: React.FC = () => {
 };
 
 // =========================================================================
+// PAGE 12: ARCHIVAL DIRECTORY & MASTER INDEX SUMMARY
+// =========================================================================
+export const Page12ClosingBroadside: React.FC<{ onNavigateToSpread?: (spread: number) => void }> = ({
+  onNavigateToSpread,
+}) => {
+  const archives = [
+    { num: '01', title: 'ACADEMIC LEDGER', desc: 'KMEC CSE (8.36), Diploma (8.8), ICSE (81.4%)', spread: 3 },
+    { num: '02', title: 'PUBLIC SAFETY & INDUSTRY', desc: 'Telangana Police Bharosa Module, Teleparadigm', spread: 3 },
+    { num: '03', title: 'ENGINEERING ARTIFACTS', desc: 'SecureShare, QPAT Classifier, SMIA, Interlock', spread: 4 },
+    { num: '04', title: 'SCHOLARLY MONOGRAPHS', desc: '3 IEEE & IJRDET Papers with Pareto Benchmarks', spread: 4 },
+    { num: '05', title: 'TECHNICAL ARSENAL', desc: 'Cybersecurity, Reverse Eng., Python, ML & Cryptography', spread: 5 },
+    { num: '06', title: 'RECOGNIZED CREDENTIALS', desc: 'NLU Odisha 87% Distinction, CCNAv7, IBM Analyst', spread: 5 },
+    { num: '07', title: 'INSTITUTIONAL GOVERNANCE', desc: 'Student Body President, Cultural Head, Carnatic Vocalist', spread: 6 },
+  ];
+
+  return (
+    <div className="editorial-scroll scroll-smooth p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative bg-[#f4f3ef] text-[#141210]">
+      <div>
+        <div className="border-b-2 border-[#141210] pb-2 mb-3 flex justify-between items-start">
+          <div>
+            <span className="font-mono-tech text-[9px] uppercase tracking-[0.25em] text-[#8C3833] font-bold block">
+              FINAL REGISTER // VOLUME 01
+            </span>
+            <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-wider text-[#141210]">
+              ARCHIVAL DIRECTORY &amp; CLOSING
+            </h3>
+          </div>
+          <NewspaperStamp text="CLASSIFIED" variant="crimson" rotation={-2} />
+        </div>
+
+        {/* Archival Table */}
+        <div className="border-2 border-[#141210] p-3 bg-[#eae8e2]/70 mb-3 space-y-2">
+          <div className="font-mono-tech text-[10px] uppercase font-bold text-[#141210] border-b border-[#141210] pb-1 flex justify-between">
+            <span>MASTER DOSSIER DIRECTORY</span>
+            <span>HYDERABAD ARCHIVE</span>
+          </div>
+          <div className="space-y-1.5 font-mono-tech text-[10px]">
+            {archives.map((a) => (
+              <div
+                key={a.num}
+                onClick={() => onNavigateToSpread?.(a.spread)}
+                className="flex items-start justify-between p-1 hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-pointer group"
+              >
+                <div>
+                  <span className="font-bold text-[#8C3833] group-hover:text-[#d9c49f] mr-1.5">[{a.num}]</span>
+                  <span className="font-bold">{a.title}</span>
+                  <p className="text-[9px] text-[#5a554e] group-hover:text-[#cfc5b0]">{a.desc}</p>
+                </div>
+                <span className="text-[9px] uppercase tracking-wider underline">SPREAD 0{a.spread}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Clearance and Seal */}
+        <div className="p-3 bg-[#141210] text-[#f5f0e1] border-2 border-[#141210] flex items-center justify-between">
+          <div>
+            <span className="font-mono-tech text-[9px] uppercase tracking-widest text-[#d9c49f] block">
+              RESEARCH SECURITY CLEARANCE
+            </span>
+            <span className="font-display text-xs sm:text-sm font-bold uppercase tracking-wider">
+              AUTHORIZATION LEVEL 4 // ARCHIVE COMPLETE
+            </span>
+          </div>
+          <NewspaperStamp text="VERIFIED" variant="olive" rotation={1} />
+        </div>
+      </div>
+
+      <div className="pt-2 border-t border-[#141210]/30 flex justify-between items-center text-[9.5px] font-mono-tech text-[#5a554e]">
+        <span>THE DAILY CHRONICLE // CLOSING BROADSIDE</span>
+        <span className="font-typewriter font-bold text-[#141210]">PAGE 12</span>
+      </div>
+    </div>
+  );
+};
+
+// =========================================================================
 // UNIVERSAL PAGE RENDERER
 // =========================================================================
 export const renderNewspaperPage = (
@@ -907,6 +1025,8 @@ export const renderNewspaperPage = (
       return <Page10Dispatch />;
     case 11:
       return <Page11Colophon />;
+    case 12:
+      return <Page12ClosingBroadside onNavigateToSpread={callbacks?.onNavigateToSpread} />;
     default:
       return <Page01Cover onOpenNewspaper={callbacks?.onOpenNewspaper} />;
   }
