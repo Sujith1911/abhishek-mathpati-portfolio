@@ -41,9 +41,9 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
       return;
     }
 
-    const DURATION = 760; // ms for authentic broadsheet paper weight and physical peel
+    const DURATION = 740; // ms for authentic broadsheet paper weight and smooth lift
 
-    // Quintic / spring-like easing curve for tactile edge lifting
+    // Cubic easing curve for physical lift acceleration from corner to top
     const easeCubic = (t: number) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
@@ -74,62 +74,77 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
 
   const isForward = flipDirection === 'forward';
 
-  // Physical 3D Edge Lift Calculation:
-  // Instead of a 180° book turnover, the bottom-right edge lifts up in 3D (translateZ),
-  // arching upward (rotateX), tilting (rotateZ), and peeling off the stack.
-  const liftElevation = isForward
-    ? Math.sin(progress * Math.PI * 0.72) * 260
-    : Math.sin((1 - progress) * Math.PI * 0.72) * 260;
+  // ---------------------------------------------------------------------------
+  // PHYSICAL 3D EDGE LIFT & FADE OUT TO TOP CALCULATION
+  // Starts by pulling up from the bottom-right edge (P.T.O. corner),
+  // arching upward in 3D, elevating, and fading cleanly out toward the top.
+  // ---------------------------------------------------------------------------
+  const p = isForward ? progress : 1 - progress;
 
-  const liftX = isForward ? -progress * 190 : -(1 - progress) * 190;
-  const liftY = isForward ? -progress * 75 : -(1 - progress) * 75;
-  const rotateX = isForward
-    ? Math.sin(progress * Math.PI) * 24
-    : Math.sin((1 - progress) * Math.PI) * 24;
-  const rotateY = isForward ? progress * 16 : (1 - progress) * 16;
-  const rotateZ = isForward ? -progress * 12 : -(1 - progress) * 12;
+  // Elevation rising toward viewer (translateZ)
+  const liftElevation = Math.sin(p * Math.PI * 0.75) * 240;
 
+  // Glides upward toward the top (translateY)
+  const liftY = -p * 280;
+
+  // Slight natural diagonal drift as pulled from bottom-right (translateX)
+  const liftX = -p * 70;
+
+  // Arching pitch (rotateX) as the bottom edge curls upward
+  const rotateX = Math.sin(p * Math.PI * 0.8) * 28;
+
+  // Yaw (rotateY) as the right edge lifts ahead of the left
+  const rotateY = p * 16;
+
+  // Roll tilt (rotateZ) as hand pulls diagonally up
+  const rotateZ = -p * 12;
+
+  // Clean fade out to the top:
+  // Solid during initial lift, then smoothly dissolves into the top of the viewport
   const sheetOpacity = isForward
-    ? progress > 0.72
-      ? Math.max(0, 1 - (progress - 0.72) / 0.28)
+    ? p > 0.35
+      ? Math.max(0, 1 - (p - 0.35) / 0.65)
       : 1
-    : progress < 0.28
-    ? Math.max(0, progress / 0.28)
+    : p < 0.65
+    ? Math.max(0, p / 0.65)
     : 1;
 
-  const dynamicShadowOpacity = Math.sin(progress * Math.PI) * 0.45;
+  // Dynamic shadow cast on the base page below
+  const castShadowOpacity = isForward
+    ? Math.max(0, 1 - progress * 1.4) * 0.4
+    : Math.max(0, progress * 1.4) * 0.4;
+
+  const dynamicSheetShadow = Math.sin(progress * Math.PI) * 0.4;
 
   return (
     <div
       className="relative w-full h-full flex items-center justify-center select-none"
-      style={{ perspective: '2200px' }}
+      style={{ perspective: '2400px' }}
     >
-      {/* ========================================================================= */}
-      {/* 1. STATIC SINGLE PAGE VIEW (WHEN NOT FLIPPING)                            */}
-      {/* ========================================================================= */}
-      {!isFlipping && (
-        <div className="relative w-full h-full flex items-center justify-center animate-in fade-in duration-300">
-          {/* Stack elevation border depth behind the single page */}
-          <div className="absolute inset-0 max-h-[calc(100vh-1.25rem)] aspect-[622/877] max-w-full m-auto pointer-events-none">
-            <div className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-[#e3dfd3] border border-[#141210]/30 rounded-xs shadow-md" />
-            <div className="absolute inset-0 translate-x-3 translate-y-3 bg-[#dad5c6] border border-[#141210]/40 rounded-xs shadow-xl" />
-          </div>
+      {/* Centered Broadsheet Stack Stage with Exact Aspect Ratio Container */}
+      <div className="relative h-full max-h-[calc(100vh-1.25rem)] aspect-[622/877] max-w-full flex items-center justify-center">
+        {/* Archival Depth Stack Layers Underneath (Seamlessly Aligned) */}
+        <div className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-[#e3dfd3] border border-[#141210]/30 rounded-xs shadow-md pointer-events-none" />
+        <div className="absolute inset-0 translate-x-3 translate-y-3 bg-[#dad5c6] border border-[#141210]/40 rounded-xs shadow-xl pointer-events-none" />
 
-          {/* Centered Single Page Broadsheet Frame */}
-          <div className="newspaper-paper-texture newspaper-broadsheet-shadow relative h-full max-h-[calc(100vh-1.25rem)] aspect-[622/877] max-w-full border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between z-10">
+        {/* ===================================================================== */}
+        {/* 1. STATIC SINGLE PAGE (WHEN NOT FLIPPING)                             */}
+        {/* ===================================================================== */}
+        {!isFlipping && (
+          <div className="newspaper-paper-texture newspaper-broadsheet-shadow relative w-full h-full border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between z-10 animate-in fade-in duration-300">
             {renderNewspaperPage(currentSpread, {
               onOpenNewspaper: onTurnNext,
               onNavigateToSpread,
             })}
 
-            {/* Interactive Lifted Corner Flap (Bottom-Right Dog-Ear Curl) */}
+            {/* P.T.O. (Please Turn Over) Clean Archival Lift Trigger */}
             {currentSpread < totalSpreads && (
               <div
                 onClick={onTurnNext}
                 onMouseEnter={() => setIsCornerHovered(true)}
                 onMouseLeave={() => setIsCornerHovered(false)}
-                className="absolute bottom-0 right-0 w-16 h-16 cursor-pointer group z-40 pointer-events-auto"
-                title="Lift corner to turn page"
+                className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 z-30 flex items-center group cursor-pointer pointer-events-auto"
+                title="Please Turn Over (P.T.O.)"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
@@ -139,124 +154,144 @@ export const Newspaper3DViewer: React.FC<Newspaper3DViewerProps> = ({
                   }
                 }}
               >
-                {/* Exposed paper peek under corner */}
-                <div className="absolute bottom-0 right-0 w-10 h-10 bg-[#e0dcd0] border-t border-l border-[#141210]/25 shadow-inner" />
-
-                {/* 3D Folded/Curled Dog-Ear Corner */}
                 <div
-                  className={`absolute bottom-0 right-0 w-0 h-0 border-solid border-b-transparent border-r-transparent border-t-[#d8d3c3] border-l-[#d8d3c3] shadow-[-4px_-4px_10px_rgba(0,0,0,0.25)] transition-all duration-300 ${
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xs font-mono-tech text-[9.5px] sm:text-[10px] font-bold tracking-widest uppercase transition-all duration-300 border shadow-md select-none ${
                     isCornerHovered
-                      ? 'border-t-[46px] border-l-[46px] -translate-x-1 -translate-y-1 shadow-[-6px_-6px_14px_rgba(0,0,0,0.35)]'
-                      : 'border-t-[32px] border-l-[32px]'
-                  }`}
-                />
-
-                {/* Subtle "LIFT" invitation text on hover */}
-                <span
-                  className={`absolute bottom-1 right-1 font-mono-tech text-[8px] font-bold text-[#8C3833] tracking-tighter transition-opacity duration-200 ${
-                    isCornerHovered ? 'opacity-100' : 'opacity-0'
+                      ? 'bg-[#8C3833] text-white border-[#8C3833] -translate-y-0.5 shadow-lg'
+                      : 'bg-[#141210] text-[#f5f0e1] border-[#141210] hover:bg-[#8C3833]'
                   }`}
                 >
-                  LIFT →
-                </span>
+                  <span className="text-[#d9c49f] font-bold">P.T.O.</span>
+                  <span className="text-[11px] transition-transform duration-200 group-hover:translate-x-0.5">
+                    ➔
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* Corner Fold Curl (Perfect Alignment inside page border) */}
+            {currentSpread < totalSpreads && (
+              <div
+                onClick={onTurnNext}
+                onMouseEnter={() => setIsCornerHovered(true)}
+                onMouseLeave={() => setIsCornerHovered(false)}
+                className="absolute bottom-0 right-0 w-12 h-12 z-25 cursor-pointer overflow-hidden pointer-events-auto"
+              >
+                <div className="absolute bottom-0 right-0 w-7 h-7 bg-[#dedad0] border-t border-l border-[#141210]/20 shadow-inner" />
+                <div
+                  className={`absolute bottom-0 right-0 w-0 h-0 border-solid border-b-transparent border-r-transparent border-t-[#d4cfbf] border-l-[#d4cfbf] transition-all duration-300 shadow-[-3px_-3px_8px_rgba(0,0,0,0.22)] ${
+                    isCornerHovered
+                      ? 'border-t-[34px] border-l-[34px]'
+                      : 'border-t-[22px] border-l-[22px]'
+                  }`}
+                />
               </div>
             )}
           </div>
+        )}
 
-          {/* Desk Wing: Left Navigation (Previous Page) */}
-          {currentSpread > 1 && (
-            <button
-              type="button"
-              onClick={onTurnPrev}
-              className="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-24 items-center justify-center group bg-transparent hover:bg-black/[0.04] transition-all cursor-pointer z-30"
-              title="Previous Page (Click or Arrow Left)"
-              aria-label="Previous Page"
-            >
-              <div className="opacity-0 group-hover:opacity-90 transition-opacity bg-[#14100c]/85 text-[#f5f0e1] p-2.5 rounded-xs shadow-lg flex items-center justify-center">
-                <ChevronLeft className="w-5 h-5 text-[#d9c49f]" />
-              </div>
-            </button>
-          )}
+        {/* ===================================================================== */}
+        {/* 2. REAL-TIME PHYSICAL "LIFT & FADE OUT TO TOP" FLIP ANIMATION         */}
+        {/* ===================================================================== */}
+        {isFlipping && (
+          <div
+            className="relative w-full h-full overflow-visible"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            {/* ----------------------------------------------------------------- */}
+            {/* BASE PAGE UNDERNEATH (STATIONARY ON DESK, PERFECTLY ALIGNED)     */}
+            {/* ----------------------------------------------------------------- */}
+            <div className="newspaper-paper-texture newspaper-broadsheet-shadow absolute inset-0 w-full h-full border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between z-10 bg-[#faf9f6]">
+              {renderNewspaperPage(isForward ? targetSpread : currentSpread, {
+                onNavigateToSpread,
+              })}
 
-          {/* Desk Wing: Right Navigation (Next Page) */}
-          {currentSpread < totalSpreads && (
-            <button
-              type="button"
-              onClick={onTurnNext}
-              className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-24 items-center justify-center group bg-transparent hover:bg-black/[0.04] transition-all cursor-pointer z-30"
-              title="Next Page (Click or Arrow Right)"
-              aria-label="Next Page"
+              {/* P.T.O. Indicator on Target Base Page */}
+              {(isForward ? targetSpread : currentSpread) < totalSpreads && (
+                <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 z-30 flex items-center pointer-events-none">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xs font-mono-tech text-[9.5px] sm:text-[10px] font-bold tracking-widest uppercase bg-[#141210] text-[#f5f0e1] border border-[#141210] shadow-md">
+                    <span className="text-[#d9c49f] font-bold">P.T.O.</span>
+                    <span className="text-[11px]">➔</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Dynamic cast shadow from ascending sheet */}
+              <div
+                className="absolute inset-0 pointer-events-none transition-opacity bg-gradient-to-t from-black/45 via-black/15 to-transparent"
+                style={{ opacity: castShadowOpacity }}
+              />
+            </div>
+
+            {/* ----------------------------------------------------------------- */}
+            {/* THE LIFTING SHEET (LIFTS FROM BOTTOM-RIGHT & FADES OUT TO TOP)    */}
+            {/* ----------------------------------------------------------------- */}
+            <div
+              className="newspaper-paper-texture absolute inset-0 w-full h-full border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between z-40 pointer-events-none"
+              style={{
+                transformOrigin: '20% 10%',
+                transformStyle: 'preserve-3d',
+                transform: `translate3d(${liftX}px, ${liftY}px, ${liftElevation}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`,
+                opacity: sheetOpacity,
+                boxShadow: `0 ${35 * progress}px ${70 * progress}px rgba(0,0,0,${dynamicSheetShadow})`,
+                willChange: 'transform, opacity',
+              }}
             >
-              <div className="opacity-0 group-hover:opacity-90 transition-opacity bg-[#14100c]/85 text-[#f5f0e1] p-2.5 rounded-xs shadow-lg flex items-center justify-center">
-                <ChevronRight className="w-5 h-5 text-[#d9c49f]" />
-              </div>
-            </button>
-          )}
-        </div>
+              {renderNewspaperPage(isForward ? currentSpread : targetSpread, {
+                onNavigateToSpread,
+              })}
+
+              {/* P.T.O. on lifting sheet as it pulls up */}
+              {(isForward ? currentSpread : targetSpread) < totalSpreads && (
+                <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 z-30 flex items-center">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xs font-mono-tech text-[9.5px] sm:text-[10px] font-bold tracking-widest uppercase bg-[#8C3833] text-white border border-[#8C3833] shadow-lg">
+                    <span className="text-[#d9c49f] font-bold">P.T.O.</span>
+                    <span className="text-[11px]">➔</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Realistic Curvature Sheen as sheet arches in 3D */}
+              <div
+                className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white/20 via-transparent to-black/25"
+                style={{ opacity: dynamicSheetShadow }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ======================================================================= */}
+      {/* DESK SIDE NAVIGATION CONTROLS (LATERAL WINGS)                           */}
+      {/* ======================================================================= */}
+      {currentSpread > 1 && (
+        <button
+          type="button"
+          onClick={onTurnPrev}
+          disabled={isFlipping}
+          className="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-24 items-center justify-center group bg-transparent hover:bg-black/[0.04] transition-all cursor-pointer z-30 disabled:opacity-30"
+          title="Previous Page (Click or Arrow Left)"
+          aria-label="Previous Page"
+        >
+          <div className="opacity-0 group-hover:opacity-90 transition-opacity bg-[#14100c]/85 text-[#f5f0e1] p-2.5 rounded-xs shadow-lg flex items-center justify-center">
+            <ChevronLeft className="w-5 h-5 text-[#d9c49f]" />
+          </div>
+        </button>
       )}
 
-      {/* ========================================================================= */}
-      {/* 2. REAL-TIME PHYSICAL "LIFT UP FROM EDGE" ANIMATION (DURING FLIP)         */}
-      {/* ========================================================================= */}
-      {isFlipping && (
-        <div
-          className="relative w-full h-full flex items-center justify-center overflow-visible"
-          style={{ transformStyle: 'preserve-3d' }}
+      {currentSpread < totalSpreads && (
+        <button
+          type="button"
+          onClick={onTurnNext}
+          disabled={isFlipping}
+          className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-24 items-center justify-center group bg-transparent hover:bg-black/[0.04] transition-all cursor-pointer z-30 disabled:opacity-30"
+          title="Next Page • P.T.O. (Click or Arrow Right)"
+          aria-label="Next Page"
         >
-          {/* Depth Stack Below */}
-          <div className="absolute inset-0 max-h-[calc(100vh-1.25rem)] aspect-[622/877] max-w-full m-auto pointer-events-none">
-            <div className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-[#e3dfd3] border border-[#141210]/30 rounded-xs shadow-md" />
-            <div className="absolute inset-0 translate-x-3 translate-y-3 bg-[#dad5c6] border border-[#141210]/40 rounded-xs shadow-xl" />
+          <div className="opacity-0 group-hover:opacity-90 transition-opacity bg-[#14100c]/85 text-[#f5f0e1] p-2.5 rounded-xs shadow-lg flex items-center justify-center">
+            <ChevronRight className="w-5 h-5 text-[#d9c49f]" />
           </div>
-
-          {/* ------------------------------------------------------------------- */}
-          {/* BASE PAGE UNDERNEATH (STATIONARY ON THE DESK STACK)                */}
-          {/* ------------------------------------------------------------------- */}
-          <div className="newspaper-paper-texture newspaper-broadsheet-shadow relative h-full max-h-[calc(100vh-1.25rem)] aspect-[622/877] max-w-full border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between z-10 bg-[#faf9f6]">
-            {renderNewspaperPage(isForward ? targetSpread : currentSpread, {
-              onNavigateToSpread,
-            })}
-
-            {/* Dynamic cast shadow from the lifting sheet hovering above */}
-            <div
-              className="absolute inset-0 pointer-events-none transition-opacity bg-gradient-to-tl from-black/40 via-black/15 to-transparent"
-              style={{
-                opacity: isForward
-                  ? (1 - progress) * 0.45
-                  : progress * 0.45,
-              }}
-            />
-          </div>
-
-          {/* ------------------------------------------------------------------- */}
-          {/* THE 3D LIFTING SHEET (LIFTS FROM BOTTOM-RIGHT EDGE OFF THE STACK)   */}
-          {/* ------------------------------------------------------------------- */}
-          <div
-            className="newspaper-paper-texture absolute h-full max-h-[calc(100vh-1.25rem)] aspect-[622/877] max-w-full border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between z-40 pointer-events-none"
-            style={{
-              transformOrigin: '0% 0%',
-              transformStyle: 'preserve-3d',
-              transform: `translate3d(${liftX}px, ${liftY}px, ${liftElevation}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`,
-              opacity: sheetOpacity,
-              boxShadow: `0 ${30 * progress}px ${60 * progress}px rgba(0,0,0,${dynamicShadowOpacity})`,
-              willChange: 'transform, opacity',
-            }}
-          >
-            {/* Content of the lifting sheet */}
-            {renderNewspaperPage(isForward ? currentSpread : targetSpread, {
-              onNavigateToSpread,
-            })}
-
-            {/* Realistic paper curvature light gradient as the edge curls upward */}
-            <div
-              className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/20 via-transparent to-black/20"
-              style={{ opacity: dynamicShadowOpacity }}
-            />
-
-            {/* Bottom-right corner curl effect on the sheet as it lifts */}
-            <div className="absolute bottom-0 right-0 w-24 h-24 pointer-events-none bg-gradient-to-tl from-black/20 via-transparent to-transparent" />
-          </div>
-        </div>
+        </button>
       )}
     </div>
   );
