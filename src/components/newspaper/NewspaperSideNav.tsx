@@ -52,13 +52,17 @@ export const NewspaperSideNav: React.FC<NewspaperSideNavProps> = ({
   };
 
   const sectionPills = [
-    { spread: 1, title: 'Front Cover', pages: '01', subtitle: 'Notes on a Life (Single Page)' },
-    { spread: 2, title: 'Contents', pages: '02', subtitle: 'Table of Contents (Single Page)' },
-    { spread: 3, title: 'Education & Exp.', pages: '03–04', subtitle: '01. Education & 02. Experience' },
-    { spread: 4, title: 'Projects & Papers', pages: '05–06', subtitle: '03. Projects & 04. Publications' },
-    { spread: 5, title: 'Skills & Creds', pages: '07–08', subtitle: '05. Skills & 06. Certifications' },
-    { spread: 6, title: 'Societies & Dispatch', pages: '09–10', subtitle: '07. Activities & Resend Dispatch' },
-    { spread: 7, title: 'Colophon & Closing', pages: '11–12', subtitle: 'Verified PDF & Final Directory' },
+    { spread: 1, title: 'Front Cover', pages: '01', subtitle: 'The Daily Chronicle • Notes on a Life' },
+    { spread: 2, title: 'Contents', pages: '02', subtitle: 'Archival Table of Contents' },
+    { spread: 3, title: 'Education', pages: '03', subtitle: '01. Education • Academic Ledger (KMEC, Masab Tank)' },
+    { spread: 4, title: 'Experience', pages: '04', subtitle: '02. Professional Experience • Telangana Police Bharosa' },
+    { spread: 5, title: 'Projects', pages: '05', subtitle: '03. Projects • SecureShare, QPAT & SMIA' },
+    { spread: 6, title: 'Publications', pages: '06', subtitle: '04. Publications • 3 IEEE & IJRDET Papers' },
+    { spread: 7, title: 'Skills', pages: '07', subtitle: '05. Skills • Classified Technical Arsenal' },
+    { spread: 8, title: 'Certifications', pages: '08', subtitle: '06. Certifications • NLU Odisha 87% Distinction' },
+    { spread: 9, title: 'Activities', pages: '09', subtitle: '07. Activities • Student Council President & Arts' },
+    { spread: 10, title: 'Dispatch', pages: '10', subtitle: 'Encrypted Resend Telegraph Terminal' },
+    { spread: 11, title: 'Colophon & PDF', pages: '11', subtitle: 'Official Verified Resume PDF & Colophon' },
   ];
 
   return (

@@ -65,43 +65,43 @@ export const Page02Contents: React.FC<{ onNavigateToSpread?: (spread: number) =>
       num: '01',
       title: 'Education',
       desc: 'My academic journey and qualifications',
-      spread: 3, // Spread 3 Left (Page 03)
+      page: 3,
     },
     {
       num: '02',
       title: 'Professional Experience',
       desc: 'Practical experience across industry and public service',
-      spread: 3, // Spread 3 Right (Page 04)
+      page: 4,
     },
     {
       num: '03',
       title: 'Projects',
       desc: 'Technical solutions built through research and development',
-      spread: 4, // Spread 4 Left (Page 05)
+      page: 5,
     },
     {
       num: '04',
       title: 'Publications',
       desc: 'Research contributions in cybersecurity and related fields',
-      spread: 4, // Spread 4 Right (Page 06)
+      page: 6,
     },
     {
       num: '05',
       title: 'Skills',
       desc: 'Technical competencies and tools',
-      spread: 5, // Spread 5 Left (Page 07)
+      page: 7,
     },
     {
       num: '06',
       title: 'Certifications',
       desc: 'Professional training and recognized credentials',
-      spread: 5, // Spread 5 Right (Page 08)
+      page: 8,
     },
     {
       num: '07',
       title: 'Activities and Societies',
       desc: 'Leadership, campus involvement, and extracurricular pursuits',
-      spread: 6, // Spread 6 Left (Page 09)
+      page: 9,
     },
   ];
 
@@ -130,14 +130,14 @@ export const Page02Contents: React.FC<{ onNavigateToSpread?: (spread: number) =>
           {contentsList.map((item) => (
             <div
               key={item.num}
-              onClick={() => onNavigateToSpread?.(item.spread)}
+              onClick={() => onNavigateToSpread?.(item.page)}
               className="group cursor-pointer transition-transform duration-150 p-1 -mx-1 rounded-xs hover:translate-x-1"
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  onNavigateToSpread?.(item.spread);
+                  onNavigateToSpread?.(item.page);
                 }
               }}
             >
@@ -162,9 +162,9 @@ export const Page02Contents: React.FC<{ onNavigateToSpread?: (spread: number) =>
           onClick={() => onNavigateToSpread?.(3)}
           className="w-full py-2.5 px-4 bg-[#141210] hover:bg-[#8C3833] text-[#f5f0e1] font-mono-tech text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center justify-between shadow-xs group"
         >
-          <span>OPEN BROADSHEET SPREAD →</span>
+          <span>LIFT PAGE &amp; TURN TO 01. EDUCATION →</span>
           <span className="text-[10px] text-[#d9c49f] group-hover:text-white transition-colors">
-            01. EDUCATION (PP. 03–04)
+            PAGE 03
           </span>
         </button>
       </div>
