@@ -12,7 +12,7 @@ export const Spread2AcademicExp: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-full w-full">
       {/* LEFT PAGE: PAGE 03 — ACADEMIC RECORD & TIMELINE */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
         <div>
           {/* Header */}
           <div className="border-b-2 border-[#141210] pb-2 mb-3">
@@ -32,18 +32,18 @@ export const Spread2AcademicExp: React.FC = () => {
             </p>
           </div>
 
-          {/* Academic Timeline Entries */}
-          <div className="space-y-4">
+          {/* Academic Timeline Entries with Hover Focus */}
+          <div className="space-y-3.5">
             {RESUME_DATA.academicRecord.map((record, index) => (
               <div
                 key={index}
-                className="relative pl-5 border-l-2 border-[#141210] pb-3 last:pb-0"
+                className="relative pl-5 border-l-2 border-[#141210] pb-2 last:pb-0 group hover:bg-[#141210]/[0.02] p-1.5 rounded-xs transition-colors cursor-default"
               >
                 {/* Node point */}
-                <div className="absolute -left-[6px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-[#141210] bg-[#f5f0e1]"></div>
+                <div className="absolute -left-[6px] top-2 w-2.5 h-2.5 rounded-full border-2 border-[#141210] bg-[#f5f0e1] group-hover:bg-[#8C3833] transition-colors"></div>
 
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                  <h4 className="font-serif-vintage text-base font-bold text-[#141210]">
+                  <h4 className="font-serif-vintage text-base font-bold text-[#141210] group-hover:text-[#8C3833] transition-colors">
                     {record.degree}
                   </h4>
                   <span className="font-mono-tech text-xs font-bold text-[#8C3833] bg-[#8C3833]/10 px-2 py-0.5 border border-[#8C3833]/30 self-start">
@@ -65,7 +65,7 @@ export const Spread2AcademicExp: React.FC = () => {
                   )}
                 </div>
 
-                <p className="font-serif-vintage text-[11.5px] text-[#2a2521] mt-1 italic">
+                <p className="font-serif-vintage text-[11.5px] text-[#2a2521] mt-1 italic leading-snug">
                   "{record.notes}"
                 </p>
               </div>
@@ -73,11 +73,11 @@ export const Spread2AcademicExp: React.FC = () => {
           </div>
 
           {/* Institutional Accreditation Notice Box */}
-          <div className="mt-4 p-3 border-2 border-dashed border-[#141210]/30 bg-[#141210]/[0.02] flex items-start gap-2.5">
+          <div className="mt-4 p-3 border-2 border-dashed border-[#141210]/30 bg-[#141210]/[0.02] hover:bg-[#ece4cf]/50 transition-colors flex items-start gap-2.5 rounded-xs">
             <GraduationCap className="w-6 h-6 text-[#141210] flex-shrink-0 mt-0.5" />
             <div className="font-mono-tech text-[9.5px] text-[#2a2521] leading-relaxed">
               <span className="font-bold text-[#141210] block uppercase tracking-wider">REGISTRAR VERIFICATION NOTICE:</span>
-              Demonstrated academic distinction in Computer Science & Engineering (8.36 CGPA) alongside Automobile Engineering & Embedded Control Systems (8.8 CGPA).
+              Demonstrated academic distinction in Computer Science & Engineering (8.36 CGPA at KMEC) alongside Automobile Engineering & Embedded Control Systems (8.8 CGPA at Masab Tank Government Polytechnic).
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ export const Spread2AcademicExp: React.FC = () => {
       </div>
 
       {/* RIGHT PAGE: PAGE 04 — FIELD EXPERIENCE: POLICE & INDUSTRY */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative">
         <div>
           {/* Header */}
           <div className="border-b-2 border-[#141210] pb-2 mb-3">
@@ -117,8 +117,8 @@ export const Spread2AcademicExp: React.FC = () => {
             </p>
           </div>
 
-          {/* Dossier 1: Telangana Police Bharosa Module */}
-          <div className="p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1.5 shadow-xs">
+          {/* Dossier 1: Telangana Police Bharosa Module with Hover Lift */}
+          <div className="p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#8C3833] transition-all space-y-1.5 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-baseline">
               <h4 className="font-serif-vintage text-base font-bold text-[#141210] flex items-center gap-1.5">
                 <ShieldAlert className="w-3.5 h-3.5 text-[#8C3833]" />
@@ -147,7 +147,7 @@ export const Spread2AcademicExp: React.FC = () => {
           </div>
 
           {/* Dossier 2: Teleparadigm Networks */}
-          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1 shadow-xs">
+          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#4b4e39] transition-all space-y-1 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-baseline">
               <h4 className="font-serif-vintage text-sm sm:text-base font-bold text-[#141210]">
                 {teleparadigmExp.role}
@@ -166,7 +166,7 @@ export const Spread2AcademicExp: React.FC = () => {
 
             <div className="flex flex-wrap gap-1 font-mono-tech text-[8.5px] pt-1">
               {teleparadigmExp.toolsUsed.map((tool, idx) => (
-                <span key={idx} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210] font-semibold">
+                <span key={idx} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210] font-semibold hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-default">
                   {tool}
                 </span>
               ))}
@@ -174,7 +174,7 @@ export const Spread2AcademicExp: React.FC = () => {
           </div>
 
           {/* Dossier 3: Mithra Agencies Industrial Training */}
-          <div className="mt-2.5 p-2.5 bg-[#ece4cf]/40 border border-[#141210]/30 space-y-0.5">
+          <div className="mt-2.5 p-2.5 bg-[#ece4cf]/40 border border-[#141210]/30 space-y-0.5 hover:bg-[#ece4cf]/70 transition-colors rounded-xs">
             <div className="flex justify-between items-baseline font-mono-tech text-[10px]">
               <span className="font-bold text-[#141210]">{mithraExp.role}</span>
               <span className="text-[#5a5047]">{mithraExp.dates}</span>

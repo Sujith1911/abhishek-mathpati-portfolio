@@ -111,3 +111,4 @@ export const ForensicWorkflowDiagram: React.FC<{ className?: string }> = ({ clas
     </div>
   </div>
 );
+

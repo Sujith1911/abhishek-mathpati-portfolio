@@ -16,7 +16,7 @@ export const Spread3ResearchProjects: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-full w-full">
       {/* LEFT PAGE: PAGE 05 — SCHOLARLY PRESS & PUBLICATIONS */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
         <div>
           {/* Header */}
           <div className="border-b-2 border-[#141210] pb-2 mb-3">
@@ -36,8 +36,8 @@ export const Spread3ResearchProjects: React.FC = () => {
             </p>
           </div>
 
-          {/* Paper 1: LLM Adversarial Benchmark */}
-          <div className="p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1.5 shadow-xs">
+          {/* Paper 1: LLM Adversarial Benchmark with Hover Effect */}
+          <div className="p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#8C3833] transition-all space-y-1.5 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-start gap-2">
               <span className="font-mono-tech text-[9px] uppercase font-bold text-[#8C3833] tracking-wider px-1.5 py-0.2 border border-[#8C3833]/40 bg-[#8C3833]/10">
                 IEEE ISDDC 2026 • ACCEPTED
@@ -60,8 +60,8 @@ export const Spread3ResearchProjects: React.FC = () => {
             </div>
           </div>
 
-          {/* Paper 2: Decentralized Storage */}
-          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1 shadow-xs">
+          {/* Paper 2: Decentralized Storage with Hover Focus */}
+          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#4b4e39] transition-all space-y-1 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-start gap-2">
               <span className="font-mono-tech text-[9px] uppercase font-bold text-[#4b4e39] tracking-wider px-1.5 py-0.2 border border-[#4b4e39]/40 bg-[#4b4e39]/10">
                 IEEE IC(SEC)² 2026 • PRESENTED
@@ -82,12 +82,12 @@ export const Spread3ResearchProjects: React.FC = () => {
 
           {/* Paper 3 & Technical SVG Diagrams */}
           <div className="mt-2.5 space-y-2">
-            <div className="p-2 border border-[#141210]/30 bg-[#ece4cf]/40 font-mono-tech text-[9.5px]">
+            <div className="p-2 border border-[#141210]/30 bg-[#ece4cf]/40 font-mono-tech text-[9.5px] rounded-xs">
               <span className="font-bold text-[#141210] block uppercase">IJRDET FORENSIC JOURNAL (III):</span>
               <span className="font-serif-vintage text-[11px] text-[#2a2521] block">{paper3.title}</span>
             </div>
-            <ParetoFrontierDiagram />
-            <ForensicWorkflowDiagram />
+            <ParetoFrontierDiagram className="hover:shadow-md transition-shadow" />
+            <ForensicWorkflowDiagram className="hover:shadow-md transition-shadow" />
           </div>
         </div>
 
@@ -106,7 +106,7 @@ export const Spread3ResearchProjects: React.FC = () => {
       </div>
 
       {/* RIGHT PAGE: PAGE 06 — FLAGSHIP ENGINEERING SPECIMENS */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative">
         <div>
           {/* Header */}
           <div className="border-b-2 border-[#141210] pb-2 mb-3">
@@ -126,8 +126,8 @@ export const Spread3ResearchProjects: React.FC = () => {
             </p>
           </div>
 
-          {/* Specimen 001-P: SecureShare */}
-          <div className="p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1.5 shadow-xs">
+          {/* Specimen 001-P: SecureShare with Hover Lift */}
+          <div className="p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#8C3833] transition-all space-y-1.5 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-baseline">
               <span className="font-mono-tech text-[9px] uppercase tracking-wider text-[#8C3833] font-bold">
                 {secureshare.specimenNo} // DECENTRALIZED CLOUD
@@ -148,11 +148,11 @@ export const Spread3ResearchProjects: React.FC = () => {
               <strong className="font-sans font-bold text-[#8C3833]">PROBLEM: </strong>{secureshare.problem}
             </p>
 
-            <DistributedNodesDiagram />
+            <DistributedNodesDiagram className="hover:shadow-xs transition-shadow" />
 
             <div className="flex flex-wrap gap-1 font-mono-tech text-[8.5px] pt-1">
               {secureshare.technologies.map((t, i) => (
-                <span key={i} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210] font-semibold">
+                <span key={i} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210] font-semibold hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-default">
                   {t}
                 </span>
               ))}
@@ -160,7 +160,7 @@ export const Spread3ResearchProjects: React.FC = () => {
           </div>
 
           {/* Specimen 002-P: QPAT System */}
-          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1.5 shadow-xs">
+          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#4b4e39] transition-all space-y-1.5 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-baseline">
               <span className="font-mono-tech text-[9px] uppercase tracking-wider text-[#4b4e39] font-bold">
                 {qpat.specimenNo} // ACADEMIC NLP
@@ -183,7 +183,7 @@ export const Spread3ResearchProjects: React.FC = () => {
 
             <div className="flex flex-wrap gap-1 font-mono-tech text-[8.5px] pt-1">
               {qpat.technologies.map((t, i) => (
-                <span key={i} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210] font-semibold">
+                <span key={i} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210] font-semibold hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-default">
                   {t}
                 </span>
               ))}

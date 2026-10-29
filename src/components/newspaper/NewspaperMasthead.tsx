@@ -49,3 +49,4 @@ export const NewspaperMasthead: React.FC<NewspaperMastheadProps> = ({
     </div>
   );
 };
+

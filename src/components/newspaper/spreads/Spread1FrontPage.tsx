@@ -14,7 +14,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-full w-full">
       {/* LEFT PAGE: PAGE 01 — THE GRAND FRONT PAGE */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
         <div>
           {/* Newspaper Masthead */}
           <NewspaperMasthead
@@ -24,9 +24,9 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
             showFullBanner={true}
           />
 
-          {/* Banner Lead Headline */}
-          <div className="text-center my-2 pb-2 border-b-2 border-[#141210]">
-            <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-[#141210] leading-tight">
+          {/* Banner Lead Headline with Hover Effect */}
+          <div className="text-center my-2 pb-2 border-b-2 border-[#141210] group cursor-default">
+            <h2 className="font-display text-lg sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-[#141210] group-hover:text-[#8C3833] transition-colors leading-tight">
               CYBERSECURITY RESEARCHER DEPLOYS DECENTRALIZED PROTOCOLS & FORENSIC SAFEGUARDS
             </h2>
             <p className="font-serif-vintage text-xs sm:text-sm text-[#3a332c] mt-1 font-semibold italic">
@@ -35,13 +35,13 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
           </div>
 
           {/* Front Page Multi-Column Story Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 mt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 mt-1.5">
             {/* Column 1: Portrait & Bio Card (5 cols) */}
             <div className="sm:col-span-5 flex flex-col justify-between border-b sm:border-b-0 sm:border-r border-[#141210]/20 pr-0 sm:pr-3">
-              {/* Photo Box with Halftone Engraving Aesthetic */}
-              <div className="relative p-2 bg-[#ece4cf] border border-[#141210] shadow-xs text-center">
+              {/* Photo Box with Halftone Engraving Aesthetic & Hover Lift */}
+              <div className="relative p-2 bg-[#ece4cf] border border-[#141210] shadow-xs text-center group hover:shadow-md transition-all">
                 <div className="newsprint-halftone relative aspect-[4/5] bg-gradient-to-b from-[#e5dbc2] to-[#d6cbaf] border border-[#141210]/40 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                  <div className="w-16 h-16 rounded-full border-2 border-dashed border-[#141210] flex items-center justify-center mb-2 bg-[#f5f0e1]/60">
+                  <div className="w-16 h-16 rounded-full border-2 border-dashed border-[#141210] flex items-center justify-center mb-2 bg-[#f5f0e1]/60 group-hover:scale-110 transition-transform">
                     <Fingerprint className="w-8 h-8 text-[#141210]" />
                   </div>
                   <span className="font-typewriter text-xs font-bold tracking-widest text-[#141210] uppercase">
@@ -71,20 +71,20 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                 </div>
               </div>
 
-              {/* Dispatch Action Links */}
+              {/* Dispatch Action Links with Hover States */}
               <div className="mt-2 pt-2 border-t border-[#141210]/20 flex flex-wrap gap-1 font-mono-tech text-[9px]">
                 <a
                   href={`mailto:${RESUME_DATA.personal.email}`}
-                  className="px-2 py-0.5 border border-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors font-bold inline-flex items-center gap-1"
+                  className="px-2 py-0.5 border border-[#141210] hover:bg-[#8C3833] hover:text-white hover:border-[#8C3833] transition-all font-bold inline-flex items-center gap-1 shadow-2xs"
                 >
-                  <Mail className="w-2.5 h-2.5 text-[#8C3833]" />
+                  <Mail className="w-2.5 h-2.5 text-[#8C3833] group-hover:text-white" />
                   <span>Telegraph</span>
                 </a>
                 <a
                   href={RESUME_DATA.personal.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-2 py-0.5 border border-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors font-bold inline-flex items-center gap-1"
+                  className="px-2 py-0.5 border border-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] transition-all font-bold inline-flex items-center gap-1 shadow-2xs"
                 >
                   <GithubIcon className="w-2.5 h-2.5" />
                   <span>GitHub</span>
@@ -94,7 +94,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                   href={RESUME_DATA.personal.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-2 py-0.5 border border-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors font-bold inline-flex items-center gap-1"
+                  className="px-2 py-0.5 border border-[#141210] hover:bg-[#4b4e39] hover:text-white hover:border-[#4b4e39] transition-all font-bold inline-flex items-center gap-1 shadow-2xs"
                 >
                   <LinkedinIcon className="w-2.5 h-2.5 text-[#4b4e39]" />
                   <span>LinkedIn</span>
@@ -113,27 +113,27 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                   <NewspaperStamp text="ARCHIVE" variant="crimson" rotation={1} />
                 </div>
 
-                <div className="font-serif-vintage text-xs sm:text-[12.5px] leading-relaxed text-[#141210]/95 space-y-2 text-justify">
+                <div className="font-serif-vintage text-xs sm:text-[12.5px] leading-relaxed text-[#141210]/95 space-y-2 text-justify hover:bg-[#141210]/[0.02] p-1.5 rounded-xs transition-colors">
                   <p className="drop-cap">
                     HYDERABAD — In an era marked by sophisticated cyber intrusions and evolving adversarial exploits, computer science researcher Mythreie Dumpati has emerged with a multidisciplinary approach bridging digital forensics, decentralized architectures, and applied machine learning security.
                   </p>
                   <p>
-                    Graduating in 2026 from Keshav Memorial Engineering College with an 8.36 CGPA and possessing an earlier foundation in Automobile Engineering (8.8 CGPA), Dumpati’s recent research spans direct investigative contributions to public safety initiatives across 26 statewide crisis centres, peer-reviewed publications accepted into IEEE conferences, and the development of court-admissible evidence preservation software.
+                    Graduating in 2026 from Keshav Memorial Engineering College with an 8.36 CGPA and possessing an earlier foundation in Automobile Engineering (8.8 CGPA from Masab Tank Government Polytechnic College), Dumpati’s recent research spans direct investigative contributions to public safety initiatives across 26 statewide crisis centres, peer-reviewed publications accepted into IEEE conferences, and the development of court-admissible evidence preservation software.
                   </p>
                 </div>
               </div>
 
-              {/* Front Page Broadsheet Index Box */}
-              <div className="mt-3 p-2.5 bg-[#ece4cf]/70 border-2 border-[#141210]">
+              {/* Front Page Broadsheet Index Box with Hoverable Links */}
+              <div className="mt-2.5 p-2.5 bg-[#ece4cf]/80 border-2 border-[#141210]">
                 <div className="flex items-center justify-between border-b border-[#141210] pb-1 mb-1.5 font-mono-tech text-[9px] uppercase tracking-widest font-bold text-[#141210]">
                   <span>IN THIS SPECIAL EDITION</span>
-                  <span className="text-[#8C3833]">INDEX</span>
+                  <span className="text-[#8C3833]">[RAPID JUMP]</span>
                 </div>
                 <div className="grid grid-cols-2 gap-x-2 gap-y-1 font-newsreader text-[11px] leading-tight">
                   <button
                     type="button"
                     onClick={() => onNavigateToSpread(2)}
-                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between"
+                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
                   >
                     <span>§ Academic Timeline</span>
                     <span className="font-mono-tech font-bold text-[9px]">p. 03</span>
@@ -141,7 +141,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                   <button
                     type="button"
                     onClick={() => onNavigateToSpread(2)}
-                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between"
+                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
                   >
                     <span>§ Police & Field Experience</span>
                     <span className="font-mono-tech font-bold text-[9px]">p. 04</span>
@@ -149,7 +149,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                   <button
                     type="button"
                     onClick={() => onNavigateToSpread(3)}
-                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between"
+                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
                   >
                     <span>§ IEEE Research Papers</span>
                     <span className="font-mono-tech font-bold text-[9px]">p. 05</span>
@@ -157,7 +157,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                   <button
                     type="button"
                     onClick={() => onNavigateToSpread(3)}
-                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between"
+                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
                   >
                     <span>§ SecureShare & QPAT</span>
                     <span className="font-mono-tech font-bold text-[9px]">p. 06</span>
@@ -165,7 +165,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                   <button
                     type="button"
                     onClick={() => onNavigateToSpread(4)}
-                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between"
+                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
                   >
                     <span>§ Forensic & Vehicle Safety</span>
                     <span className="font-mono-tech font-bold text-[9px]">p. 07</span>
@@ -173,7 +173,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                   <button
                     type="button"
                     onClick={() => onNavigateToSpread(4)}
-                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between"
+                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
                   >
                     <span>§ Tool Arsenal & NLU 87%</span>
                     <span className="font-mono-tech font-bold text-[9px]">p. 08</span>
@@ -181,7 +181,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                   <button
                     type="button"
                     onClick={() => onNavigateToSpread(5)}
-                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between"
+                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
                   >
                     <span>§ Student Body Presidency</span>
                     <span className="font-mono-tech font-bold text-[9px]">p. 09</span>
@@ -189,7 +189,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
                   <button
                     type="button"
                     onClick={() => onNavigateToSpread(5)}
-                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between"
+                    className="text-left hover:text-[#8C3833] hover:underline cursor-pointer flex justify-between p-0.5 rounded-xs hover:bg-[#141210]/5 transition-colors"
                   >
                     <span>§ Dispatch & PDF Resume</span>
                     <span className="font-mono-tech font-bold text-[9px]">p. 10</span>
@@ -208,7 +208,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
       </div>
 
       {/* RIGHT PAGE: PAGE 02 — THE PERSON BEHIND THE STORY */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative">
         <div>
           {/* Section Header */}
           <div className="border-b-2 border-[#141210] pb-2 mb-3">
@@ -229,7 +229,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
           </div>
 
           {/* Core Biography Article */}
-          <div className="space-y-2.5 font-serif-vintage text-xs sm:text-[12.5px] leading-relaxed text-[#141210]/95 text-justify">
+          <div className="space-y-2.5 font-serif-vintage text-xs sm:text-[12.5px] leading-relaxed text-[#141210]/95 text-justify hover:bg-[#141210]/[0.02] p-1.5 rounded-xs transition-colors">
             <p className="drop-cap">
               Rooted in both hardware control systems and computational network security, Mythreie Dumpati approaches software engineering through the lens of verifiable integrity. Her dual background in automobile embedded control and high-level computer science informs an instinct for designing systems that cannot fail silently.
             </p>
@@ -238,14 +238,14 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
             </p>
           </div>
 
-          {/* Three Core Pillars of Research */}
-          <div className="mt-4 space-y-2">
+          {/* Three Core Pillars of Research with Interactive Hover States */}
+          <div className="mt-3.5 space-y-2">
             <div className="font-mono-tech text-[10px] uppercase font-bold text-[#141210] tracking-widest border-b border-[#141210]/20 pb-0.5 flex justify-between">
               <span>THREE CORE INVESTIGATIVE PILLARS</span>
               <span className="text-[#8C3833]">[METHODOLOGY]</span>
             </div>
 
-            <div className="p-2.5 border border-[#141210]/30 bg-[#141210]/[0.02] space-y-0.5">
+            <div className="p-2.5 border border-[#141210]/30 bg-[#141210]/[0.02] hover:bg-[#ece4cf] hover:border-[#8C3833] transition-all space-y-0.5 rounded-xs cursor-default">
               <span className="font-typewriter text-xs font-bold text-[#8C3833] block">
                 1. Digital Forensics & Operational Analytics
               </span>
@@ -254,7 +254,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
               </p>
             </div>
 
-            <div className="p-2.5 border border-[#141210]/30 bg-[#141210]/[0.02] space-y-0.5">
+            <div className="p-2.5 border border-[#141210]/30 bg-[#141210]/[0.02] hover:bg-[#ece4cf] hover:border-[#4b4e39] transition-all space-y-0.5 rounded-xs cursor-default">
               <span className="font-typewriter text-xs font-bold text-[#4b4e39] block">
                 2. Decentralized Protocols & Privacy Control
               </span>
@@ -263,7 +263,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
               </p>
             </div>
 
-            <div className="p-2.5 border border-[#141210]/30 bg-[#141210]/[0.02] space-y-0.5">
+            <div className="p-2.5 border border-[#141210]/30 bg-[#141210]/[0.02] hover:bg-[#ece4cf] hover:border-[#141210] transition-all space-y-0.5 rounded-xs cursor-default">
               <span className="font-typewriter text-xs font-bold text-[#141210] block">
                 3. Applied AI & Adversarial Benchmarking
               </span>
@@ -278,7 +278,7 @@ export const Spread1FrontPage: React.FC<Spread1FrontPageProps> = ({ onNavigateTo
             <span className="text-[#5a5047] font-bold">LINGUISTIC CADRE:</span>
             <div className="flex gap-1.5">
               {RESUME_DATA.personal.languagesSpoken.map((lang, idx) => (
-                <span key={idx} className="px-1.5 py-0.5 border border-[#141210]/40 bg-[#ece4cf] text-[#141210] font-semibold text-[9.5px]">
+                <span key={idx} className="px-1.5 py-0.5 border border-[#141210]/40 bg-[#ece4cf] text-[#141210] font-semibold text-[9.5px] hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-default">
                   {lang.name} {lang.name === 'German' ? '(A1)' : ''}
                 </span>
               ))}

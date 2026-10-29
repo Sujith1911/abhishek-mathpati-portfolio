@@ -50,3 +50,4 @@ export const NewspaperStamp: React.FC<NewspaperStampProps> = ({
     </div>
   );
 };
+

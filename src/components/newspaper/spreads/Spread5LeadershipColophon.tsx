@@ -44,7 +44,7 @@ export const Spread5LeadershipColophon: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-full w-full">
       {/* LEFT PAGE: PAGE 09 — LEADERSHIP & CLASSICAL CADRE */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
         <div>
           {/* Header */}
           <div className="border-b-2 border-[#141210] pb-2 mb-3">
@@ -64,8 +64,8 @@ export const Spread5LeadershipColophon: React.FC = () => {
             </p>
           </div>
 
-          {/* Student Body President Article */}
-          <div className="p-3.5 bg-[#ece4cf]/60 border border-[#141210] space-y-1.5 shadow-xs">
+          {/* Student Body President Article with Hover Focus */}
+          <div className="p-3.5 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#8C3833] transition-all space-y-1.5 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-start">
               <h4 className="font-serif-vintage text-base font-bold text-[#141210] flex items-center gap-1.5">
                 <Crown className="w-4 h-4 text-[#8C3833]" />
@@ -89,8 +89,8 @@ export const Spread5LeadershipColophon: React.FC = () => {
             </div>
           </div>
 
-          {/* CSI Social Media Team */}
-          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1 shadow-xs">
+          {/* CSI Social Media Team with Hover Focus */}
+          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#4b4e39] transition-all space-y-1 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-start">
               <h4 className="font-serif-vintage text-sm sm:text-base font-bold text-[#141210] flex items-center gap-1.5">
                 <Users className="w-3.5 h-3.5 text-[#4b4e39]" />
@@ -111,7 +111,7 @@ export const Spread5LeadershipColophon: React.FC = () => {
           </div>
 
           {/* Carnatic Classical Vocalist & Instrumentalist */}
-          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1 shadow-xs">
+          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md transition-all space-y-1 shadow-xs rounded-xs cursor-default">
             <div className="flex items-center justify-between">
               <span className="font-typewriter text-xs font-bold text-[#141210] flex items-center gap-1.5">
                 <Music className="w-3.5 h-3.5 text-[#8C3833]" />
@@ -127,13 +127,13 @@ export const Spread5LeadershipColophon: React.FC = () => {
           </div>
 
           {/* Leadership Competencies */}
-          <div className="mt-2.5 p-2 bg-[#ece4cf]/40 border border-[#141210]/30">
+          <div className="mt-2.5 p-2 bg-[#ece4cf]/40 border border-[#141210]/30 rounded-xs">
             <div className="font-mono-tech text-[9px] uppercase tracking-wider text-[#5a5047] font-bold mb-1">
               ORGANIZATIONAL & LEADERSHIP COMPETENCIES:
             </div>
             <div className="flex flex-wrap gap-1 font-mono-tech text-[9px]">
               {skills.softSkills.map((s, idx) => (
-                <span key={idx} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210]">
+                <span key={idx} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-default">
                   {s}
                 </span>
               ))}
@@ -156,7 +156,7 @@ export const Spread5LeadershipColophon: React.FC = () => {
       </div>
 
       {/* RIGHT PAGE: PAGE 10 — ARCHIVAL COLOPHON & DISPATCH */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative">
         <div>
           {/* Header */}
           <div className="border-b-2 border-[#141210] pb-2 mb-3">
@@ -176,8 +176,8 @@ export const Spread5LeadershipColophon: React.FC = () => {
             </p>
           </div>
 
-          {/* Official Document Download Box */}
-          <div className="p-3.5 border-2 border-[#141210] bg-[#ece4cf]/80 shadow-xs text-center">
+          {/* Official Document Download Box with Hover Lift */}
+          <div className="p-3.5 border-2 border-[#141210] bg-[#ece4cf]/80 shadow-xs hover:shadow-md transition-shadow text-center rounded-xs">
             <span className="font-mono-tech text-[9px] uppercase tracking-widest text-[#5a5047] block mb-0.5">
               ORIGINAL SOURCE DOCUMENT
             </span>
@@ -192,7 +192,7 @@ export const Spread5LeadershipColophon: React.FC = () => {
                 href="/MYTHREIE_DUMPATI.pdf"
                 download="MYTHREIE_DUMPATI_RESUME.pdf"
                 onClick={() => soundManager.playStampSound()}
-                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#8C3833] hover:bg-[#6c2824] text-[#f5f0e1] font-mono-tech text-xs uppercase tracking-wider font-bold shadow-sm transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#8C3833] hover:bg-[#6c2824] hover:scale-105 text-[#f5f0e1] font-mono-tech text-xs uppercase tracking-wider font-bold shadow-sm transition-all cursor-pointer rounded-xs"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download PDF Resume</span>
@@ -201,7 +201,7 @@ export const Spread5LeadershipColophon: React.FC = () => {
                 href="/MYTHREIE_DUMPATI.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] font-mono-tech text-xs uppercase tracking-wider font-bold transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] font-mono-tech text-xs uppercase tracking-wider font-bold transition-all cursor-pointer rounded-xs"
               >
                 <FileText className="w-3.5 h-3.5" />
                 <span>Inspect Raw PDF</span>
@@ -209,10 +209,10 @@ export const Spread5LeadershipColophon: React.FC = () => {
             </div>
           </div>
 
-          {/* Official Correspondence Ledger */}
+          {/* Official Correspondence Ledger with Copy Feedback */}
           <div className="mt-3 space-y-1.5 font-mono-tech text-[9.5px]">
             {/* Email */}
-            <div className="p-2 border border-[#141210] bg-[#ece4cf]/50 flex items-center justify-between gap-2">
+            <div className="p-2 border border-[#141210] bg-[#ece4cf]/50 hover:bg-[#ece4cf] transition-colors flex items-center justify-between gap-2 rounded-xs">
               <div className="flex items-center gap-1.5 truncate">
                 <Mail className="w-3 h-3 text-[#8C3833] flex-shrink-0" />
                 <span className="text-[#5a5047] font-bold">EMAIL:</span>
@@ -226,7 +226,7 @@ export const Spread5LeadershipColophon: React.FC = () => {
               <button
                 type="button"
                 onClick={() => handleCopy(RESUME_DATA.personal.email, 'email')}
-                className="px-1.5 py-0.5 border border-[#141210]/40 hover:bg-[#141210] hover:text-[#f5f0e1] text-[8.5px] font-bold flex items-center gap-1 flex-shrink-0 cursor-pointer"
+                className="px-1.5 py-0.5 border border-[#141210]/40 hover:bg-[#141210] hover:text-[#f5f0e1] text-[8.5px] font-bold flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-xs transition-colors"
               >
                 {copiedEmail ? <Check className="w-2.5 h-2.5 text-green-700" /> : <Copy className="w-2.5 h-2.5" />}
                 <span>{copiedEmail ? 'Copied' : 'Copy'}</span>
@@ -234,7 +234,7 @@ export const Spread5LeadershipColophon: React.FC = () => {
             </div>
 
             {/* Phone */}
-            <div className="p-2 border border-[#141210] bg-[#ece4cf]/50 flex items-center justify-between gap-2">
+            <div className="p-2 border border-[#141210] bg-[#ece4cf]/50 hover:bg-[#ece4cf] transition-colors flex items-center justify-between gap-2 rounded-xs">
               <div className="flex items-center gap-1.5">
                 <Phone className="w-3 h-3 text-[#4b4e39] flex-shrink-0" />
                 <span className="text-[#5a5047] font-bold">TELEPHONE:</span>
@@ -248,38 +248,38 @@ export const Spread5LeadershipColophon: React.FC = () => {
               <button
                 type="button"
                 onClick={() => handleCopy(RESUME_DATA.personal.phone, 'phone')}
-                className="px-1.5 py-0.5 border border-[#141210]/40 hover:bg-[#141210] hover:text-[#f5f0e1] text-[8.5px] font-bold flex items-center gap-1 flex-shrink-0 cursor-pointer"
+                className="px-1.5 py-0.5 border border-[#141210]/40 hover:bg-[#141210] hover:text-[#f5f0e1] text-[8.5px] font-bold flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-xs transition-colors"
               >
                 {copiedPhone ? <Check className="w-2.5 h-2.5 text-green-700" /> : <Copy className="w-2.5 h-2.5" />}
                 <span>{copiedPhone ? 'Copied' : 'Copy'}</span>
               </button>
             </div>
 
-            {/* Profiles */}
+            {/* Profiles with Hover Inversion */}
             <div className="grid grid-cols-2 gap-2">
               <a
                 href={RESUME_DATA.personal.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 border border-[#141210] bg-[#ece4cf]/50 flex items-center gap-1 hover:border-[#8C3833] transition-colors font-bold"
+                className="p-1.5 border border-[#141210] bg-[#ece4cf]/50 hover:bg-[#141210] hover:text-[#f5f0e1] flex items-center gap-1 transition-colors font-bold rounded-xs"
               >
-                <LinkedinIcon className="w-3 h-3 text-[#4b4e39]" />
+                <LinkedinIcon className="w-3 h-3 text-current" />
                 <span className="truncate">LinkedIn ↗</span>
               </a>
               <a
                 href={RESUME_DATA.personal.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 border border-[#141210] bg-[#ece4cf]/50 flex items-center gap-1 hover:border-[#8C3833] transition-colors font-bold"
+                className="p-1.5 border border-[#141210] bg-[#ece4cf]/50 hover:bg-[#141210] hover:text-[#f5f0e1] flex items-center gap-1 transition-colors font-bold rounded-xs"
               >
-                <GithubIcon className="w-3 h-3 text-[#141210]" />
+                <GithubIcon className="w-3 h-3 text-current" />
                 <span className="truncate">GitHub ↗</span>
               </a>
             </div>
           </div>
 
           {/* Interactive Telegraph Dispatch Form */}
-          <div className="mt-3 p-2.5 border-2 border-dashed border-[#141210]/40 bg-[#141210]/[0.02]">
+          <div className="mt-3 p-2.5 border-2 border-dashed border-[#141210]/40 bg-[#141210]/[0.02] rounded-xs">
             <span className="font-mono-tech text-[9px] uppercase tracking-wider text-[#8C3833] font-bold block mb-1">
               TRANSMIT TELEGRAPH DISPATCH:
             </span>
@@ -289,7 +289,7 @@ export const Spread5LeadershipColophon: React.FC = () => {
                 placeholder="Sender Name / Institution"
                 value={dispatchName}
                 onChange={(e) => setDispatchName(e.target.value)}
-                className="w-full text-xs font-typewriter p-1.5 bg-[#f5f0e1] border border-[#141210]/40 focus:outline-none focus:border-[#8C3833] placeholder:text-[#5a5047]/60"
+                className="w-full text-xs font-typewriter p-1.5 bg-[#f5f0e1] border border-[#141210]/40 focus:outline-none focus:border-[#8C3833] placeholder:text-[#5a5047]/60 rounded-xs"
               />
               <textarea
                 rows={2}
@@ -297,11 +297,11 @@ export const Spread5LeadershipColophon: React.FC = () => {
                 value={dispatchMessage}
                 onChange={(e) => setDispatchMessage(e.target.value)}
                 required
-                className="w-full text-xs font-serif-vintage p-1.5 bg-[#f5f0e1] border border-[#141210]/40 focus:outline-none focus:border-[#8C3833] placeholder:text-[#5a5047]/60"
+                className="w-full text-xs font-serif-vintage p-1.5 bg-[#f5f0e1] border border-[#141210]/40 focus:outline-none focus:border-[#8C3833] placeholder:text-[#5a5047]/60 rounded-xs"
               />
               <button
                 type="submit"
-                className="w-full py-1.5 px-3 bg-[#141210] hover:bg-[#8C3833] text-[#f5f0e1] font-mono-tech text-[9.5px] uppercase tracking-wider font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                className="w-full py-1.5 px-3 bg-[#141210] hover:bg-[#8C3833] text-[#f5f0e1] font-mono-tech text-[9.5px] uppercase tracking-wider font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer rounded-xs"
               >
                 <Send className="w-3 h-3" />
                 <span>{dispatchSent ? 'Telegram Dispatched!' : 'Transmit via Mail Client'}</span>
@@ -319,7 +319,7 @@ export const Spread5LeadershipColophon: React.FC = () => {
               <span className="font-mono-tech text-[8.5px] text-[#4b4e39]">HYDERABAD, INDIA</span>
             </div>
 
-            <div className="w-14 h-14 rounded-full border-2 border-[#8C3833] border-double flex flex-col items-center justify-center text-[#8C3833] font-typewriter text-[7.5px] transform rotate-12 text-center p-1">
+            <div className="w-14 h-14 rounded-full border-2 border-[#8C3833] border-double flex flex-col items-center justify-center text-[#8C3833] font-typewriter text-[7.5px] transform rotate-12 text-center p-1 hover:rotate-0 transition-transform cursor-default">
               <span>OFFICIAL</span>
               <span className="font-bold text-[9px]">GAZETTE</span>
               <span>2026</span>

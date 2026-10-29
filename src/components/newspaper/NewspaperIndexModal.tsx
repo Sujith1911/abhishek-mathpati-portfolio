@@ -135,3 +135,4 @@ export const NewspaperIndexModal: React.FC<NewspaperIndexModalProps> = ({
     </div>
   );
 };
+

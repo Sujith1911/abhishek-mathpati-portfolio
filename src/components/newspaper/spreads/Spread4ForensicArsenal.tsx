@@ -12,7 +12,7 @@ export const Spread4ForensicArsenal: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-full w-full">
       {/* LEFT PAGE: PAGE 07 — FORENSIC & HARDWARE SPECIMENS */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto border-b md:border-b-0 md:border-r border-[#141210]/20 relative">
         <div>
           {/* Header */}
           <div className="border-b-2 border-[#141210] pb-2 mb-3">
@@ -32,8 +32,8 @@ export const Spread4ForensicArsenal: React.FC = () => {
             </p>
           </div>
 
-          {/* Specimen 003-P: SMIA Investigator */}
-          <div className="p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1.5 shadow-xs">
+          {/* Specimen 003-P: SMIA Investigator with Hover Focus */}
+          <div className="p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#8C3833] transition-all space-y-1.5 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-baseline">
               <span className="font-mono-tech text-[9px] uppercase tracking-wider text-[#8C3833] font-bold">
                 {smia.specimenNo} // JUDICIAL ADMISSIBILITY
@@ -61,15 +61,15 @@ export const Spread4ForensicArsenal: React.FC = () => {
 
             <div className="flex flex-wrap gap-1 font-mono-tech text-[8.5px] pt-1">
               {smia.technologies.map((t, i) => (
-                <span key={i} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210] font-semibold">
+                <span key={i} className="px-1.5 py-0.5 border border-[#141210]/30 bg-[#f5f0e1] text-[#141210] font-semibold hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-default">
                   {t}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Specimen 004-P: Alcohol Detector Interlock */}
-          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] space-y-1.5 shadow-xs">
+          {/* Specimen 004-P: Alcohol Detector Interlock with Hover Focus */}
+          <div className="mt-2.5 p-3 bg-[#ece4cf]/60 border border-[#141210] hover:shadow-md hover:border-[#4b4e39] transition-all space-y-1.5 shadow-xs rounded-xs cursor-default">
             <div className="flex justify-between items-baseline">
               <span className="font-mono-tech text-[9px] uppercase tracking-wider text-[#4b4e39] font-bold">
                 {alcoholProject.specimenNo} // AUTOMOTIVE SAFETY
@@ -90,7 +90,7 @@ export const Spread4ForensicArsenal: React.FC = () => {
               <strong className="font-sans font-bold text-[#4b4e39]">CIRCUITRY: </strong>{alcoholProject.approach}
             </p>
 
-            <div className="p-2 bg-[#ece4cf] border border-[#141210]/30 font-mono-tech text-[9px] text-[#2a2521]">
+            <div className="p-2 bg-[#ece4cf] border border-[#141210]/30 font-mono-tech text-[9px] text-[#2a2521] rounded-xs">
               <span className="font-bold block text-[#141210]">HARDWARE SIGNAL PATHWAY:</span>
               MQ-3 Sensor ➔ Arduino Analog ADC ➔ Real-Time Threshold Logic ➔ Relay Ignition Cutoff
             </div>
@@ -112,7 +112,7 @@ export const Spread4ForensicArsenal: React.FC = () => {
       </div>
 
       {/* RIGHT PAGE: PAGE 08 — ARSENAL INVENTORY & CERTIFICATIONS */}
-      <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between relative">
+      <div className="p-4 sm:p-5 lg:p-6 xl:p-8 flex flex-col justify-between h-full overflow-y-auto relative">
         <div>
           {/* Header */}
           <div className="border-b-2 border-[#141210] pb-2 mb-3">
@@ -132,17 +132,17 @@ export const Spread4ForensicArsenal: React.FC = () => {
             </p>
           </div>
 
-          {/* Technical Categories */}
+          {/* Technical Categories with Hover Highlights */}
           <div className="space-y-2 font-mono-tech text-[9.5px]">
             {/* Category 1: Digital Forensics & Security */}
-            <div className="p-2 bg-[#ece4cf]/60 border border-[#141210]">
+            <div className="p-2 bg-[#ece4cf]/60 border border-[#141210] hover:bg-[#ece4cf] transition-colors rounded-xs">
               <span className="font-bold text-[#8C3833] uppercase flex items-center gap-1 mb-1">
                 <ShieldCheck className="w-3 h-3 text-[#8C3833]" />
                 <span>CYBERSECURITY & DIGITAL FORENSICS</span>
               </span>
               <div className="flex flex-wrap gap-1">
                 {skills.cybersecurityAndForensics.map((s, i) => (
-                  <span key={i} className="px-1.5 py-0.5 bg-[#f5f0e1] border border-[#141210]/30 text-[#141210]">
+                  <span key={i} className="px-1.5 py-0.5 bg-[#f5f0e1] border border-[#141210]/30 text-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-default">
                     {s}
                   </span>
                 ))}
@@ -150,14 +150,14 @@ export const Spread4ForensicArsenal: React.FC = () => {
             </div>
 
             {/* Category 2: Forensic Tools */}
-            <div className="p-2 bg-[#ece4cf]/60 border border-[#141210]">
+            <div className="p-2 bg-[#ece4cf]/60 border border-[#141210] hover:bg-[#ece4cf] transition-colors rounded-xs">
               <span className="font-bold text-[#4b4e39] uppercase flex items-center gap-1 mb-1">
                 <Terminal className="w-3 h-3 text-[#4b4e39]" />
                 <span>FORENSIC TOOLS & UTILITIES</span>
               </span>
               <div className="flex flex-wrap gap-1">
                 {skills.securityTools.map((s, i) => (
-                  <span key={i} className="px-1.5 py-0.5 bg-[#f5f0e1] border border-[#141210]/30 text-[#141210] font-bold">
+                  <span key={i} className="px-1.5 py-0.5 bg-[#f5f0e1] border border-[#141210]/30 text-[#141210] font-bold hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-default">
                     {s}
                   </span>
                 ))}
@@ -165,14 +165,14 @@ export const Spread4ForensicArsenal: React.FC = () => {
             </div>
 
             {/* Category 3: Programming Languages */}
-            <div className="p-2 bg-[#ece4cf]/60 border border-[#141210]">
+            <div className="p-2 bg-[#ece4cf]/60 border border-[#141210] hover:bg-[#ece4cf] transition-colors rounded-xs">
               <span className="font-bold text-[#141210] uppercase flex items-center gap-1 mb-1">
                 <Cpu className="w-3 h-3 text-[#141210]" />
                 <span>PROGRAMMING LANGUAGES & DISTRIBUTED</span>
               </span>
               <div className="flex flex-wrap gap-1">
                 {[...skills.programmingLanguages, ...skills.distributedSystems].map((s, i) => (
-                  <span key={i} className="px-1.5 py-0.5 bg-[#f5f0e1] border border-[#141210]/30 text-[#141210]">
+                  <span key={i} className="px-1.5 py-0.5 bg-[#f5f0e1] border border-[#141210]/30 text-[#141210] hover:bg-[#141210] hover:text-[#f5f0e1] transition-colors cursor-default">
                     {s}
                   </span>
                 ))}
@@ -180,7 +180,7 @@ export const Spread4ForensicArsenal: React.FC = () => {
             </div>
           </div>
 
-          {/* Certifications Roster */}
+          {/* Certifications Roster with Hover Focus */}
           <div className="mt-3 space-y-1.5">
             <div className="font-mono-tech text-[9.5px] uppercase font-bold text-[#141210] tracking-wider border-b border-[#141210]/20 pb-0.5">
               ACCREDITED CERTIFICATIONS & DIPLOMAS
@@ -188,7 +188,7 @@ export const Spread4ForensicArsenal: React.FC = () => {
             {certifications.map((cert, idx) => (
               <div
                 key={idx}
-                className="p-2 bg-[#ece4cf]/50 border border-[#141210]/30 flex items-start justify-between gap-2"
+                className="p-2 bg-[#ece4cf]/50 border border-[#141210]/30 hover:border-[#8C3833] hover:bg-[#ece4cf] transition-all flex items-start justify-between gap-2 rounded-xs cursor-default"
               >
                 <div>
                   <h5 className="font-serif-vintage text-xs font-bold text-[#141210] leading-tight">

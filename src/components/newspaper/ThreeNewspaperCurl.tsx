@@ -445,3 +445,4 @@ export const ThreeNewspaperCurl: React.FC<ThreeNewspaperCurlProps> = ({
     />
   );
 };
+
