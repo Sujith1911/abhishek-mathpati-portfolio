@@ -2,14 +2,14 @@
 
 @layer base {
   :root {
-    --newsprint-bg: #f5f0e1;
-    --newsprint-aged: #ece3cc;
+    --newsprint-bg: #f4f3ef;
+    --newsprint-aged: #eae8e1;
     --newsprint-ink: #141210;
-    --newsprint-charcoal: #2a2521;
-    --newsprint-muted: #5a5047;
+    --newsprint-charcoal: #23201d;
+    --newsprint-muted: #5a554e;
     --newsprint-crimson: #8C3833;
     --newsprint-olive: #4b4e39;
-    --newsprint-border: #221e1a;
+    --newsprint-border: #141210;
   }
 }
 
@@ -44,10 +44,10 @@
 
 /* Authentic Vintage Broadsheet Paper Texture */
 .newspaper-paper-texture {
-  background-color: #f5f0e1;
+  background-color: #f4f3ef;
   background-image: 
-    radial-gradient(ellipse at 50% 50%, rgba(255, 252, 245, 0.95) 0%, rgba(245, 238, 222, 0.9) 75%, rgba(230, 220, 200, 0.85) 100%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 252, 0.98) 0%, rgba(246, 245, 241, 0.95) 75%, rgba(238, 236, 230, 0.9) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 /* Atmospheric Editorial Drafting Desk */

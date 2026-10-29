@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NewspaperCoverPage } from './spreads/NewspaperCoverPage';
-import { Spread1FrontPage } from './spreads/Spread1FrontPage';
-import { Spread2AcademicExp } from './spreads/Spread2AcademicExp';
-import { Spread3ResearchProjects } from './spreads/Spread3ResearchProjects';
-import { Spread4ForensicArsenal } from './spreads/Spread4ForensicArsenal';
-import { Spread5LeadershipColophon } from './spreads/Spread5LeadershipColophon';
-import { ThreeNewspaperCurl } from './ThreeNewspaperCurl';
+import { Newspaper3DViewer } from './Newspaper3DViewer';
 import { NewspaperIndexModal } from './NewspaperIndexModal';
 import { NewspaperSideNav } from './NewspaperSideNav';
 import { soundManager } from '../../utils/sound';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const TOTAL_SPREADS = 6;
 
@@ -17,7 +10,6 @@ export const NewspaperShell: React.FC = () => {
   const [currentSpread, setCurrentSpread] = useState(1);
   const [targetSpread, setTargetSpread] = useState(1);
   const [isFlipping, setIsFlipping] = useState(false);
-  const [isCoverDisappearing, setIsCoverDisappearing] = useState(false);
   const [flipDirection, setFlipDirection] = useState<'forward' | 'backward' | null>(null);
   const [isIndexOpen, setIsIndexOpen] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -28,30 +20,17 @@ export const NewspaperShell: React.FC = () => {
     soundManager.enabled = soundEnabled;
   }, [soundEnabled]);
 
-  // Handle completion of Three.js broadsheet page curl
+  // Handle completion of physical 3D broadsheet page curl
   const handleFlipComplete = () => {
     setCurrentSpread(targetSpread);
     setIsFlipping(false);
     setFlipDirection(null);
   };
 
-  // Turn broadsheet forward
+  // Turn broadsheet forward in real-time 3D
   const turnNext = () => {
-    if (isFlipping || isCoverDisappearing || currentSpread >= TOTAL_SPREADS) return;
+    if (isFlipping || currentSpread >= TOTAL_SPREADS) return;
 
-    // First page animation: disappearing transition!
-    if (currentSpread === 1) {
-      setTargetSpread(2);
-      setIsCoverDisappearing(true);
-      soundManager.playPageTurnSound();
-      setTimeout(() => {
-        setCurrentSpread(2);
-        setIsCoverDisappearing(false);
-      }, 650);
-      return;
-    }
-
-    // From Spread 2 onwards: realistic 3D page turn curl!
     const next = currentSpread + 1;
     setTargetSpread(next);
     setIsFlipping(true);
@@ -59,19 +38,10 @@ export const NewspaperShell: React.FC = () => {
     soundManager.playPageTurnSound();
   };
 
-  // Turn broadsheet backward
+  // Turn broadsheet backward in real-time 3D
   const turnPrev = () => {
-    if (isFlipping || isCoverDisappearing || currentSpread <= 1) return;
+    if (isFlipping || currentSpread <= 1) return;
 
-    // Returning to Spread 1 from Spread 2
-    if (currentSpread === 2) {
-      soundManager.playPageTurnSound();
-      setCurrentSpread(1);
-      setTargetSpread(1);
-      return;
-    }
-
-    // Between Spreads >= 3: 3D page turn curl backward!
     const prev = currentSpread - 1;
     setTargetSpread(prev);
     setIsFlipping(true);
@@ -85,33 +55,11 @@ export const NewspaperShell: React.FC = () => {
       spreadIndex < 1 ||
       spreadIndex > TOTAL_SPREADS ||
       spreadIndex === currentSpread ||
-      isFlipping ||
-      isCoverDisappearing
+      isFlipping
     ) {
       return;
     }
 
-    // If currently on first page (Cover Page), trigger disappearing animation
-    if (currentSpread === 1) {
-      setTargetSpread(spreadIndex);
-      setIsCoverDisappearing(true);
-      soundManager.playPageTurnSound();
-      setTimeout(() => {
-        setCurrentSpread(spreadIndex);
-        setIsCoverDisappearing(false);
-      }, 650);
-      return;
-    }
-
-    // If navigating back to the first page (Cover Page)
-    if (spreadIndex === 1) {
-      soundManager.playPageTurnSound();
-      setCurrentSpread(1);
-      setTargetSpread(1);
-      return;
-    }
-
-    // Between interior spreads (Spread >= 2): use 3D page turn curl!
     setTargetSpread(spreadIndex);
     setIsFlipping(true);
     setFlipDirection(spreadIndex > currentSpread ? 'forward' : 'backward');
@@ -126,7 +74,7 @@ export const NewspaperShell: React.FC = () => {
         return;
       }
 
-      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
         turnNext();
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         turnPrev();
@@ -139,7 +87,7 @@ export const NewspaperShell: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentSpread, isFlipping, isCoverDisappearing, isIndexOpen]);
+  }, [currentSpread, isFlipping, isIndexOpen]);
 
   // Touch swipe support for tablets / mobile
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -161,36 +109,6 @@ export const NewspaperShell: React.FC = () => {
     touchStartX.current = null;
   };
 
-  // Helper to render specific spread component
-  const renderSpreadByNumber = (spreadNum: number) => {
-    switch (spreadNum) {
-      case 1:
-        return (
-          <NewspaperCoverPage
-            onOpenNewspaper={turnNext}
-            isDisappearing={isCoverDisappearing}
-          />
-        );
-      case 2:
-        return <Spread1FrontPage onNavigateToSpread={navigateToSpread} />;
-      case 3:
-        return <Spread2AcademicExp />;
-      case 4:
-        return <Spread3ResearchProjects />;
-      case 5:
-        return <Spread4ForensicArsenal />;
-      case 6:
-        return <Spread5LeadershipColophon />;
-      default:
-        return (
-          <NewspaperCoverPage
-            onOpenNewspaper={turnNext}
-            isDisappearing={isCoverDisappearing}
-          />
-        );
-    }
-  };
-
   return (
     <div
       className="newspaper-desk-bg h-screen w-full flex items-center justify-between p-2 sm:p-3 overflow-hidden select-none relative text-[#141210]"
@@ -207,111 +125,35 @@ export const NewspaperShell: React.FC = () => {
         onNavigateToSpread={navigateToSpread}
         onPrevSpread={turnPrev}
         onNextSpread={turnNext}
-        isFlipping={isFlipping || isCoverDisappearing}
+        isFlipping={isFlipping}
         soundEnabled={soundEnabled}
         onToggleSound={() => setSoundEnabled(!soundEnabled)}
         onOpenIndex={() => setIsIndexOpen(true)}
       />
 
-      {/* MAIN BROADSHEET STAGE — FILL SCREEN VIEWPORT ADAPTIVE */}
+      {/* MAIN BROADSHEET STAGE — REALTIME 3D PHYSICAL VIEWER */}
       <main className="relative z-20 flex-1 h-full max-h-[calc(100vh-1rem)] flex items-center justify-center">
         <div className="relative w-full h-full flex items-center justify-center">
           {/* Broadsheet Stack Elevation Layers (Bottom Paper Depth) */}
-          <div className="absolute -left-2 top-3 bottom-3 w-2.5 bg-[#ece3cc] rounded-l-xs border-y border-l border-[#221e1a]/40 shadow-xl flex flex-col justify-between overflow-hidden">
-            <div className="h-full w-full bg-[repeating-linear-gradient(to_bottom,#f5f0e1,#f5f0e1_2px,#d9ceb4_2px,#d9ceb4_3px)] opacity-85"></div>
+          <div className="absolute -left-2 top-3 bottom-3 w-2.5 bg-[#eae8e1] rounded-l-xs border-y border-l border-[#221e1a]/40 shadow-xl flex flex-col justify-between overflow-hidden">
+            <div className="h-full w-full bg-[repeating-linear-gradient(to_bottom,#f4f3ef,#f4f3ef_2px,#dedbd2_2px,#dedbd2_3px)] opacity-85"></div>
           </div>
-          <div className="absolute -right-2 top-3 bottom-3 w-2.5 bg-[#ece3cc] rounded-r-xs border-y border-r border-[#221e1a]/40 shadow-xl flex flex-col justify-between overflow-hidden">
-            <div className="h-full w-full bg-[repeating-linear-gradient(to_bottom,#f5f0e1,#f5f0e1_2px,#d9ceb4_2px,#d9ceb4_3px)] opacity-85"></div>
+          <div className="absolute -right-2 top-3 bottom-3 w-2.5 bg-[#eae8e1] rounded-r-xs border-y border-r border-[#221e1a]/40 shadow-xl flex flex-col justify-between overflow-hidden">
+            <div className="h-full w-full bg-[repeating-linear-gradient(to_bottom,#f4f3ef,#f4f3ef_2px,#dedbd2_2px,#dedbd2_3px)] opacity-85"></div>
           </div>
 
-          {/* OPEN NEWSPAPER BROADSHEET CONTAINER — FILLS VIEWPORT */}
-          <div className="newspaper-paper-texture newspaper-broadsheet-shadow relative w-full h-full max-h-[calc(100vh-1.25rem)] border-2 border-[#141210] rounded-xs overflow-hidden flex flex-col justify-between transition-all duration-300">
-            {/* Three.js 3D Page Curling Transition Element (Active for Spread >= 2) */}
-            {currentSpread >= 2 && targetSpread >= 2 && (
-              <ThreeNewspaperCurl
-                isFlipping={isFlipping}
-                direction={flipDirection}
-                onFlipComplete={handleFlipComplete}
-                currentSpread={currentSpread}
-                targetSpread={targetSpread}
-              />
-            )}
-
-            {/* Central Broadsheet Vertical Fold Crease Shadow (Shown on interior spreads) */}
-            {currentSpread > 1 && !isCoverDisappearing && (
-              <>
-                <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-12 -ml-6 bg-gradient-to-r from-transparent via-[#141210]/25 to-transparent pointer-events-none z-20"></div>
-                <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1.5px] bg-[#141210]/35 pointer-events-none z-20"></div>
-              </>
-            )}
-
-            {/* Deckled Broadsheet Outer Edge Vignette */}
-            <div className="absolute left-0 top-0 bottom-0 w-2.5 pointer-events-none z-20 opacity-40 bg-gradient-to-r from-[#141210]/25 to-transparent"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-2.5 pointer-events-none z-20 opacity-40 bg-gradient-to-l from-[#141210]/25 to-transparent"></div>
-
-            {/* SPREAD CONTENT */}
-            <div className="h-full w-full overflow-hidden relative">
-              {/* If on Cover Page (Spread 1) or in the middle of Cover Disappearing */}
-              {currentSpread === 1 || isCoverDisappearing ? (
-                <>
-                  {/* Background Layer: Spread 2 (or target spread) revealed underneath */}
-                  <div className="absolute inset-0 w-full h-full">
-                    {renderSpreadByNumber(targetSpread > 1 ? targetSpread : 2)}
-                  </div>
-
-                  {/* Foreground Layer: Cover Page that disappears */}
-                  <div
-                    className={`absolute inset-0 w-full h-full bg-[#f2f1ec] z-10 transition-all duration-700 ease-in-out ${
-                      isCoverDisappearing
-                        ? 'opacity-0 scale-[1.03] -translate-y-3 filter blur-[1px] pointer-events-none'
-                        : 'opacity-100 scale-100 translate-y-0'
-                    }`}
-                  >
-                    <NewspaperCoverPage
-                      onOpenNewspaper={turnNext}
-                      isDisappearing={isCoverDisappearing}
-                    />
-                  </div>
-                </>
-              ) : (
-                /* Interior Spreads (Spread >= 2) with 3D page-turn interaction */
-                <div className="h-full w-full">
-                  {renderSpreadByNumber(currentSpread)}
-                </div>
-              )}
-            </div>
-
-            {/* Interactive Lateral Hover Turn Wings */}
-            {currentSpread > 1 && (
-              <button
-                type="button"
-                onClick={turnPrev}
-                disabled={isFlipping || isCoverDisappearing}
-                className="hidden lg:flex absolute left-0 top-0 bottom-0 w-12 items-center justify-center group bg-transparent hover:bg-black/[0.04] transition-all cursor-pointer z-30"
-                title="Previous Broadsheet (Click or Arrow Left)"
-                aria-label="Previous Page"
-              >
-                <div className="opacity-0 group-hover:opacity-90 transition-opacity bg-[#14100c]/85 text-[#f5f0e1] p-2 rounded-xs shadow-lg flex items-center justify-center">
-                  <ChevronLeft className="w-5 h-5 text-[#d9c49f]" />
-                </div>
-              </button>
-            )}
-
-            {currentSpread < TOTAL_SPREADS && (
-              <button
-                type="button"
-                onClick={turnNext}
-                disabled={isFlipping || isCoverDisappearing}
-                className="hidden lg:flex absolute right-0 top-0 bottom-0 w-12 items-center justify-center group bg-transparent hover:bg-black/[0.04] transition-all cursor-pointer z-30"
-                title={currentSpread === 1 ? 'Open Newspaper (Disappear Front Page)' : 'Next Broadsheet (Turn Page)'}
-                aria-label="Next Page"
-              >
-                <div className="opacity-0 group-hover:opacity-90 transition-opacity bg-[#14100c]/85 text-[#f5f0e1] p-2 rounded-xs shadow-lg flex items-center justify-center">
-                  <ChevronRight className="w-5 h-5 text-[#d9c49f]" />
-                </div>
-              </button>
-            )}
-          </div>
+          {/* REALTIME 3D SPREADING & PAGE-TURNING COMPONENT */}
+          <Newspaper3DViewer
+            currentSpread={currentSpread}
+            totalSpreads={TOTAL_SPREADS}
+            targetSpread={targetSpread}
+            isFlipping={isFlipping}
+            flipDirection={flipDirection}
+            onFlipComplete={handleFlipComplete}
+            onTurnNext={turnNext}
+            onTurnPrev={turnPrev}
+            onNavigateToSpread={navigateToSpread}
+          />
         </div>
       </main>
 
